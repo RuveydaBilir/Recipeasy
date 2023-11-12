@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "762456627168",
+    "project_id": "recipeasy-51679",
+    "storage_bucket": "recipeasy-51679.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762456627168:android:dcaf6745d56e728a493d85",
+        "android_client_info": {
+          "package_name": "com.example.recipeasy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnKePRob4A6ZoBBPYbTZIKT_KiFaQKKiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
