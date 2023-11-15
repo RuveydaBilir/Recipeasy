@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".SignInActivity">
+
+    <ImageView
+        android:id="@+id/signin_logo"
+        android:layout_width="82dp"
+        android:layout_height="85dp"
+        android:src="@drawable/login_logo"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="170dp" />
+
+
+    <TextView
+        android:id="@+id/signin_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:textColor="@color/login_red"
+        app:text="SIGN IN"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="114dp"
+        tools:layout_editor_absoluteY="186dp"
+        tools:text="SIGN IN" />
+
+    <TextView
+        android:id="@+id/signin_email_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="E-mail address"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <EditText
+        android:id="@+id/signin_email"
+        android:background="@drawable/signin_border"
+        android:layout_width="351dp"
+        android:layout_height="48dp"
+        android:hint="Enter your e-mail"
+        android:paddingHorizontal="20dp"
+        android:inputType="textEmailAddress"
+
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="6dp"
+        tools:layout_editor_absoluteY="325dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="Password"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="395dp" />
+
+    <EditText
+        android:id="@+id/signin_password"
+        android:layout_width="351dp"
+        android:layout_height="48dp"
+        android:background="@drawable/signin_border"
+        android:hint="Enter your password"
+        android:inputType="textPassword"
+        android:paddingHorizontal="20dp"
+
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="6dp"
+        tools:layout_editor_absoluteY="420dp" />
+
+    <TextView
+        android:id="@+id/forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="Forgot your password?"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="normal"
+        android:onClick="onClick"
+        android:clickable="true"
+        android:alpha="0.7"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="480dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signin_button"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/login_red"
+        android:text="Sign in"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:cornerRadius="25dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="524dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
