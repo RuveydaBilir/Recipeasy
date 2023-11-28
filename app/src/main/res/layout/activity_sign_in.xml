@@ -30,11 +30,10 @@
         android:textSize="40sp"
         android:textStyle="bold"
         android:textColor="@color/login_red"
-        app:text="SIGN IN"
+        android:text="SIGN IN"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="186dp"
-        tools:text="SIGN IN" />
+        tools:layout_editor_absoluteY="186dp" />
 
     <TextView
         android:id="@+id/signin_email_text"

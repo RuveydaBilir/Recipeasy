@@ -15,10 +15,11 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignInActivity extends AppCompatActivity {
 
-    EditText emailText;
-    EditText passwordText;
-    Button signInButton;
-    FirebaseAuth myAuth;
+    private EditText emailText;
+    private EditText passwordText;
+    private Button signInButton;
+    private FirebaseAuth myAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,9 +33,10 @@ public class SignInActivity extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean isValid;
                 String email = emailText.getText().toString();
                 String password = passwordText.getText().toString();
-                //TODO: Set the signing in conditions, also the email and the password cannot be blank
+                isValid = true; //TODO: Set the signing in conditions, also the email and the password cannot be blank
                 if(isValid) {
                 // Sign in the user
                     myAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
