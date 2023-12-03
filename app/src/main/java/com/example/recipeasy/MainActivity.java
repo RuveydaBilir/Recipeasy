@@ -1,5 +1,6 @@
 package com.example.recipeasy;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -22,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
-        bottomNavigationView.setSelectedItemId(R.id.navigation_dashboard); //TODO: will be changed after navigations items are ready
+        startActivity(new Intent(MainActivity.this, SignUpActivity.class));
+        //bottomNavigationView.setSelectedItemId(R.id.navigation_dashboard); //TODO: will be changed after navigations items are ready
 
 
         /* Not sure if this part is important:

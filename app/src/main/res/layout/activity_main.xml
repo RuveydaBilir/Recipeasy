@@ -27,7 +27,4 @@
         app:itemIconTint="@drawable/bottom_nav_selector"
         />
 
-
-
-
 </RelativeLayout>

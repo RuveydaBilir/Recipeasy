@@ -3,16 +3,23 @@ package com.example.recipeasy.BackEnd;
 import java.util.ArrayList;
 
 public class Fridge {
-    ArrayList<Ingredient> fridgeList;
+    private ArrayList<Ingredient> fridgeList;
 
     /**
      * Constructs a fridge Arraylist containing every possible ingredient
      */
-    public Fridge(){
-        fridgeList = new ArrayList<Ingredient>();
+    public Fridge() {
+    }
+
+    public Fridge(ArrayList<Ingredient> fridgeList) {
+        this.fridgeList = fridgeList;
     }
 
     public ArrayList<Ingredient> getFridgeList() {
         return fridgeList;
+    }
+
+    public void setFridgeList(ArrayList<Ingredient> fridgeList) {
+        this.fridgeList = fridgeList;
     }
 }

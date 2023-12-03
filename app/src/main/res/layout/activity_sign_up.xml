@@ -118,16 +118,15 @@
         android:id="@+id/signup_signin_clickable_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:fontFamily="sans-serif-black"
         android:text="Sign in"
         android:textColor="@color/login_red"
         android:textSize="15sp"
         android:textStyle="normal"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="245dp"
-        tools:layout_editor_absoluteY="615dp"
-        />
-
+        tools:layout_editor_absoluteX="249dp"
+        tools:layout_editor_absoluteY="618dp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signup_button"
