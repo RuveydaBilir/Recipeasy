@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
-        android:text="E-mail address"
+        android:text="E-mail address:"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="15sp"
@@ -65,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
-        android:text="Password"
+        android:text="Password:"
         android:textColor="@color/black"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -101,6 +101,16 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="32dp"
         tools:layout_editor_absoluteY="480dp" />
+
+    <ImageButton
+        android:id="@+id/signin_return_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/return_border"
+        android:src="@drawable/return_icon"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signin_button"

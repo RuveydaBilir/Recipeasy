@@ -13,14 +13,30 @@
         android:theme="@style/Theme.Recipeasy"
         tools:targetApi="31">
         <activity
+            android:name=".CoverPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ResetPasswordActivity3"
+            android:exported="false" />
+        <activity
+            android:name=".ResetPasswordActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".ResetPasswordActivity1"
+            android:exported="false" />
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.SignUpActivity"
+            android:exported="false" />
+        <activity
             android:name=".SignInActivity"
-            android:exported="false"
-            />
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
