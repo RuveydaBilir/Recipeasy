@@ -2,20 +2,26 @@ package com.example.recipeasy;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.recipeasy.databinding.ActivityMainBinding;
+import com.google.android.material.button.MaterialButton;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private SearchView searchView;
+    private MaterialButton recomRecButton;
+    private MaterialButton weeklyPlannerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,24 +58,31 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
-        //startActivity(new Intent(MainActivity.this, SignUpActivity.class));
-        //bottomNavigationView.setSelectedItemId(R.id.navigation_dashboard); //TODO: will be changed after navigations items are ready
+
+        searchView = findViewById(R.id.main_search);
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterList(newText);
+                return true;
+            }
+        });
+
+        recomRecButton = findViewById(R.id.recommend_recipes_button);
+        //recomRecButton.setOnClikedListener(new View.OnClickListener());
+        weeklyPlannerButton = findViewById(R.id.weekly_planner_button);
+    }
+
+    private void filterList(String newText) {
+        //TODO: get the recipe list from database (videoda adam arraylisti for dongusune alip tek tek karsilastiriyor)
 
 
-        /* Not sure if this part is important:
-
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        BottomNavigationView navView = findViewById(R.id.bottom_app_bar);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.bottom_app_bar, navController);*/
     }
 
 }
