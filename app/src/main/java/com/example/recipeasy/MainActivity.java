@@ -23,7 +23,36 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
-        startActivity(new Intent(MainActivity.this, SignUpActivity.class));
+        bottomNavigationView.setSelectedItemId(R.id.recipe);
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.recipe) {
+                return true;
+            } else if (itemId == R.id.shopping_cart) {
+                startActivity(new Intent(getApplicationContext(), ShoppingListActivity.class));
+                //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                finish();
+                return true;
+            } else if (itemId == R.id.fridge) {
+                startActivity(new Intent(getApplicationContext(), FridgeActivity.class));
+                //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                finish();
+                return true;
+            } else if (itemId == R.id.favorites) {
+                startActivity(new Intent(getApplicationContext(), FavoritesActivity.class));
+                //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                finish();
+                return true;
+            } else if (itemId == R.id.settings) {
+                startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                finish();
+                return true;
+            }
+            return false;
+        });
+        //startActivity(new Intent(MainActivity.this, SignUpActivity.class));
         //bottomNavigationView.setSelectedItemId(R.id.navigation_dashboard); //TODO: will be changed after navigations items are ready
 
 
