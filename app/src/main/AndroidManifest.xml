@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Recipeasy"
         tools:targetApi="31">
+
         <activity
             android:name=".WeeklyPlannerActivity"
             android:exported="false" />

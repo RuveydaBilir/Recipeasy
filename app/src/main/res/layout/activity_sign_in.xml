@@ -151,5 +151,19 @@
         app:layout_constraintVertical_bias="0.28"
         tools:ignore="MissingConstraints" />
 
+    <TextView
+        android:id="@+id/signin_error_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="username or password is incorrect"
+        android:textColor="@color/black"
+        android:textSize="23sp"
+        android:textStyle="normal"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="648dp"
+        android:visibility="gone"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

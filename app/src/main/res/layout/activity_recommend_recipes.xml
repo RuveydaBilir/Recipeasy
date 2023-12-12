@@ -1,9 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".RecommendRecipesActivity">
+    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Top Bar -->
+    <RelativeLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <ImageButton
+            android:id="@+id/recipes_return_button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/return_border"
+            android:src="@drawable/return_icon"
+            />
+
+
+        <Button
+            android:id="@+id/btnFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/filter_icon"
+            android:drawablePadding="4dp"
+            android:text="Fılter"
+            android:backgroundTint="@color/koyu_pembe"
+            android:layout_below="@+id/recipes_return_button"/>
+
+        <Button
+            android:id="@+id/btnSort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/koyu_pembe"
+            android:text="Sort"
+            android:layout_below="@id/recipes_return_button"
+            android:layout_toEndOf="@+id/btnFilter"/>
+    </RelativeLayout>
+
+    <!-- Filter Options -->
+    <LinearLayout
+        android:id="@+id/layoutFilterOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:layout_below="@+id/topBar">
+
+        <Button
+            android:id="@+id/btnServings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Servings"/>
+
+        <Button
+            android:id="@+id/btnTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Time"/>
+    </LinearLayout>
+
+    <!-- Servings Options -->
+    <LinearLayout
+        android:id="@+id/layoutServingsOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:layout_below="@+id/layoutFilterOptions">
+
+        <!-- Add buttons for servings options similar to the layoutFilterOptions -->
+
+        <CheckBox android:id="@+id/checkbox_2serv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 servings" />
+        <CheckBox android:id="@+id/checkbox_4serv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4 servings"/>
+        <CheckBox android:id="@+id/checkbox_6serv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6 servings" />
+        <CheckBox android:id="@+id/checkbox_8serv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8 servings"/>
+        <CheckBox android:id="@+id/checkbox_8plus_serv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8+ servings" />
+
+    </LinearLayout>
+
+    <!-- Time Options -->
+    <LinearLayout
+        android:id="@+id/layoutTimeOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:layout_below="@+id/layoutFilterOptions">
+
+        <!-- Add buttons for time options similar to the layoutFilterOptions -->
+
+        <CheckBox android:id="@+id/checkbox_filter_time1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15-30 minutes" />
+        <CheckBox android:id="@+id/checkbox_filter_time2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30-45 minutes"/>
+        <CheckBox android:id="@+id/checkbox_filter_time3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="45-60 minutes" />
+        <CheckBox android:id="@+id/checkbox_filter_time4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="60-120 minutes"/>
+        <CheckBox android:id="@+id/checkbox_filter_time5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="120+ minutes" />
+    </LinearLayout>
+
+    <!-- Sort Options -->
+    <LinearLayout
+        android:id="@+id/layoutSortOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:layout_below="@+id/layoutFilterOptions">
+
+        <!-- Add buttons for sort options similar to the layoutFilterOptions -->
+
+        <CheckBox android:id="@+id/checkbox_sort_time1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="increasing time" />
+        <CheckBox android:id="@+id/checkbox_sort_time2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="decreasing time"/>
+        <CheckBox android:id="@+id/checkbox_sort_servings1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="increasing servings" />
+        <CheckBox android:id="@+id/checkbox_sort_servings2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="decreasing servings"/>
+    </LinearLayout>
+
+    <!-- Recipe Buttons -->
+    <ScrollView
+        android:id="@+id/scrollViewRecipes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layoutFilterOptions">
+
+        <!-- Add buttons for recipes dynamically based on your data -->
+
+    </ScrollView>
+
+</RelativeLayout>
