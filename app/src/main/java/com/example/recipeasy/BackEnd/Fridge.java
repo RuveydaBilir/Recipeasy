@@ -22,4 +22,28 @@ public class Fridge {
     public void setFridgeList(ArrayList<Ingredient> fridgeList) {
         this.fridgeList = fridgeList;
     }
+    public void addIngredient(Ingredient ingredient){
+        boolean doesContain = false;
+        for (int i = 0; i < fridgeList.size(); i++) {
+            if(ingredient.getName().equals(fridgeList.get(i).getName())){
+                doesContain = true;
+                fridgeList.get(i).updateAmount(ingredient.getAmount());
+                break;
+            }
+        }
+        if(!doesContain){
+            fridgeList.add(ingredient);
+        }
+    }
+
+    public void removeIngredient(Ingredient ingredient){
+        boolean doesContain = false;
+        for (int i = 0; i < fridgeList.size(); i++) {
+            if(ingredient.getName().equals(fridgeList.get(i).getName())){
+                doesContain = true;
+                fridgeList.get(i).updateAmount(-ingredient.getAmount());
+                break;
+            }
+        }
+    }
 }

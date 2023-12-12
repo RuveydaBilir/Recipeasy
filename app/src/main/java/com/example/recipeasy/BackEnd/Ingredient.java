@@ -24,9 +24,6 @@ public class Ingredient {
      * @param list the list of ingredients of either the fridge or basket
      * @param amount the amount of the ingredient
      */
-    public void increaseAmount(ArrayList<Ingredient> list, double amount){
-
-    }
 
     public String getName() {
         return name;
@@ -66,5 +63,11 @@ public class Ingredient {
 
     public void setDoesExist(boolean doesExist) {
         this.doesExist = doesExist;
+    }
+    public void updateAmount(double increment){
+        amount += increment;
+        if(amount < 0){
+            amount = 0;
+        }
     }
 }

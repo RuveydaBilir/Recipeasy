@@ -20,4 +20,12 @@ public class Planner {
     public void setRecipes(ArrayList<Recipe> recipes) {
         this.recipes = recipes;
     }
+
+    public void addRecipe(int day, Recipe recipe){
+        recipes.add(day, recipe);
+    }
+    
+    public void removeRecipe(int day){
+        recipes.remove(day);
+    }
 }

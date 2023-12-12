@@ -22,4 +22,29 @@ public class ShoppingList {
     public void setShoppingList(ArrayList<Ingredient> shoppingList) {
         this.shoppingList = shoppingList;
     }
+
+    public void addIngredient(Ingredient ingredient){
+        boolean doesContain = false;
+        for (int i = 0; i < shoppingList.size(); i++) {
+            if(ingredient.getName().equals(shoppingList.get(i).getName())){
+                doesContain = true;
+                shoppingList.get(i).updateAmount(ingredient.getAmount());
+                break;
+            }
+        }
+        if(!doesContain){
+            shoppingList.add(ingredient);
+        }
+    }
+
+    public void removeIngredient(Ingredient ingredient){
+        boolean doesContain = false;
+        for (int i = 0; i < shoppingList.size(); i++) {
+            if(ingredient.getName().equals(shoppingList.get(i).getName())){
+                doesContain = true;
+                shoppingList.get(i).updateAmount(-ingredient.getAmount());
+                break;
+            }
+        }
+    }
 }
