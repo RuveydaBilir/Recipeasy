@@ -37,18 +37,25 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void signInClicked(String email, String password) {
+        errorText.setVisibility(View.GONE);
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(email.isEmpty() || email == null || password.isEmpty() || password == null){
+                            errorText.setText("Password and email cannot be blank");
+                            errorText.setVisibility(View.VISIBLE);
+                        }
                         if(task.isSuccessful()) {
                             Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                            startActivity(intent);
                             //TODO: Update the current user
                         }
-                        else {
+                        else{
                             errorText.setText("Login failed. Email or password is incorrect.");
+                            errorText.setVisibility(View.VISIBLE);
                         }
                     }
                 });
@@ -58,4 +65,4 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
     }
-}
+    }

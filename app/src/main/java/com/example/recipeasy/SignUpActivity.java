@@ -36,30 +36,32 @@ public class SignUpActivity extends AppCompatActivity {
         signInButton = findViewById(R.id.signup_signin_clickable_text);
         errorText = findViewById(id.signup_error_text);
 
-        signUpClicked(emailText.getText().toString(),passwordText.getText().toString(),passwordAgainText.getText().toString());
-        signInClicked();
+        if(emailText != null && passwordText != null && passwordAgainText != null) {
+            signUpClicked(emailText.getText().toString(), passwordText.getText().toString(), passwordAgainText.getText().toString());
+            signInClicked();
+        }
     }
 
     private void signUpClicked(String email, String password, String passwordAgain) {
+        errorText.setVisibility(View.GONE);
         createAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 boolean isValid = true;
                 String message ="";
-                if(email.isEmpty() || email == null || password.isEmpty() || password == null){
+                if(email.isEmpty() || password.isEmpty() ||  passwordAgain.isEmpty()){
                     isValid =  false;
-                    message = "Email and password cannot be empty.";
+                    message = "Email and password cannot be blank.";
                 }
-                if(password.length() < 8){
+                else if(password.length() < 8){
                     isValid = false;
                     message = "Password must contain at least 8 characters.";
                 }
-                if(!password.equals(passwordAgain)){
+                else if(!password.equals(passwordAgain)){
                     isValid = false;
                     message = "Passwords do not match.";
                 }
                 else{
-                    isValid = true;
                     Controller.getUser().setEmail(email);
                     Controller.getUser().setPassword(password);
                 }//
@@ -71,9 +73,11 @@ public class SignUpActivity extends AppCompatActivity {
                             if(task.isSuccessful()) {
                                 Controller.createUserData(FirebaseAuth.getInstance().getCurrentUser().getUid());
                                 Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
+                                startActivity(intent);
                             }
                             else {
                                 errorText.setText("Sign up failed.");
+                                errorText.setVisibility(View.VISIBLE);
                             }
                         }
                     });
