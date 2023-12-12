@@ -19,11 +19,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText emailText;
-    private String email;
     private EditText passwordText;
-    private String password;
     private EditText passwordAgainText;
-    private String passwordAgain;
     private Button createAccountButton;
     private TextView signInButton;
     private TextView errorText;
@@ -39,10 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
         signInButton = findViewById(R.id.signup_signin_clickable_text);
         errorText = findViewById(id.signup_error_text);
 
-        email = emailText.getText().toString();
-        password = passwordText.getText().toString();
-        passwordAgain = passwordAgainText.getText().toString();
-        signUpClicked(email,password,passwordAgain);
+        signUpClicked(emailText.getText().toString(),passwordText.getText().toString(),passwordAgainText.getText().toString());
         signInClicked();
     }
 
@@ -52,7 +46,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 boolean isValid = true;
                 String message ="";
-                if(email.isEmpty() || password.isEmpty()){
+                if(email.isEmpty() || email == null || password.isEmpty() || password == null){
                     isValid =  false;
                     message = "Email and password cannot be empty.";
                 }

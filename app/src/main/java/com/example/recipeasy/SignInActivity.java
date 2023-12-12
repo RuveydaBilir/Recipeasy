@@ -3,10 +3,12 @@ package com.example.recipeasy;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.recipeasy.BackEnd.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,6 +21,7 @@ public class SignInActivity extends AppCompatActivity {
     private EditText emailText;
     private EditText passwordText;
     private Button signInButton;
+    private TextView errorText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,7 @@ public class SignInActivity extends AppCompatActivity {
         emailText = findViewById(R.id.signin_email);
         passwordText = findViewById(R.id.signin_password);
         signInButton = findViewById(R.id.signin_button);
+        errorText = findViewById(R.id.signin_error_text);
 
         signInClicked(emailText.getText().toString(), passwordText.getText().toString());
     }
@@ -40,12 +44,11 @@ public class SignInActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
-                            //TODO: Update the UI accordingly
-                            //TODO: Go to the main page
+                            Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                             //TODO: Update the current user
                         }
                         else {
-                            //TODO: Display a sign in failure message
+                            errorText.setText("Login failed. Email or password is incorrect.");
                         }
                     }
                 });
