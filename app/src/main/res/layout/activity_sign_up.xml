@@ -11,108 +11,128 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".SignUpActivity">
 
+
     <ImageView
         android:id="@+id/signup_logo"
         android:layout_width="82dp"
         android:layout_height="85dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="172dp"
         android:src="@drawable/login_logo"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="170dp" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/signup_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="185dp"
         android:fontFamily="sans-serif-medium"
+        android:text="SIGN UP"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/login_red"
         android:textSize="40sp"
         android:textStyle="bold"
-        android:textColor="@color/login_red"
-        android:text="SIGN UP"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="186dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintStart_toEndOf="@+id/signup_logo"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/signup_email_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:fontFamily="sans-serif-black"
         android:text="E-mail address:"
         android:textColor="@color/black"
-        android:textStyle="bold"
         android:textSize="15sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="300dp" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_logo"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/signup_email"
-        android:background="@drawable/signin_border"
         android:layout_width="351dp"
         android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/signin_border"
         android:hint="Enter your e-mail"
-        android:paddingHorizontal="20dp"
-        android:inputType="textEmailAddress"
 
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="6dp"
-        tools:layout_editor_absoluteY="325dp" />
+        android:inputType="textEmailAddress"
+        android:paddingHorizontal="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_email_text"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/signup_password_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-black"
         android:text="Password:"
         android:textColor="@color/black"
         android:textSize="15sp"
         android:textStyle="bold"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="395dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_email"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/signup_password"
         android:layout_width="351dp"
         android:layout_height="48dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/signin_border"
         android:hint="Create a password"
         android:inputType="textPassword"
-        android:paddingHorizontal="20dp"
 
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="6dp"
-        tools:layout_editor_absoluteY="420dp" />
+        android:paddingHorizontal="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_password_text"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/signup_password_again"
         android:layout_width="351dp"
         android:layout_height="48dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/signin_border"
         android:hint="Enter the password again"
         android:inputType="textPassword"
-        android:paddingHorizontal="20dp"
 
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="6dp"
-        tools:layout_editor_absoluteY="480dp" />
+        android:paddingHorizontal="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_password"
+        tools:ignore="MissingConstraints" />
+
 
     <TextView
         android:id="@+id/signup_alreadyhaveone_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
         android:fontFamily="sans-serif-black"
         android:text="You already have one?"
         android:textColor="@color/black"
         android:textSize="15sp"
         android:textStyle="normal"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="90dp"
-        tools:layout_editor_absoluteY="615dp" />
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_button"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/signup_signin_clickable_text"
@@ -124,21 +144,28 @@
         android:textColor="@color/login_red"
         android:textSize="15sp"
         android:textStyle="normal"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="249dp"
-        tools:layout_editor_absoluteY="618dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toEndOf="@+id/signup_alreadyhaveone_text"
+        app:layout_constraintTop_toBottomOf="@+id/signup_button"
+        app:layout_constraintVertical_bias="0.002"
+        tools:ignore="MissingConstraints" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signup_button"
         android:layout_width="250dp"
         android:layout_height="60dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="@color/login_red"
         android:text="Create Acount"
         android:textSize="20dp"
         android:textStyle="bold"
         app:cornerRadius="25dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="555dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_password_again"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
