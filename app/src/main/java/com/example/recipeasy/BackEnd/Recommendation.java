@@ -15,6 +15,7 @@ public class Recommendation {
     public void filterServings(ArrayList<Integer> servings){
         for (int i = 0; i < recipes.size(); i++) {
             for (int j = 0; j < servings.size(); j++) {
+                recipes.get(i).setShown(false);
                 if(recipes.get(i).getServings()==servings.get(j)){
                     recipes.get(i).setShown(true);
                     break;
@@ -25,6 +26,7 @@ public class Recommendation {
     public void filterTime(ArrayList<Integer> time){
         for (int i = 0; i < recipes.size(); i++) {
             for (int j = 0; j < time.size(); j++) {
+                recipes.get(i).setShown(false);
                 if(recipes.get(i).getServings()==time.get(j)){
                     recipes.get(i).setShown(true);
                     break;

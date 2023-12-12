@@ -11,12 +11,12 @@ public class Ingredient {
     public Ingredient() {
     }
 
-    public Ingredient(String name, String measureType, String type, double amount, boolean doesExist) {
+    public Ingredient(String name, String measureType, String type, double amount) {
         this.name = name;
         this.measureType = measureType;
         this.type = type;
         this.amount = amount;
-        this.doesExist = doesExist;
+        setDoesExist();
     }
 
     /**
@@ -61,8 +61,14 @@ public class Ingredient {
         return doesExist;
     }
 
-    public void setDoesExist(boolean doesExist) {
-        this.doesExist = doesExist;
+    public void setDoesExist() {
+        if(amount <= 0){
+            amount = 0;
+            doesExist = false;
+        }
+        else{
+            doesExist = true;
+        }
     }
     public void updateAmount(double increment){
         amount += increment;

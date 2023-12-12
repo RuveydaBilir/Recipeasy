@@ -4,28 +4,29 @@ import java.util.ArrayList;
 
 public class Planner {
 
-    private ArrayList<Recipe> recipes;
+    private Recipe[] recipes;
 
     public Planner() {
+        recipes = new Recipe[5];
     }
 
-    public Planner(ArrayList<Recipe> recipes) {
+    public Planner(Recipe[] recipes) {
         this.recipes = recipes;
     }
 
-    public ArrayList<Recipe> getRecipes() {
+    public Recipe[] getRecipes() {
         return recipes;
     }
 
-    public void setRecipes(ArrayList<Recipe> recipes) {
+    public void setRecipes(Recipe[] recipes) {
         this.recipes = recipes;
     }
 
     public void addRecipe(int day, Recipe recipe){
-        recipes.add(day, recipe);
+        recipes[day]= recipe;
     }
-    
+
     public void removeRecipe(int day){
-        recipes.remove(day);
+        recipes[day] = null;
     }
 }
