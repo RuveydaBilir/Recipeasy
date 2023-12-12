@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- Top Bar -->
     <RelativeLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        >
 
 
         <ImageButton
@@ -23,55 +24,68 @@
 
         <Button
             android:id="@+id/btnFilter"
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/filter_icon"
-            android:drawablePadding="4dp"
-            android:text="Fılter"
+            android:layout_below="@+id/recipes_return_button"
+            android:layout_marginTop="0dp"
+            android:layout_marginStart="15dp"
+            android:gravity="center"
             android:backgroundTint="@color/koyu_pembe"
-            android:layout_below="@+id/recipes_return_button"/>
+            android:drawableRight="@drawable/filter_icon"
+            android:text="Fılter" />
 
         <Button
             android:id="@+id/btnSort"
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/koyu_pembe"
-            android:text="Sort"
             android:layout_below="@id/recipes_return_button"
-            android:layout_toEndOf="@+id/btnFilter"/>
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/btnFilter"
+            android:gravity="center"
+            android:backgroundTint="@color/koyu_pembe"
+            android:drawableRight="@drawable/sort_icon"
+            android:text="Sort" />
     </RelativeLayout>
 
     <!-- Filter Options -->
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layoutFilterOptions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:visibility="gone"
+        android:visibility="invisible"
         android:layout_below="@+id/topBar">
 
         <Button
             android:id="@+id/btnServings"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Servings"/>
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="45dp"
+            android:backgroundTint="@color/acik_pembe"
+            android:drawableRight="@drawable/serving_icon2"
+            android:text="Servıngs"/>
 
         <Button
             android:id="@+id/btnTime"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Time"/>
-    </LinearLayout>
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/btnServings"
+            android:backgroundTint="@color/acik_pembe"
+            android:drawableRight="@drawable/time_icon"
+            android:text="Tıme"/>
+    </RelativeLayout>
 
     <!-- Servings Options -->
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layoutServingsOptions"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:visibility="gone"
+        android:visibility="invisible"
+        android:layout_marginStart="45dp"
         android:layout_below="@+id/layoutFilterOptions">
 
         <!-- Add buttons for servings options similar to the layoutFilterOptions -->
@@ -83,29 +97,35 @@
         <CheckBox android:id="@+id/checkbox_4serv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/checkbox_2serv"
             android:text="4 servings"/>
         <CheckBox android:id="@+id/checkbox_6serv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/checkbox_4serv"
             android:text="6 servings" />
         <CheckBox android:id="@+id/checkbox_8serv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/checkbox_6serv"
             android:text="8 servings"/>
         <CheckBox android:id="@+id/checkbox_8plus_serv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/checkbox_8serv"
             android:text="8+ servings" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <!-- Time Options -->
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layoutTimeOptions"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:visibility="gone"
+        android:visibility="invisible"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@id/layoutServingsOptions"
         android:layout_below="@+id/layoutFilterOptions">
 
         <!-- Add buttons for time options similar to the layoutFilterOptions -->
@@ -117,59 +137,493 @@
         <CheckBox android:id="@+id/checkbox_filter_time2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/checkbox_filter_time1"
             android:text="30-45 minutes"/>
         <CheckBox android:id="@+id/checkbox_filter_time3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/checkbox_filter_time2"
             android:text="45-60 minutes" />
         <CheckBox android:id="@+id/checkbox_filter_time4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/checkbox_filter_time3"
             android:text="60-120 minutes"/>
         <CheckBox android:id="@+id/checkbox_filter_time5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/checkbox_filter_time4"
             android:text="120+ minutes" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <!-- Sort Options -->
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layoutSortOptions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:visibility="gone"
-        android:layout_below="@+id/layoutFilterOptions">
+        android:visibility="invisible"
+        android:layout_below="@+id/topBar">
 
         <!-- Add buttons for sort options similar to the layoutFilterOptions -->
 
         <CheckBox android:id="@+id/checkbox_sort_time1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="increasing time" />
+            android:text="increasing time"
+            android:drawablePadding="6dp"
+            android:drawableRight="@drawable/time_icon"/>
         <CheckBox android:id="@+id/checkbox_sort_time2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="decreasing time"/>
+            android:layout_below="@id/checkbox_sort_time1"
+            android:text="decreasing time"
+            android:drawablePadding="6dp"
+            android:drawableRight="@drawable/time_icon"/>
         <CheckBox android:id="@+id/checkbox_sort_servings1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="increasing servings" />
+            android:layout_below="@id/checkbox_sort_time2"
+            android:text="increasing servings"
+            android:drawableRight="@drawable/serving_icon2"
+            android:drawablePadding="6dp"/>
         <CheckBox android:id="@+id/checkbox_sort_servings2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="decreasing servings"/>
-    </LinearLayout>
+            android:layout_below="@id/checkbox_sort_servings1"
+            android:text="decreasing servings"
+            android:drawableRight="@drawable/serving_icon2"
+            android:drawablePadding="6dp"/>
+    </RelativeLayout>
+
+    <!-- Recipe Buttons -->
+    <!--<ScrollView
+        android:id="@+id/scrollViewRecipes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/topBar"
+        >
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Recommended Recipes"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:textColor="@color/black"
+            android:visibility="visible"
+            />
+
+
+
+    </ScrollView> -->
 
     <!-- Recipe Buttons -->
     <ScrollView
         android:id="@+id/scrollViewRecipes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/layoutFilterOptions">
+        android:layout_below="@id/topBar"
+        android:layout_above="@id/bottom_nav_view">
 
         <!-- Add buttons for recipes dynamically based on your data -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Recommended Recipes"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:textColor="@color/black"
+                android:visibility="visible"
+                />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+            <!-- Add dynamic content for each recipe -->
+            <!-- For each recipe, create a layout that contains image, serving, and time -->
+            <!-- Use layout_below to stack them on top of each other -->
+
+            <RelativeLayout
+                android:id="@+id/recipeLayout1"
+                android:layout_width="200dp"
+                android:layout_height="230dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/green_recipe_background">
+
+                <TextView
+                    android:id="@+id/recipeName1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/recipeImage1"
+                    android:layout_marginStart="10dp"
+                    android:text="Chorizo and mozzarella gnocchi bake"/>
+
+                <ImageView
+                    android:id="@+id/recipeImage1"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/example_recipe_img"/>
+
+                <TextView
+                    android:id="@+id/recipeServings1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/recipeImage1"
+                    android:layout_marginStart="15dp"
+                    android:text="Serves 4"
+                    android:drawableRight="@drawable/serving_icon2"
+                    android:drawablePadding="4dp"/>
+
+                <TextView
+                    android:id="@+id/recipeTime1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/recipeImage1"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@id/recipeServings1"
+                    android:text="45 min"
+                    android:drawableRight="@drawable/time_icon"
+                    android:drawablePadding="4dp"/>
+                <TextView
+                    android:id="@+id/recipeMissIng1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/recipeTime1"
+                    android:layout_marginStart="15dp"
+                    android:text="You have all the ingredients"
+                    />
+            </RelativeLayout>
+
+            <!-- Repeat the above layout for each recipe -->
+
+                <RelativeLayout
+                    android:id="@+id/recipeLayout2"
+                    android:layout_width="200dp"
+                    android:layout_height="230dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="3dp"
+                    android:background="@drawable/green_recipe_background">
+
+                    <TextView
+                        android:id="@+id/recipeName2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@id/recipeImage2"
+                        android:layout_marginStart="10dp"
+                        android:text=""/>
+
+                    <ImageView
+                        android:id="@+id/recipeImage2"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/example_recipe_img"/>
+
+                    <TextView
+                        android:id="@+id/recipeServings2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/recipeImage2"
+                        android:layout_marginStart="15dp"
+                        android:text=""
+                        android:drawableRight="@drawable/serving_icon2"
+                        android:drawablePadding="4dp"/>
+
+                    <TextView
+                        android:id="@+id/recipeTime2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/recipeImage2"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@id/recipeServings2"
+                        android:text=""
+                        android:drawableRight="@drawable/time_icon"
+                        android:drawablePadding="4dp"/>
+                    <TextView
+                        android:id="@+id/recipeMissIng2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/recipeTime2"
+                        android:layout_marginStart="15dp"
+                        android:text="You have all the ingredients"
+                        />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <!-- Add dynamic content for each recipe -->
+                <!-- For each recipe, create a layout that contains image, serving, and time -->
+                <!-- Use layout_below to stack them on top of each other -->
+
+                <RelativeLayout
+                    android:id="@+id/recipeLayout3"
+                    android:layout_width="200dp"
+                    android:layout_height="230dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="3dp"
+                    android:background="@drawable/red_recipe_background">
+
+                    <TextView
+                        android:id="@+id/recipeName3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@id/recipeImage3"
+                        android:layout_marginStart="10dp"
+                        android:text=""/>
+
+                    <ImageView
+                        android:id="@+id/recipeImage3"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/example_recipe_img"/>
+
+                    <TextView
+                        android:id="@+id/recipeServings3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/recipeImage3"
+                        android:layout_marginStart="15dp"
+                        android:text=""
+                        android:drawableRight="@drawable/serving_icon2"
+                        android:drawablePadding="4dp"/>
+
+                    <TextView
+                        android:id="@+id/recipeTime3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/recipeImage3"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@id/recipeServings3"
+                        android:text=""
+                        android:drawableRight="@drawable/time_icon"
+                        android:drawablePadding="4dp"/>
+                    <TextView
+                        android:id="@+id/recipeMissIng3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/recipeTime3"
+                        android:layout_marginStart="10dp"
+                        android:text="Missing ingredient number: 1"
+                        />
+                </RelativeLayout>
+
+                <!-- Repeat the above layout for each recipe -->
+
+                <RelativeLayout
+                    android:id="@+id/recipeLayout4"
+                    android:layout_width="200dp"
+                    android:layout_height="230dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="3dp"
+                    android:background="@drawable/green_recipe_background">
+
+                    <TextView
+                        android:id="@+id/recipeName4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@id/recipeImage4"
+                        android:layout_marginStart="10dp"
+                        android:text=""/>
+
+                    <ImageView
+                        android:id="@+id/recipeImage4"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/example_recipe_img"/>
+
+                    <TextView
+                        android:id="@+id/recipeServings4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/recipeImage4"
+                        android:layout_marginStart="15dp"
+                        android:text=""
+                        android:drawableRight="@drawable/serving_icon2"
+                        android:drawablePadding="4dp"/>
+
+                    <TextView
+                        android:id="@+id/recipeTime4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/recipeImage4"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@id/recipeServings4"
+                        android:text=""
+                        android:drawableRight="@drawable/time_icon"
+                        android:drawablePadding="4dp"/>
+                    <TextView
+                        android:id="@+id/recipeMissIng4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/recipeTime4"
+                        android:layout_marginStart="15dp"
+                        android:text="You have all the ingredients"
+                        />
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <!-- Add dynamic content for each recipe -->
+                <!-- For each recipe, create a layout that contains image, serving, and time -->
+                <!-- Use layout_below to stack them on top of each other -->
+
+                <RelativeLayout
+                    android:id="@+id/recipeLayout5"
+                    android:layout_width="200dp"
+                    android:layout_height="230dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="3dp"
+                    android:background="@drawable/green_recipe_background">
+
+                    <TextView
+                        android:id="@+id/recipeName5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@id/recipeImage5"
+                        android:layout_marginStart="10dp"
+                        android:text=""/>
+
+                    <ImageView
+                        android:id="@+id/recipeImage5"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/example_recipe_img"/>
+
+                    <TextView
+                        android:id="@+id/recipeServings5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/recipeImage5"
+                        android:layout_marginStart="15dp"
+                        android:text=""
+                        android:drawableRight="@drawable/serving_icon2"
+                        android:drawablePadding="4dp"/>
+
+                    <TextView
+                        android:id="@+id/recipeTime5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/recipeImage5"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@id/recipeServings5"
+                        android:text=""
+                        android:drawableRight="@drawable/time_icon"
+                        android:drawablePadding="4dp"/>
+                    <TextView
+                        android:id="@+id/recipeMissIng5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/recipeTime5"
+                        android:layout_marginStart="15dp"
+                        android:text="You have all the ingredients"
+                        />
+                </RelativeLayout>
+
+                <!-- Repeat the above layout for each recipe -->
+
+                <RelativeLayout
+                    android:id="@+id/recipeLayout6"
+                    android:layout_width="200dp"
+                    android:layout_height="230dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="3dp"
+                    android:background="@drawable/red_recipe_background">
+
+                    <TextView
+                        android:id="@+id/recipeName6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@id/recipeImage6"
+                        android:layout_marginStart="10dp"
+                        android:text=""/>
+
+                    <ImageView
+                        android:id="@+id/recipeImage6"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/example_recipe_img"/>
+
+                    <TextView
+                        android:id="@+id/recipeServings6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/recipeImage6"
+                        android:layout_marginStart="15dp"
+                        android:text=""
+                        android:drawableRight="@drawable/serving_icon2"
+                        android:drawablePadding="4dp"/>
+
+                    <TextView
+                        android:id="@+id/recipeTime6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/recipeImage6"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@id/recipeServings6"
+                        android:text=""
+                        android:drawableRight="@drawable/time_icon"
+                        android:drawablePadding="4dp"/>
+                    <TextView
+                        android:id="@+id/recipeMissIng6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/recipeTime6"
+                        android:layout_marginStart="15dp"
+                        android:text="Missing ingredient number: 2"
+                        />
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
     </ScrollView>
 
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/nav_bar_background"
+        android:elevation="2dp"
+        app:itemIconSize="30dp"
+        app:itemIconTint="@drawable/bottom_nav_selector"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:menu="@menu/bottom_nav_menu" />
 </RelativeLayout>
