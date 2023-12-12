@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.recipeasy.R.id;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -18,10 +19,14 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText emailText;
+    private String email;
     private EditText passwordText;
+    private String password;
     private EditText passwordAgainText;
+    private String passwordAgain;
     private Button createAccountButton;
     private TextView signInButton;
+    private TextView errorText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +37,12 @@ public class SignUpActivity extends AppCompatActivity {
         passwordAgainText = findViewById(R.id.signup_password_again);
         createAccountButton = findViewById(R.id.signup_button);
         signInButton = findViewById(R.id.signup_signin_clickable_text);
+        errorText = findViewById(id.signup_error_text);
 
-        signUpClicked(emailText.getText().toString(), passwordText.getText().toString(), passwordAgainText.getText().toString());
+        email = emailText.getText().toString();
+        password = passwordText.getText().toString();
+        passwordAgain = passwordAgainText.getText().toString();
+        signUpClicked(email,password,passwordAgain);
         signInClicked();
     }
 
@@ -41,7 +50,25 @@ public class SignUpActivity extends AppCompatActivity {
         createAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean isValid = true; //TODO: Set the signing up conditions, also the email and the password cannot be blank
+                boolean isValid = true;
+                String message ="";
+                if(email.isEmpty() || password.isEmpty()){
+                    isValid =  false;
+                    message = "Email and password cannot be empty.";
+                }
+                if(password.length() < 8){
+                    isValid = false;
+                    message = "Password must contain at least 8 characters.";
+                }
+                if(!password.equals(passwordAgain)){
+                    isValid = false;
+                    message = "Passwords do not match.";
+                }
+                else{
+                    isValid = true;
+                    Controller.getUser().setEmail(email);
+                    Controller.getUser().setPassword(password);
+                }//
                 if(isValid) {
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -49,17 +76,17 @@ public class SignUpActivity extends AppCompatActivity {
                             //If signed up successfully
                             if(task.isSuccessful()) {
                                 Controller.createUserData(FirebaseAuth.getInstance().getCurrentUser().getUid());
-                                //TODO: Update the UI accordingly
-                                //TODO: Go to sign in page
+                                Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
                             }
                             else {
-                                //TODO: Display a sign up failure message
+                                errorText.setText("Sign up failed.");
                             }
                         }
                     });
                 }
                 else {
-                    //TODO: Show the error message and maybe validation conditions
+                     errorText.setText(message);
+                     errorText.setVisibility(View.VISIBLE);
                 }
             }
         });
