@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.recipeasy.BackEnd.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -35,7 +36,22 @@ public class SignInActivity extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Controller.signIn(email, password);
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()) {
+                            //TODO: Update the UI accordingly
+                            //TODO: Go to the main page
+                            //TODO: Update the current user
+                        }
+                        else {
+                            //TODO: Display a sign in failure message
+                        }
+                    }
+                });
+                //Initialize variables
+                Controller controller = new Controller();
+                controller.setUser(new User(email, password, FirebaseAuth.getInstance().getCurrentUser().getUid()));
             }
         });
     }

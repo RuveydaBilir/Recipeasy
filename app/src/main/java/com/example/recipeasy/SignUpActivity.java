@@ -1,5 +1,6 @@
 package com.example.recipeasy;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,6 +9,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -37,7 +43,20 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 boolean isValid = true; //TODO: Set the signing up conditions, also the email and the password cannot be blank
                 if(isValid) {
-                    Controller.signUp(email, password);
+                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            //If signed up successfully
+                            if(task.isSuccessful()) {
+                                Controller.createUserData(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                //TODO: Update the UI accordingly
+                                //TODO: Go to sign in page
+                            }
+                            else {
+                                //TODO: Display a sign up failure message
+                            }
+                        }
+                    });
                 }
                 else {
                     //TODO: Show the error message and maybe validation conditions

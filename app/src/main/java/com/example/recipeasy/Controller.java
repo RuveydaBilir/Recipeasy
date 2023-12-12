@@ -7,6 +7,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -21,6 +22,12 @@ public class Controller {
     private static Recommendation recommendation;
 
     public Controller() {
+        Controller.user = new User();
+        Controller.fridge = new Fridge();
+        Controller.favorites = new Favorites();
+        Controller.planner = new Planner();
+        Controller.shoppingList = new ShoppingList();
+        Controller.recommendation = new Recommendation();
     }
 
     public Controller(User user, Fridge fridge, Favorites favorites, Planner planner, ShoppingList shoppingList, Recommendation recommendation) {
@@ -32,35 +39,12 @@ public class Controller {
         Controller.recommendation = recommendation;
     }
 
-    public static void signIn(String email, String password) {
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-              if(task.isSuccessful()) {
-                  //TODO: Update the UI accordingly
-                  //TODO: Go to the main page
-              }
-              else {
-                  //TODO: Display a sign in failure message
-              }
-            }
-        });
-    }
-
-    public static void signUp(String email, String password) {
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                //If signed up successfully
-                if(task.isSuccessful()) {
-                    //TODO: Update the UI accordingly
-                    //TODO: Go to sign in page
-                }
-                else {
-                    //TODO: Display a sign up failure message
-                }
-            }
-        });
+    public static void createUserData(String userID) {
+        FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Fridge").child("Ingredients").setValue(0);
+        FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Favorites").child("Recipes").setValue(0);
+        FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Planner").child("Recipes").setValue(0);
+        FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Shopping List").child("Ingredients").setValue(0);
+        FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Recommendation").child("Recipes").setValue(0);
     }
 
     public static User getUser() {
@@ -191,4 +175,8 @@ public class Controller {
         return false;
     }
 
+
+    public static boolean isUserSignedIn() {
+        return getUser() != null;
+    }
 }
