@@ -30,6 +30,9 @@ public class Controller {
         Controller.recommendation = new Recommendation();
     }
 
+    public static String[] categories = {"Vegetables", "Fruits", "Fish & Marine Products", "Dairy Products", "Legumes",
+                                         "Canned Products", "Nuts", "Meat Products", "Oils"};
+
     public Controller(User user, Fridge fridge, Favorites favorites, Planner planner, ShoppingList shoppingList, Recommendation recommendation) {
         Controller.user = user;
         Controller.fridge = fridge;

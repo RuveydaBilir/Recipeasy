@@ -56,4 +56,6 @@ public class Fridge {
         }
         return typeList;
     }
+
+
 }
