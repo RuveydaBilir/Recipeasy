@@ -1,6 +1,8 @@
 package com.example.recipeasy;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 
+import com.example.recipeasy.BackEnd.RecipeAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -83,6 +87,11 @@ public class RecommendRecipesActivity extends AppCompatActivity {
             }
         });
 
+        RecyclerView recyclerView = findViewById(R.id.recipes_recyclerView);
+        RecipeAdapter recipeAdapter = new RecipeAdapter(this);
+        recyclerView.setAdapter(recipeAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
 
         filterButton = findViewById(R.id.btnFilter);
         sortButton = findViewById(R.id.btnSort);
