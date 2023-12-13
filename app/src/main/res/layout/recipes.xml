@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="210dp"
+    android:layout_height="250dp"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="8dp">
+
+    <RelativeLayout
+        android:id="@+id/recipeLayout1"
+        android:layout_width="200dp"
+        android:layout_height="230dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/green_recipe_background">
+
+        <TextView
+            android:id="@+id/recipeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/recipeImage"
+            android:layout_marginStart="15dp"
+            android:text="Chorizo and mozzarella gnocchi bake"/>
+
+        <ImageView
+            android:id="@+id/recipeImage"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/example_recipe_img"/>
+
+        <TextView
+            android:id="@+id/recipeServings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recipeImage"
+            android:layout_marginStart="15dp"
+            android:text="Serves 4"
+            android:drawableRight="@drawable/serving_icon2"
+            android:drawablePadding="4dp"/>
+
+        <TextView
+            android:id="@+id/recipeTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recipeImage"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@id/recipeServings"
+            android:text="45 min"
+            android:drawableRight="@drawable/time_icon"
+            android:drawablePadding="4dp"/>
+        <TextView
+            android:id="@+id/recipeMissIng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recipeTime"
+            android:layout_marginStart="15dp"
+            android:text="You have all the ingredients"
+            />
+    </RelativeLayout>
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/recipeImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/default_recipe_image" />
+
+        <TextView
+            android:id="@+id/recipeName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Recipe Name" />
+
+        <TextView
+            android:id="@+id/servingNumbers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Serving: 4" />
+
+        <TextView
+            android:id="@+id/cookingTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Time: 30 minutes" />
+
+    </LinearLayout>-->
+
+</androidx.cardview.widget.CardView>
