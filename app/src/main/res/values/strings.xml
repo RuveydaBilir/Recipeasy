@@ -1,6 +1,18 @@
 <resources>
     <string name="app_name">Recipeasy</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+
+    <string-array name="fridge_content_headings.txt">
+        <item>Vegetables</item>
+        <item>Fruits</item>
+        <item>Fish &amp; Marine Products</item>
+        <item>Dairy Products</item>
+        <item>Legumes</item>
+        <item>Wheat Products</item>
+        <item>Canned Products</item>
+        <item>Nuts</item>
+        <item>Meat Products</item>
+        <item>Bakery Products</item>
+        <item>Oils</item>
+    </string-array>
+
 </resources>

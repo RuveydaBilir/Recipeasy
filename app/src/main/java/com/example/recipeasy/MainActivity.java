@@ -3,6 +3,7 @@ package com.example.recipeasy;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -20,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private SearchView searchView;
-    private MaterialButton recomRecButton;
-    private MaterialButton weeklyPlannerButton;
+    private Button recomRecButton;
+    private Button weeklyPlannerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
         recomRecButton = findViewById(R.id.recommend_recipes_button);
-        //recomRecButton.setOnClikedListener(new View.OnClickListener());
+        recomRecButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int itemId = v.getId();
+
+                if (itemId == R.id.recommend_recipes_button) {
+                    startActivity(new Intent(getApplicationContext(), RecommendRecipesActivity.class));
+                    //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    finish();
+                }
+            }
+        });
         weeklyPlannerButton = findViewById(R.id.weekly_planner_button);
     }
 
