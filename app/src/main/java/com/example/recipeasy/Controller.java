@@ -129,7 +129,7 @@ public class Controller {
         return missingList;
     }
 
-    public Recipe chooseFromFavorites(){
+    public static Recipe chooseFromFavorites(){
         Random random = new Random();
         int rand_int1 = random.nextInt(favorites.getRecipes().size());
         Recipe r = favorites.getRecipes().get(rand_int1);
@@ -145,7 +145,7 @@ public class Controller {
         return false;
     }*/
 
-    public void updateShoppingList(Ingredient ingredient){
+    public static void updateShoppingList(Ingredient ingredient){
         for (int i = 0; i < shoppingList.getShoppingList().size(); i++) {
             if (ingredient.getName().equalsIgnoreCase(shoppingList.getShoppingList().get(i).getName())) {
                 if(ingredient.getAmount()>shoppingList.getShoppingList().get(i).getAmount())
@@ -184,5 +184,9 @@ public class Controller {
 
     public static boolean isUserSignedIn() {
         return getUser() != null;
+    }
+
+    public static ArrayList<Recipe> getAllRecipes(){
+        return new ArrayList<>();
     }
 }

@@ -1,9 +1,11 @@
 package com.example.recipeasy.BackEnd;
+import com.example.recipeasy.Controller;
+
 import java.util.ArrayList;
 
 
 public class Recommendation {
-    /*private ArrayList<Recipe> recipes;
+    private ArrayList<Recipe> recipes;
 
     public Recommendation() {
     }
@@ -13,22 +15,24 @@ public class Recommendation {
     }
 
     public void filterServings(ArrayList<Integer> servings){
-        for (int i = 0; i < recipes.size(); i++) {
+        ArrayList<Recipe> allRecipes = Controller.getAllRecipes();
+        recipes = null;
+        for (int i = 0; i < allRecipes.size(); i++) {
             for (int j = 0; j < servings.size(); j++) {
-                recipes.get(i).setShown(false);
-                if(recipes.get(i).getServings()==servings.get(j)){
-                    recipes.get(i).setShown(true);
+                if(allRecipes.get(i).getServings()==servings.get(j)){
+                    recipes.add(allRecipes.get(i));
                     break;
                 }
             }
         }
     }
     public void filterTime(ArrayList<Integer> time){
-        for (int i = 0; i < recipes.size(); i++) {
+        ArrayList<Recipe> allRecipes = Controller.getAllRecipes();
+        recipes = null;
+        for (int i = 0; i < allRecipes.size(); i++) {
             for (int j = 0; j < time.size(); j++) {
-                recipes.get(i).setShown(false);
-                if(recipes.get(i).getServings()==time.get(j)){
-                    recipes.get(i).setShown(true);
+                if(allRecipes.get(i).getServings()==time.get(j)){
+                    recipes.add(allRecipes.get(i));
                     break;
                 }
             }
@@ -57,7 +61,7 @@ public class Recommendation {
 
         for (int j = low; j < high; j++) {
             // Sort only if missingNum is the same
-            if (recipes.get(j).getMissingNum() == pivot.getMissingNum()) {
+            if (Controller.findMissingIngredients(recipes.get(j)).size() == Controller.findMissingIngredients(pivot).size()) {
                 if ((ascending && recipes.get(j).getServings() <= pivot.getServings()) ||
                         (!ascending && recipes.get(j).getServings() >= pivot.getServings())) {
                     i++;
@@ -81,8 +85,7 @@ public class Recommendation {
         Recipe pivot = recipes.get(high);
         int i = low - 1;
         for (int j = low; j < high; j++) {
-            // Check if the current element's missingNum is the same as the pivot's
-            if (recipes.get(j).getMissingNum() == pivot.getMissingNum()) {
+            if (Controller.findMissingIngredients(recipes.get(j)).size() == Controller.findMissingIngredients(pivot).size()) {
                 if ((ascending && recipes.get(j).getCookingTime() <= pivot.getCookingTime()) ||
                         (!ascending && recipes.get(j).getCookingTime() >= pivot.getCookingTime())) {
                     i++;
@@ -108,7 +111,7 @@ public class Recommendation {
         Recipe pivot = recipes.get(high);
         int i = low - 1;
         for (int j = low; j < high; j++) {
-            if(recipes.get(j).getMissingNum() <= pivot.getMissingNum()){
+            if (Controller.findMissingIngredients(recipes.get(j)).size() <= Controller.findMissingIngredients(pivot).size()) {
                 i++;
                 swap(i,j);
             }
@@ -130,5 +133,7 @@ public class Recommendation {
 
     public void setRecipes(ArrayList<Recipe> recipes) {
         this.recipes = recipes;
-    }*/
+        }
+    }
+
 }
