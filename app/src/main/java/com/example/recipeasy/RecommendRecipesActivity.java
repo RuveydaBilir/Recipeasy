@@ -73,6 +73,10 @@ public class RecommendRecipesActivity extends AppCompatActivity {
             return false;
         });
 
+        RecyclerView recyclerView = findViewById(R.id.recipes_recyclerView);
+        RecipeAdapter recipeAdapter = new RecipeAdapter(this);
+        recyclerView.setAdapter(recipeAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         backButton = findViewById(R.id.recipes_return_button);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +95,7 @@ public class RecommendRecipesActivity extends AppCompatActivity {
         RecipeAdapter recipeAdapter = new RecipeAdapter(this);
         recyclerView.setAdapter(recipeAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    }
+
 
         filterButton = findViewById(R.id.btnFilter);
         sortButton = findViewById(R.id.btnSort);
