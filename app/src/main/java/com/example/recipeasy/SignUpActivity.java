@@ -41,6 +41,7 @@ public class SignUpActivity extends AppCompatActivity {
         errorText = findViewById(id.signup_error_text);
 
         signUpClicked();
+        signInClicked();
     }
 
     private void signUpClicked() {
@@ -63,13 +64,13 @@ public class SignUpActivity extends AppCompatActivity {
                     isValid =  false;
                     message = "Email and password cannot be blank.";
                 }
-                else if(password.length() < 8){
-                    isValid = false;
-                    message = "Password must contain at least 8 characters.";
-                }
                 else if(!password.equals(passwordAgain)){
                     isValid = false;
                     message = "Passwords do not match.";
+                }
+                else if(password.length() < 8){
+                    isValid = false;
+                    message = "Password must contain at least 8 characters.";
                 }
                 else{
                     Controller.getUser().setEmail(email);
@@ -82,7 +83,7 @@ public class SignUpActivity extends AppCompatActivity {
                             //If signed up successfully
                             if(task.isSuccessful()) {
                                 Controller.createUserData(FirebaseAuth.getInstance().getCurrentUser().getUid());
-                                Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
+                                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                                 startActivity(intent);
                             }
                             else {

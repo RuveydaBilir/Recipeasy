@@ -22,6 +22,7 @@ public class SignInActivity extends AppCompatActivity {
     private EditText passwordText;
     private Button signInButton;
     private TextView errorText;
+    private TextView forgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +33,19 @@ public class SignInActivity extends AppCompatActivity {
         passwordText = findViewById(R.id.signin_password);
         signInButton = findViewById(R.id.signin_button);
         errorText = findViewById(R.id.signin_error_text);
-
+        forgotPassword = findViewById(R.id.forgot_password);
         signInClicked();
+        forgotPasswordClicked();
+
+    }
+
+    private void forgotPasswordClicked() {
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignInActivity.this, ResetPasswordActivity1.class);
+            }
+        });
     }
 
     private void signInClicked() {
@@ -45,7 +57,7 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View v) {
                 email = emailText.getText().toString();
                 password = passwordText.getText().toString();
-                if(email.isEmpty() || email == null || password.isEmpty() || password == null){
+                if(email.isEmpty() || password.isEmpty() ){
                     errorText.setText("Password and email cannot be blank");
                     errorText.setVisibility(View.VISIBLE);
                 }
@@ -53,6 +65,7 @@ public class SignInActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
+                            Controller.setUser(new User(email, password, FirebaseAuth.getInstance().getCurrentUser().getUid()));
                             Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                             startActivity(intent);
                             //TODO: Update the current user
@@ -63,8 +76,7 @@ public class SignInActivity extends AppCompatActivity {
                         }
                     }
                 });
-                //Initialize variables
-                Controller.setUser(new User(email, password, FirebaseAuth.getInstance().getCurrentUser().getUid()));
+
             }
         });
     }
