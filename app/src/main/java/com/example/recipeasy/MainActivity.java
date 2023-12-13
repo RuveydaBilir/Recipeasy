@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
                 5,
                 30,
                 new ArrayList<>()));
-
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
         bottomNavigationView.setSelectedItemId(R.id.recipe);
 

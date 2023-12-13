@@ -45,10 +45,11 @@
                 android:layout_width="42dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="16dp"
+                app:tint="@color/bordo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/bordo"
+                tools:layout_editor_absoluteY="0dp"
                 tools:srcCompat="@drawable/bakery_icon" />
 
             <TextView
