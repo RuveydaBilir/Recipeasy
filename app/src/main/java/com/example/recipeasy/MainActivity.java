@@ -34,7 +34,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
+        //Controller.addRecipe(new Recipe("Name", "Directions", 5, 30, new ArrayList<>()));
+        Controller.addRecipe(new Recipe(
+                "Name",
+                "Directions",
+                5,
+                30,
+                new ArrayList<>()));
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
         bottomNavigationView.setSelectedItemId(R.id.recipe);
 
