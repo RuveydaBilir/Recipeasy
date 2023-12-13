@@ -44,6 +44,7 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SignInActivity.this, ResetPasswordActivity1.class);
+                startActivity(intent);
             }
         });
     }
@@ -57,7 +58,7 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View v) {
                 email = emailText.getText().toString();
                 password = passwordText.getText().toString();
-                if(email.isEmpty() || password.isEmpty() ){
+                if(email.isEmpty() || email == null || password.isEmpty() || password == null){
                     errorText.setText("Password and email cannot be blank");
                     errorText.setVisibility(View.VISIBLE);
                 }
@@ -65,6 +66,7 @@ public class SignInActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
+                            //Initialize variables
                             Controller.setUser(new User(email, password, FirebaseAuth.getInstance().getCurrentUser().getUid()));
                             Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                             startActivity(intent);
@@ -76,7 +78,6 @@ public class SignInActivity extends AppCompatActivity {
                         }
                     }
                 });
-
             }
         });
     }

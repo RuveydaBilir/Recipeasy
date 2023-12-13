@@ -50,6 +50,10 @@ public class Controller {
         FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Recommendation").child("Recipes").setValue(0);
     }
 
+    public static void addRecipe(Recipe recipe) {
+        FirebaseDatabase.getInstance().getReference("Recipes").child(recipe.getName()).setValue(recipe);
+    }
+
     public static User getUser() {
         return user;
     }
@@ -101,8 +105,8 @@ public class Controller {
     public static ArrayList<Ingredient> findMissingIngredients(Recipe recipe){
         ArrayList<Ingredient> missingList = new ArrayList<Ingredient>();
         //checks for each ingredient in recipe
-        for (int i = 0; i <recipe.getRecipeIngredients().size(); i++) {
-            Ingredient recipeIngredient = recipe.getRecipeIngredients().get(i);
+        for (int i = 0; i <recipe.getIngredients().size(); i++) {
+        Ingredient recipeIngredient = recipe.getIngredients().get(i);
             boolean foundInFridge = false;
             //check for ingredient in fridge
             for (int j = 0; j < fridge.getFridgeList().size(); j++) {
@@ -112,7 +116,7 @@ public class Controller {
                     foundInFridge = true;
                     //adds if recipe needs more amount of that ingredient
                     if (recipeIngredient.getAmount()>fridgeIngredient.getAmount()){
-                        Ingredient addingIngredient = new Ingredient(recipeIngredient.getName(), recipeIngredient.getMeasureType(), recipeIngredient.getType(), recipeIngredient.getAmount()-fridgeIngredient.getAmount());
+                        Ingredient addingIngredient = new Ingredient(recipeIngredient.getName(), recipeIngredient.getMeasureType(), recipeIngredient.getCategory(), recipeIngredient.getAmount()-fridgeIngredient.getAmount());
                         missingList.add(addingIngredient);
                     }
                 }
@@ -132,14 +136,14 @@ public class Controller {
         return r;
     }
 
-    public boolean searchRecipe(String name){
+    /*public boolean searchRecipe(String name){
         for (int i = 0; i < recommendation.getRecipes().size(); i++) {
             if(recommendation.getRecipes().get(i).getName().equalsIgnoreCase(name)){
                 return true;
             }
         }
         return false;
-    }
+    }*/
 
     public void updateShoppingList(Ingredient ingredient){
         for (int i = 0; i < shoppingList.getShoppingList().size(); i++) {
@@ -153,7 +157,7 @@ public class Controller {
         }
     }
 
-    public void createMealPlanner(){
+    /*public void createMealPlanner(){
         int[] intOfRecipeIndex = new int[7];
         Random random = new Random();
         for (int i = 0; i < 7; i++) {
@@ -167,7 +171,7 @@ public class Controller {
         for (int i = 0; i < 7; i++) {
             planner.getRecipes()[i] = recommendation.getRecipes().get(intOfRecipeIndex[i]);
         }
-    }
+    }*/
 
     private static boolean contains(int[] array, int value) {
         for (int element : array) {

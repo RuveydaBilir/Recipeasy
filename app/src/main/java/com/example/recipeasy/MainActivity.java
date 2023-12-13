@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.recipeasy.BackEnd.Ingredient;
+import com.example.recipeasy.BackEnd.Recipe;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,10 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.recipeasy.databinding.ActivityMainBinding;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
         bottomNavigationView.setSelectedItemId(R.id.recipe);
 
@@ -93,8 +99,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void filterList(String newText) {
         //TODO: get the recipe list from database (videoda adam arraylisti for dongusune alip tek tek karsilastiriyor)
-
-
     }
 
 }

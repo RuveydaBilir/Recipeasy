@@ -51,7 +51,7 @@ public class ShoppingList {
     public ArrayList<Ingredient> getSpecifiedTypeOfIngredient(String typeName){
         ArrayList<Ingredient> typeList = new ArrayList<Ingredient>();
         for (int i = 0; i < shoppingList.size(); i++) {
-            if (shoppingList.get(i).getType().equalsIgnoreCase(typeName)) {
+            if (shoppingList.get(i).getCategory().equalsIgnoreCase(typeName)) {
                 typeList.add(shoppingList.get(i));
             }
         }

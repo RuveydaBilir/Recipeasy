@@ -50,7 +50,7 @@ public class Fridge {
     public ArrayList<Ingredient> getSpecifiedTypeOfIngredient(String typeName){
         ArrayList<Ingredient> typeList = new ArrayList<Ingredient>();
         for (int i = 0; i < fridgeList.size(); i++) {
-            if (fridgeList.get(i).getType().equalsIgnoreCase(typeName)) {
+            if (fridgeList.get(i).getCategory().equalsIgnoreCase(typeName)) {
                 typeList.add(fridgeList.get(i));
             }
         }

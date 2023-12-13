@@ -6,25 +6,20 @@ import java.util.ArrayList;
 
 public class Recipe {
     private String name, directions;
-    private boolean isLiked, haveAlIngredients, isShown;
-    private int servings, cookingTime, missingNum;
+    private int servings, cookingTime;
     private Image recipeImage;
-    private ArrayList<Ingredient> recipeIngredients;
+    private ArrayList<Ingredient> ingredients;
 
     public Recipe() {
     }
 
-    public Recipe(String name, String directions, boolean isLiked, boolean haveAlIngredients, boolean isShown, int servings, int cookingTime, int missingNum, Image recipeImage, ArrayList<Ingredient> recipeIngredients) {
+    public Recipe(String name, String directions,  int servings, int cookingTime, ArrayList<Ingredient> ingredients) {
         this.name = name;
         this.directions = directions;
-        this.isLiked = isLiked;
-        this.haveAlIngredients = haveAlIngredients;
-        this.isShown = isShown;
         this.servings = servings;
         this.cookingTime = cookingTime;
-        this.missingNum = missingNum;
         this.recipeImage = recipeImage;
-        this.recipeIngredients = recipeIngredients;
+        this.ingredients = ingredients;
     }
 
     public String getName() {
@@ -43,30 +38,6 @@ public class Recipe {
         this.directions = directions;
     }
 
-    public boolean isLiked() {
-        return isLiked;
-    }
-
-    public void setLiked(boolean liked) {
-        isLiked = liked;
-    }
-
-    public boolean isHaveAlIngredients() {
-        return haveAlIngredients;
-    }
-
-    public void setHaveAlIngredients(boolean haveAlIngredients) {
-        this.haveAlIngredients = haveAlIngredients;
-    }
-
-    public boolean isShown() {
-        return isShown;
-    }
-
-    public void setShown(boolean shown) {
-        isShown = shown;
-    }
-
     public int getServings() {
         return servings;
     }
@@ -83,14 +54,6 @@ public class Recipe {
         this.cookingTime = cookingTime;
     }
 
-    public int getMissingNum() {
-        return missingNum;
-    }
-
-    public void setMissingNum(int missingNum) {
-        this.missingNum = missingNum;
-    }
-
     public Image getRecipeImage() {
         return recipeImage;
     }
@@ -99,12 +62,12 @@ public class Recipe {
         this.recipeImage = recipeImage;
     }
 
-    public ArrayList<Ingredient> getRecipeIngredients() {
-        return recipeIngredients;
+    public ArrayList<Ingredient> getIngredients() {
+        return ingredients;
     }
 
-    public void setRecipeIngredients(ArrayList<Ingredient> recipeIngredients) {
-        this.recipeIngredients = recipeIngredients;
+    public void setRecipeIngredients(ArrayList<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 }
 
