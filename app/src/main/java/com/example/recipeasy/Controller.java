@@ -175,7 +175,6 @@ public class Controller {
         return false;
     }
 
-
     public static boolean isUserSignedIn() {
         return getUser() != null;
     }

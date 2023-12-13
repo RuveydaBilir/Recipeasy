@@ -33,21 +33,25 @@ public class SignInActivity extends AppCompatActivity {
         signInButton = findViewById(R.id.signin_button);
         errorText = findViewById(R.id.signin_error_text);
 
-        signInClicked(emailText.getText().toString(), passwordText.getText().toString());
+        signInClicked();
     }
 
-    private void signInClicked(String email, String password) {
+    private void signInClicked() {
         errorText.setVisibility(View.GONE);
         signInButton.setOnClickListener(new View.OnClickListener() {
+            String email;
+            String password;
             @Override
             public void onClick(View v) {
+                email = emailText.getText().toString();
+                password = passwordText.getText().toString();
+                if(email.isEmpty() || email == null || password.isEmpty() || password == null){
+                    errorText.setText("Password and email cannot be blank");
+                    errorText.setVisibility(View.VISIBLE);
+                }
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(email.isEmpty() || email == null || password.isEmpty() || password == null){
-                            errorText.setText("Password and email cannot be blank");
-                            errorText.setVisibility(View.VISIBLE);
-                        }
                         if(task.isSuccessful()) {
                             Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                             startActivity(intent);
@@ -60,8 +64,7 @@ public class SignInActivity extends AppCompatActivity {
                     }
                 });
                 //Initialize variables
-                Controller controller = new Controller();
-                controller.setUser(new User(email, password, FirebaseAuth.getInstance().getCurrentUser().getUid()));
+                Controller.setUser(new User(email, password, FirebaseAuth.getInstance().getCurrentUser().getUid()));
             }
         });
     }

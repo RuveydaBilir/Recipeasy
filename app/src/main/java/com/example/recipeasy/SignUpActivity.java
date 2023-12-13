@@ -26,6 +26,10 @@ public class SignUpActivity extends AppCompatActivity {
     private TextView errorText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(Controller.isUserSignedIn()) {
+            startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+            finish();
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
@@ -36,20 +40,26 @@ public class SignUpActivity extends AppCompatActivity {
         signInButton = findViewById(R.id.signup_signin_clickable_text);
         errorText = findViewById(id.signup_error_text);
 
-        if(emailText != null && passwordText != null && passwordAgainText != null) {
-            signUpClicked(emailText.getText().toString(), passwordText.getText().toString(), passwordAgainText.getText().toString());
-            signInClicked();
-        }
+        signUpClicked();
     }
 
-    private void signUpClicked(String email, String password, String passwordAgain) {
+    private void signUpClicked() {
         errorText.setVisibility(View.GONE);
         createAccountButton.setOnClickListener(new View.OnClickListener() {
+            String email;
+            String password;
+            String passwordAgain;
             @Override
             public void onClick(View v) {
+                email = emailText.getText().toString();
+                password = passwordText.getText().toString();
+                passwordAgain = passwordAgainText.getText().toString();
+                //Initialize variables
+                Controller controller = new Controller();
+
                 boolean isValid = true;
                 String message ="";
-                if(email.isEmpty() || password.isEmpty() ||  passwordAgain.isEmpty()){
+                if(email.isEmpty() || password.isEmpty() ||  passwordAgain.isEmpty() || email == null || password == null || passwordAgain == null){
                     isValid =  false;
                     message = "Email and password cannot be blank.";
                 }
