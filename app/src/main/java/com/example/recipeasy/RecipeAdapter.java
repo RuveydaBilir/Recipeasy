@@ -1,4 +1,4 @@
-package com.example.recipeasy.BackEnd;
+package com.example.recipeasy;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,8 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.recipeasy.Controller;
-import com.example.recipeasy.R;
+import com.example.recipeasy.BackEnd.Recipe;
 
 import java.util.ArrayList;
 
@@ -19,9 +18,10 @@ import java.util.ArrayList;
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHolder> {
     ArrayList<Recipe> recipes;
     Context context;
-    public RecipeAdapter(Context context){
+    public RecipeAdapter(Context context, ArrayList<Recipe> recipes ){
         this.context = context;
-        this.recipes = Controller.getRecommendation().getRecipes();
+        this.recipes = recipes;
+        //this.recipes = Controller.getAllRecipes();
     }
 
     @NonNull
@@ -45,7 +45,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
         else {
             holder.missing.setText("You have " + Controller.findMissingIngredients(recipes.get(position)).size() + " missing ingredients");
         }
-        recipes.get(position).getRecipeImage();
+       // recipes.get(position).getRecipeImage();
         //holder.imageView.set;
     }
 

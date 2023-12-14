@@ -1,18 +1,28 @@
 package com.example.recipeasy;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 
-import com.example.recipeasy.BackEnd.RecipeAdapter;
+
+import com.example.recipeasy.BackEnd.Recipe;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class RecommendRecipesActivity extends AppCompatActivity {
     private ImageButton backButton;
@@ -35,10 +45,41 @@ public class RecommendRecipesActivity extends AppCompatActivity {
     private CheckBox sort_checkbox3;
     private CheckBox sort_checkbox4;
 
+    RecyclerView recyclerView;
+    DatabaseReference database;
+    RecipeAdapter recipeAdapter;
+    ArrayList<Recipe> recipes;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommend_recipes);
+        recyclerView = findViewById(R.id.recipes_recyclerView);
+        database = FirebaseDatabase.getInstance().getReference("recipes");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recipes = new ArrayList<>();
+        RecipeAdapter recipeAdapter = new RecipeAdapter(this, recipes);
+        recyclerView.setAdapter(recipeAdapter);
+
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Recipe recipe = dataSnapshot.getValue(Recipe.class);
+                    recipes.add(recipe);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+
+        });
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
         bottomNavigationView.setSelectedItemId(R.id.recipe);
@@ -71,10 +112,7 @@ public class RecommendRecipesActivity extends AppCompatActivity {
             return false;
         });
 
-        RecyclerView recyclerView = findViewById(R.id.recipes_recyclerView);
-        RecipeAdapter recipeAdapter = new RecipeAdapter(this);
-        recyclerView.setAdapter(recipeAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
         backButton = findViewById(R.id.recipes_return_button);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -178,4 +216,5 @@ public class RecommendRecipesActivity extends AppCompatActivity {
         time_checkbox5.setVisibility(View.VISIBLE);
         // Make more checkboxes visible as needed
     }
+
 }
