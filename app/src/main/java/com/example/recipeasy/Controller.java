@@ -7,7 +7,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -21,6 +25,9 @@ public class Controller {
     private static ShoppingList shoppingList;
     private static Recommendation recommendation;
 
+    private static ArrayList<Recipe> allRecipes = new ArrayList<>();
+    private static ArrayList<Ingredient> allIngredients = new ArrayList<>();
+
     public Controller() {
         Controller.user = new User();
         Controller.fridge = new Fridge();
@@ -28,8 +35,9 @@ public class Controller {
         Controller.planner = new Planner();
         Controller.shoppingList = new ShoppingList();
         Controller.recommendation = new Recommendation();
+        setAllIngredients();
+        setAllRecipes();
     }
-
     public static String[] categories = {"Vegetables", "Fruits", "Fish & Marine Products", "Dairy Products", "Legumes",
                                          "Canned Products", "Nuts", "Meat Products", "Oils"};
 
@@ -43,15 +51,21 @@ public class Controller {
     }
 
     public static void createUserData(String userID) {
-        FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Fridge").child("Ingredients").setValue(0);
-        FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Favorites").child("Recipes").setValue(0);
-        FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Planner").child("Recipes").setValue(0);
-        FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Shopping List").child("Ingredients").setValue(0);
-        FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Recommendation").child("Recipes").setValue(0);
+        FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Fridge").child("fridgeList").setValue(0);
+        FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Favorites").child("recipes").setValue(0);
+        FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Planner").child("recipes").setValue(0);
+        FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Shopping List").child("shoppingList").setValue(0);
+        FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Recommendation").child("recipes").setValue(0);
     }
 
     public static void addRecipe(Recipe recipe) {
         FirebaseDatabase.getInstance().getReference("Recipes").child(recipe.getName()).setValue(recipe);
+    }
+
+    public static void addIngredients(ArrayList<Ingredient> ingredients, DatabaseReference reference) {
+        for (Ingredient ingredient : ingredients) {
+            reference.child(ingredient.getName()).setValue(ingredient);
+        }
     }
 
     public static User getUser() {
@@ -183,10 +197,54 @@ public class Controller {
     }
 
     public static boolean isUserSignedIn() {
-        return getUser() != null;
+        return FirebaseAuth.getInstance().getCurrentUser() != null;
     }
 
-    public static ArrayList<Recipe> getAllRecipes(){
-        return new ArrayList<>();
+    private static void setAllRecipes() {
+        FirebaseDatabase.getInstance().getReference("Recipes").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                allRecipes.clear();
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    Recipe recipe = snap.getValue(Recipe.class);
+                    allRecipes.add(recipe);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
+    private static void setAllIngredients() {
+        FirebaseDatabase.getInstance().getReference("Ingredients").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                allIngredients.clear();
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    Ingredient ingredient = snap.getValue(Ingredient.class);
+                    allIngredients.add(ingredient);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
+    public static void setUserData() {
+    /*setFridge();
+    setFavorites();
+    setPlanner();
+    setShoppingList();
+    setRecommendation();*/
+    }
+
+    public static ArrayList<Recipe> getAllRecipes() {
+        return allRecipes;
+    }
+
+    public static ArrayList<Ingredient> getAllIngredients() {
+        return allIngredients;
     }
 }

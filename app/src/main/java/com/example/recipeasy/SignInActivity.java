@@ -66,8 +66,11 @@ public class SignInActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
-                            //Initialize variables
+                            //Set the user
                             Controller.setUser(new User(email, password, FirebaseAuth.getInstance().getCurrentUser().getUid()));
+                            //Retrieve user info from database
+                            Controller.setUserData();
+                            //Go to the main page
                             Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                             startActivity(intent);
                             //TODO: Update the current user

@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.recipeasy.BackEnd.User;
 import com.example.recipeasy.R.id;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,10 +27,14 @@ public class SignUpActivity extends AppCompatActivity {
     private TextView errorText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Go to the main page
         if(Controller.isUserSignedIn()) {
             startActivity(new Intent(SignUpActivity.this, MainActivity.class));
             finish();
         }
+        //Initialize controller
+        Controller controller = new Controller();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
@@ -55,8 +60,6 @@ public class SignUpActivity extends AppCompatActivity {
                 email = emailText.getText().toString();
                 password = passwordText.getText().toString();
                 passwordAgain = passwordAgainText.getText().toString();
-                //Initialize variables
-                Controller controller = new Controller();
 
                 boolean isValid = true;
                 String message ="";
@@ -72,17 +75,19 @@ public class SignUpActivity extends AppCompatActivity {
                     isValid = false;
                     message = "Password must contain at least 8 characters.";
                 }
-                else{
-                    Controller.getUser().setEmail(email);
-                    Controller.getUser().setPassword(password);
-                }//
+
                 if(isValid) {
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             //If signed up successfully
                             if(task.isSuccessful()) {
+                                //Initialize user data in database
                                 Controller.createUserData(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                //Set the user
+                                Controller.setUser(new User(email, password, FirebaseAuth.getInstance().getCurrentUser().getUid()));
+                                //Retrieve user info from database
+                                Controller.setUserData();
                                 Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                                 startActivity(intent);
                             }

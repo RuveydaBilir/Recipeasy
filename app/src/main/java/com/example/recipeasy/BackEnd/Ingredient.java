@@ -4,15 +4,15 @@ package com.example.recipeasy.BackEnd;
 import java.util.ArrayList;
 
 public class Ingredient {
-    private String name, measurementType, category;
+    private String name, measureType, category;
     private double amount;
 
     public Ingredient() {
     }
 
-    public Ingredient(String name, String measurementType, String category, double amount) {
+    public Ingredient(String name, String measureType, String category, double amount) {
         this.name = name;
-        this.measurementType = measurementType;
+        this.measureType = measureType;
         this.category = category;
         this.amount = amount;
     }
@@ -26,11 +26,11 @@ public class Ingredient {
     }
 
     public String getMeasureType() {
-        return measurementType;
+        return measureType;
     }
 
-    public void setMeasureType(String measurementType) {
-        this.measurementType = measurementType;
+    public void setMeasureType(String measureType) {
+        this.measureType = measureType;
     }
 
     public String getCategory() {
