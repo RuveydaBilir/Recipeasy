@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.recipeasy.databinding.ActivityMainBinding;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         search_recycler_view = findViewById(R.id.search_bar_recipe_recycler_view);
         search_recycler_view.setLayoutManager(new LinearLayoutManager(this));
         itemAdapter = new ItemAdapter(Controller.getAllRecipes());
@@ -99,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (itemId == R.id.recommend_recipes_button) {
                     startActivity(new Intent(getApplicationContext(), RecommendRecipesActivity.class));
+                    //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                     finish();
                 }
             }

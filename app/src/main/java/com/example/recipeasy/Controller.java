@@ -29,7 +29,7 @@ public class Controller {
 
     private static ArrayList<Recipe> allRecipes = new ArrayList<>();
     private static ArrayList<Ingredient> allIngredients = new ArrayList<>();
-    public static ArrayList<String> categories = new ArrayList<>();
+    private static ArrayList<String> categories;
 
     public Controller() {
         Controller.user = new User();
@@ -38,7 +38,9 @@ public class Controller {
         Controller.planner = new Planner();
         Controller.shoppingList = new ShoppingList();
         Controller.recommendation = new Recommendation();
-        Controller.categories = new ArrayList<>();
+        allRecipes = new ArrayList<>();
+        allIngredients = new ArrayList<>();
+        categories = new ArrayList<>();
         setAllIngredients();
         setAllRecipes();
         setCategories();
@@ -75,11 +77,11 @@ public class Controller {
         FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Recommendation").child("recipes").setValue(0);
     }
 
-    public static void addRecipe(Recipe recipe) {
+    public static void addRecipe(Recipe recipe, DatabaseReference reference) {
         FirebaseDatabase.getInstance().getReference("Recipes").child(recipe.getName()).setValue(recipe);
     }
 
-    public static void addIngredients(ArrayList<Ingredient> ingredients, DatabaseReference reference) {
+    public static void addIngredient(ArrayList<Ingredient> ingredients, DatabaseReference reference) {
         for (Ingredient ingredient : ingredients) {
             reference.child(ingredient.getName()).setValue(ingredient);
         }
@@ -97,40 +99,101 @@ public class Controller {
         return fridge;
     }
 
-    public static void setFridge(Fridge fridge) {
-        Controller.fridge = fridge;
+    public static void setFridge() {
+        FirebaseDatabase.getInstance().getReference("Users").child(getUser().getUserID()).child("Fridge").child("fridgeList").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                fridge.getFridgeList().clear();
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                        Ingredient ingredient = snap.getValue(Ingredient.class);
+                        fridge.addIngredientToTheList(ingredient);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
     public static Favorites getFavorites() {
         return favorites;
     }
 
-    public static void setFavorites(Favorites favorites) {
-        Controller.favorites = favorites;
+    private static void setFavorites() {
+        FirebaseDatabase.getInstance().getReference("Users").child(getUser().getUserID()).child("Favorites").child("recipes").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                favorites.getRecipes().clear();
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    Recipe recipe = snap.getValue(Recipe.class);
+                    favorites.addRecipeToTheList(recipe);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
     public static Planner getPlanner() {
         return planner;
     }
 
-    public static void setPlanner(Planner planner) {
-        Controller.planner = planner;
+    private static void setPlanner() {
+        FirebaseDatabase.getInstance().getReference("Users").child(getUser().getUserID()).child("Planner").child("recipes").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int day = 0;
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    Recipe recipe = snap.getValue(Recipe.class);
+                    planner.addRecipeToTheList(day, recipe);
+                    day++;
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
     public static ShoppingList getShoppingList() {
         return shoppingList;
     }
 
-    public static void setShoppingList(ShoppingList shoppingList) {
-        Controller.shoppingList = shoppingList;
+    private static void setShoppingList() {
+        FirebaseDatabase.getInstance().getReference("Users").child(getUser().getUserID()).child("Shopping List").child("shoppingList").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                shoppingList.getShoppingList().clear();
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    Ingredient ingredient = snap.getValue(Ingredient.class);
+                    shoppingList.addIngredientToTheList(ingredient);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
     public static Recommendation getRecommendation() {
         return recommendation;
     }
 
-    public static void setRecommendation(Recommendation recommendation) {
-        Controller.recommendation = recommendation;
+    private static void setRecommendation() {
+        FirebaseDatabase.getInstance().getReference("Users").child(getUser().getUserID()).child("Recommendation").child("recipes").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                recommendation.getRecipes().clear();
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    Recipe recipe = snap.getValue(Recipe.class);
+                    recommendation.addRecipeToTheList(recipe);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
     public static ArrayList<Ingredient> findMissingIngredients(Recipe recipe){
@@ -250,11 +313,11 @@ public class Controller {
     }
 
     public static void setUserData() {
-    /*setFridge();
-    setFavorites();
-    setPlanner();
-    setShoppingList();
-    setRecommendation();*/
+        setFridge();
+        setFavorites();
+        setPlanner();
+        setShoppingList();
+        setRecommendation();
     }
 
     public static ArrayList<Recipe> getAllRecipes() {
@@ -263,5 +326,9 @@ public class Controller {
 
     public static ArrayList<Ingredient> getAllIngredients() {
         return allIngredients;
+    }
+
+    public static ArrayList<String> getCategories() {
+        return categories;
     }
 }

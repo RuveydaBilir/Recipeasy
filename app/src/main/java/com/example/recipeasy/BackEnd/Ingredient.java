@@ -49,14 +49,10 @@ public class Ingredient {
         this.amount = amount;
     }
 
-    public boolean isDoesExist() {
-        return amount > 0;
-    }
-
-    public int updateAmount(double increment){
-        int newAmount = 0;
+    public double updateAmount(double increment){
+        double newAmount = amount;
         newAmount+= increment;
-        if(amount < 0){
+        if(newAmount < 0){
             newAmount = 0;
         }
         return newAmount;

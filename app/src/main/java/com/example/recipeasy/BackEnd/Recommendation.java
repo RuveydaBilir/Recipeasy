@@ -8,13 +8,14 @@ public class Recommendation {
     private ArrayList<Recipe> recipes;
 
     public Recommendation() {
+        recipes = new ArrayList<>();
     }
 
     public Recommendation(ArrayList<Recipe> recipes) {
         this.recipes = recipes;
     }
 
-    public void filterServings(ArrayList<Integer> servings){
+    public void filterServings(ArrayList<Integer> servings) {
         ArrayList<Recipe> allRecipes = Controller.getAllRecipes();
         recipes = null;
         for (int i = 0; i < allRecipes.size(); i++) {
@@ -134,6 +135,16 @@ public class Recommendation {
     public void setRecipes(ArrayList<Recipe> recipes) {
         this.recipes = recipes;
         }
+
+    /**
+     * Adds recipe to the list. It is a helper method for the controller class. Do not use it! Use addRecipe instead.
+     * @param recipe
+     */
+    public void addRecipeToTheList(Recipe recipe) {
+        recipes.add(recipe);
     }
+}
+
+
 
 

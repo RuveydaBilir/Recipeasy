@@ -13,6 +13,7 @@ public class ShoppingList {
      * constructs a basket arraylist containing every possible ingredient
      */
     public ShoppingList() {
+        shoppingList = new ArrayList<>();
     }
 
     public ShoppingList(ArrayList<Ingredient> basketList) {
@@ -33,7 +34,7 @@ public class ShoppingList {
         for (int i = 0; i < shoppingList.size(); i++) {
             if(ingredient.getName().equals(shoppingList.get(i).getName())){
                 doesContain = true;
-                int newAmount = shoppingList.get(i).updateAmount(ingredient.getAmount());
+                double newAmount = shoppingList.get(i).updateAmount(ingredient.getAmount());
                 reference.child(Integer.toString(i)).child("amount").setValue(newAmount);
                 break;
             }
@@ -49,7 +50,7 @@ public class ShoppingList {
         for (int i = 0; i < shoppingList.size(); i++) {
             if(ingredient.getName().equals(shoppingList.get(i).getName())){
                 doesContain = true;
-                int newAmount = shoppingList.get(i).updateAmount(-ingredient.getAmount());
+                double newAmount = shoppingList.get(i).updateAmount(-ingredient.getAmount());
                 reference.child(Integer.toString(i)).child("amount").setValue(newAmount);                break;
             }
         }
@@ -63,5 +64,13 @@ public class ShoppingList {
             }
         }
         return typeList;
+    }
+
+    /**
+     * Adds ingredient to the list. It is a helper method for the controller class. Do not use it! Use addRecipe instead.
+     * @param ingredient
+     */
+    public void addIngredientToTheList(Ingredient ingredient) {
+        shoppingList.add(ingredient);
     }
 }

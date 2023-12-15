@@ -11,6 +11,7 @@ public class Favorites {
     private ArrayList<Recipe> recipes;
 
     public Favorites() {
+        recipes = new ArrayList<>();
     }
 
     public Favorites(ArrayList<Recipe> recipes) {
@@ -35,7 +36,7 @@ public class Favorites {
             }
         }
         if(!doesContain){
-            reference.setValue(recipe);
+            reference.child("" + recipes.size()).setValue(recipe);
         }
     }
 
@@ -47,5 +48,13 @@ public class Favorites {
                 reference.child(Integer.toString(i)).removeValue();
             }
         }
+    }
+
+    /**
+     * Adds recipe to the list. It is a helper method for the controller class. Do not use it! Use addRecipe instead.
+     * @param recipe
+     */
+    public void addRecipeToTheList(Recipe recipe) {
+        recipes.add(recipe);
     }
 }

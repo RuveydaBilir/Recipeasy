@@ -7,18 +7,18 @@ import java.util.ArrayList;
 public class Recipe {
     private String name, directions;
     private int servings, cookingTime;
-    private Image recipeImage;
+    private String imageURL;
     private ArrayList<Ingredient> ingredients;
 
     public Recipe() {
     }
 
-    public Recipe(String name, String directions,  int servings, int cookingTime, ArrayList<Ingredient> ingredients) {
+    public Recipe(String name, String directions,  int servings, int cookingTime, String imageURL, ArrayList<Ingredient> ingredients) {
         this.name = name;
         this.directions = directions;
         this.servings = servings;
         this.cookingTime = cookingTime;
-        this.recipeImage = recipeImage;
+        this.imageURL = imageURL;
         this.ingredients = ingredients;
     }
 
@@ -54,12 +54,12 @@ public class Recipe {
         this.cookingTime = cookingTime;
     }
 
-    public Image getRecipeImage() {
-        return recipeImage;
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public void setRecipeImage(Image recipeImage) {
-        this.recipeImage = recipeImage;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     public ArrayList<Ingredient> getIngredients() {

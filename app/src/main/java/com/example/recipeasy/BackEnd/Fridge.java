@@ -33,26 +33,13 @@ public class Fridge {
         for (int i = 0; i < fridgeList.size(); i++) {
             if(ingredient.getName().equals(fridgeList.get(i).getName())){
                 doesContain = true;
-                int newAmount = fridgeList.get(i).updateAmount(ingredient.getAmount());
-                reference.child(Integer.toString(i)).child("amount").setValue(newAmount);
+                double newAmount = fridgeList.get(i).updateAmount(ingredient.getAmount());
+                reference.child("" + i).child("amount").setValue(newAmount);
                 break;
             }
         }
         if(!doesContain){
-            reference.setValue(ingredient);
-        }
-    }
-
-    public void removeIngredient(Ingredient ingredient){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("Fridge").child("fridgeList");
-        boolean doesContain = false;
-        for (int i = 0; i < fridgeList.size(); i++) {
-            if(ingredient.getName().equals(fridgeList.get(i).getName())){
-                doesContain = true;
-                int newAmount = fridgeList.get(i).updateAmount(-ingredient.getAmount());
-                reference.child(Integer.toString(i)).child("amount").setValue(newAmount);
-                break;
-            }
+            reference.child("" + fridgeList.size()).setValue(ingredient);
         }
     }
 
@@ -66,5 +53,12 @@ public class Fridge {
         return typeList;
     }
 
+    /**
+     * Adds ingredient to the list. It is a helper method for the controller class. Do not use it! Use addRecipe instead.
+     * @param ingredient
+     */
+    public void addIngredientToTheList(Ingredient ingredient) {
+        fridgeList.add(ingredient);
+    }
 
 }

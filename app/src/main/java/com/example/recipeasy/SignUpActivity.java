@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,13 +28,17 @@ public class SignUpActivity extends AppCompatActivity {
     private TextView errorText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Initialize controller
+        Controller controller = new Controller();
         //Go to the main page
         if(Controller.isUserSignedIn()) {
+            User user = new User();
+            user.setUserID(FirebaseAuth.getInstance().getCurrentUser().getUid());
+            Controller.setUser(user);
+            Controller.setUserData();
             startActivity(new Intent(SignUpActivity.this, MainActivity.class));
             finish();
         }
-        //Initialize controller
-        Controller controller = new Controller();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
@@ -86,8 +91,6 @@ public class SignUpActivity extends AppCompatActivity {
                                 Controller.createUserData(FirebaseAuth.getInstance().getCurrentUser().getUid());
                                 //Set the user
                                 Controller.setUser(new User(email, password, FirebaseAuth.getInstance().getCurrentUser().getUid()));
-                                //Retrieve user info from database
-                                Controller.setUserData();
                                 Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                                 startActivity(intent);
                             }

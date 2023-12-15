@@ -29,13 +29,13 @@ public class FridgeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fridge);
 
 
-        category = Controller.categories;
+        category = Controller.getCategories();
         recyclerView = findViewById(R.id.fridge_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FridgeAdapter fridgeAdapter = new FridgeAdapter(this, category);
         recyclerView.setAdapter(fridgeAdapter);
 
-        Log.d("Category set:",category.toString());
+        Log.d("Category set: ",category.toString());
 
 
 
