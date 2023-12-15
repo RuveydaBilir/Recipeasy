@@ -18,10 +18,10 @@ import java.util.ArrayList;
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHolder> {
     ArrayList<Recipe> recipes;
     Context context;
-    public RecipeAdapter(Context context, ArrayList<Recipe> recipes ){
+    public RecipeAdapter(Context context, ArrayList<Recipe> recipes){
         this.context = context;
+        //this.recipes = recipes;
         this.recipes = recipes;
-        //this.recipes = Controller.getAllRecipes();
     }
 
     @NonNull
@@ -37,9 +37,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull RecipeAdapter.MyViewHolder holder, int position) {
         holder.title.setText(recipes.get(position).getName());
-        holder.time.setText(recipes.get(position).getCookingTime());
-        holder.servings.setText(recipes.get(position).getServings());
-        if(Controller.findMissingIngredients(recipes.get(position)).size() == 0){
+        holder.time.setText(String.valueOf(recipes.get(position).getCookingTime()));
+        holder.servings.setText(String.valueOf(recipes.get(position).getServings()));
+        if(Controller.findMissingIngredients(recipes.get(position)) == null){
             holder.missing.setText("You have all the ingredients");
         }
         else {
@@ -56,15 +56,15 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
-        TextView title;
-        TextView servings;
-        TextView time;
-        TextView missing;
+        private ImageView imageView;
+        private TextView title;
+        private TextView servings;
+        private TextView time;
+        private TextView missing;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.recipeImage);
+            //imageView = itemView.findViewById(R.id.recipeImage);
             title = itemView.findViewById(R.id.recipeName);
             servings = itemView.findViewById(R.id.recipeServings);
             time = itemView.findViewById(R.id.recipeTime);

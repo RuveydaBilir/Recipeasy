@@ -2,6 +2,7 @@ package com.example.recipeasy;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
+        /*
         searchView = findViewById(R.id.main_search);
         searchView.clearFocus();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -78,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 filterList(newText);
                 return true;
             }
-        });
+        });*/
 
         recomRecButton = findViewById(R.id.recommend_recipes_button);
         recomRecButton.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
 
                 if (itemId == R.id.recommend_recipes_button) {
                     startActivity(new Intent(getApplicationContext(), RecommendRecipesActivity.class));
-                    //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                     finish();
                 }
             }

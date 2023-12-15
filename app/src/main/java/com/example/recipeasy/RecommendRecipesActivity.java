@@ -46,7 +46,7 @@ public class RecommendRecipesActivity extends AppCompatActivity {
     private CheckBox sort_checkbox4;
 
     RecyclerView recyclerView;
-    DatabaseReference database;
+    //DatabaseReference database;
     RecipeAdapter recipeAdapter;
     ArrayList<Recipe> recipes;
 
@@ -57,15 +57,16 @@ public class RecommendRecipesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommend_recipes);
+        recipes = Controller.getAllRecipes();
         recyclerView = findViewById(R.id.recipes_recyclerView);
-        database = FirebaseDatabase.getInstance().getReference("recipes");
-        recyclerView.setHasFixedSize(true);
+        //database = FirebaseDatabase.getInstance().getReference("recipes");
+        //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recipes = new ArrayList<>();
+        //recipes = new ArrayList<>();
         RecipeAdapter recipeAdapter = new RecipeAdapter(this, recipes);
         recyclerView.setAdapter(recipeAdapter);
 
-        database.addValueEventListener(new ValueEventListener() {
+        /*database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
@@ -78,7 +79,7 @@ public class RecommendRecipesActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
             }
 
-        });
+        });*/
 
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);

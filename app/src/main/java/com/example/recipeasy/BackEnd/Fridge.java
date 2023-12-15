@@ -13,6 +13,7 @@ public class Fridge {
      * Constructs a fridge Arraylist containing every possible ingredient
      */
     public Fridge() {
+        fridgeList = new ArrayList<>();
     }
 
     public Fridge(ArrayList<Ingredient> fridgeList) {
