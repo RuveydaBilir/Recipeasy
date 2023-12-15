@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.recipeasy.BackEnd.Ingredient;
 import com.example.recipeasy.BackEnd.Recipe;
@@ -16,6 +17,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.recipeasy.databinding.ActivityMainBinding;
 import com.google.android.material.button.MaterialButton;
@@ -29,12 +32,18 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private SearchView searchView;
     private Button recomRecButton;
+    private RecyclerView search_recycler_view;
     private Button weeklyPlannerButton;
+    private ItemAdapter itemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        search_recycler_view = findViewById(R.id.search_bar_recipe_recycler_view);
+        search_recycler_view.setLayoutManager(new LinearLayoutManager(this));
+        itemAdapter = new ItemAdapter(Controller.getAllRecipes());
+        search_recycler_view.setAdapter(itemAdapter);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
         bottomNavigationView.setSelectedItemId(R.id.recipe);
 
@@ -66,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
-        /*
+
         searchView = findViewById(R.id.main_search);
         searchView.clearFocus();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -80,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 filterList(newText);
                 return true;
             }
-        });*/
+        });
 
         recomRecButton = findViewById(R.id.recommend_recipes_button);
         recomRecButton.setOnClickListener(new View.OnClickListener() {
@@ -97,8 +106,24 @@ public class MainActivity extends AppCompatActivity {
         weeklyPlannerButton = findViewById(R.id.weekly_planner_button);
     }
 
-    private void filterList(String newText) {
-        //TODO: get the recipe list from database (videoda adam arraylisti for dongusune alip tek tek karsilastiriyor)
+    private void filterList(String text) {
+        ArrayList<Recipe> filteredList= new ArrayList<Recipe>();
+        for (Recipe r: Controller.getAllRecipes()) {
+            if (r.getName().toLowerCase().contains(text.toLowerCase()) ) {
+                filteredList.add(r);
+            }
+        }
+        Log.d("uyarı", text);
+
+        if(filteredList.isEmpty()||filteredList==null){
+            Toast.makeText(this, filteredList.size()+"size is", Toast.LENGTH_SHORT).show();
+            search_recycler_view.setVisibility(View.GONE);
+        }
+        else{
+            search_recycler_view.setVisibility(View.VISIBLE);
+            itemAdapter.setFilteredList(filteredList);
+            search_recycler_view.setAdapter(itemAdapter);
+        }
     }
 
 }
