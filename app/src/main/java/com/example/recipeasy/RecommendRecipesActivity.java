@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 
 
 import com.example.recipeasy.BackEnd.Recipe;
@@ -44,6 +45,10 @@ public class RecommendRecipesActivity extends AppCompatActivity {
     private CheckBox sort_checkbox2;
     private CheckBox sort_checkbox3;
     private CheckBox sort_checkbox4;
+    RelativeLayout filterOpt;
+    RelativeLayout servingsOpt;
+    RelativeLayout timeOpt;
+    RelativeLayout sortOpt;
 
     RecyclerView recyclerView;
     //DatabaseReference database;
@@ -133,6 +138,10 @@ public class RecommendRecipesActivity extends AppCompatActivity {
         sortButton = findViewById(R.id.btnSort);
         servingsButton = findViewById(R.id.btnServings);
         timeButton = findViewById(R.id.btnTime);
+        filterOpt = findViewById(R.id.layoutFilterOptions);
+        servingsOpt = findViewById(R.id.layoutServingsOptions);
+        timeOpt = findViewById(R.id.layoutTimeOptions);
+        sortOpt = findViewById(R.id.layoutSortOptions);
         sort_checkbox1 = findViewById(R.id.checkbox_sort_time1);
         sort_checkbox2 = findViewById(R.id.checkbox_sort_time2);
         sort_checkbox3 = findViewById(R.id.checkbox_sort_servings1);
@@ -184,38 +193,42 @@ public class RecommendRecipesActivity extends AppCompatActivity {
     }
     private void showSortCheckboxes() {
         // Show checkboxes when servings button is clicked
-        sort_checkbox1.setVisibility(View.VISIBLE);
+        /*sort_checkbox1.setVisibility(View.VISIBLE);
         sort_checkbox2.setVisibility(View.VISIBLE);
         sort_checkbox3.setVisibility(View.VISIBLE);
-        sort_checkbox4.setVisibility(View.VISIBLE);
+        sort_checkbox4.setVisibility(View.VISIBLE);*/
         // Make more checkboxes visible as needed
+        sortOpt.setVisibility(View.VISIBLE);
     }
 
     private void showFilterOptions() {
         // Show checkboxes when servings button is clicked
-        servingsButton.setVisibility(View.VISIBLE);
-        timeButton.setVisibility(View.VISIBLE);
+        /*servingsButton.setVisibility(View.VISIBLE);
+        timeButton.setVisibility(View.VISIBLE);*/
         // Make more checkboxes visible as needed
+        filterOpt.setVisibility(View.VISIBLE);
     }
 
     private void showFilterServingsCheckboxes() {
         // Show checkboxes when servings button is clicked
-        servings_checkbox1.setVisibility(View.VISIBLE);
+        /*servings_checkbox1.setVisibility(View.VISIBLE);
         servings_checkbox2.setVisibility(View.VISIBLE);
         servings_checkbox3.setVisibility(View.VISIBLE);
         servings_checkbox4.setVisibility(View.VISIBLE);
-        servings_checkbox5.setVisibility(View.VISIBLE);
+        servings_checkbox5.setVisibility(View.VISIBLE);*/
         // Make more checkboxes visible as needed
+        servingsOpt.setVisibility(View.VISIBLE);
     }
 
     private void showFilterTimeCheckboxes() {
         // Show checkboxes when servings button is clicked
-        time_checkbox1.setVisibility(View.VISIBLE);
+        /*time_checkbox1.setVisibility(View.VISIBLE);
         time_checkbox2.setVisibility(View.VISIBLE);
         time_checkbox3.setVisibility(View.VISIBLE);
         time_checkbox4.setVisibility(View.VISIBLE);
-        time_checkbox5.setVisibility(View.VISIBLE);
+        time_checkbox5.setVisibility(View.VISIBLE);*/
         // Make more checkboxes visible as needed
+        timeOpt.setVisibility(View.VISIBLE);
     }
 
 }
