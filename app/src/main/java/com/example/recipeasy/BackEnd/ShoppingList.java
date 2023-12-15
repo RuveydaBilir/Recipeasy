@@ -1,5 +1,9 @@
 package com.example.recipeasy.BackEnd;
 
+import com.example.recipeasy.Controller;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class ShoppingList {
@@ -24,26 +28,29 @@ public class ShoppingList {
     }
 
     public void addIngredient(Ingredient ingredient){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("ShoppingList").child("shoppingList");
         boolean doesContain = false;
         for (int i = 0; i < shoppingList.size(); i++) {
             if(ingredient.getName().equals(shoppingList.get(i).getName())){
                 doesContain = true;
-                shoppingList.get(i).updateAmount(ingredient.getAmount());
+                int newAmount = shoppingList.get(i).updateAmount(ingredient.getAmount());
+                reference.child(Integer.toString(i)).child("amount").setValue(newAmount);
                 break;
             }
         }
         if(!doesContain){
-            shoppingList.add(ingredient);
+            reference.setValue(ingredient);
         }
     }
 
     public void removeIngredient(Ingredient ingredient){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("ShoppingList").child("shoppingList");
         boolean doesContain = false;
         for (int i = 0; i < shoppingList.size(); i++) {
             if(ingredient.getName().equals(shoppingList.get(i).getName())){
                 doesContain = true;
-                shoppingList.get(i).updateAmount(-ingredient.getAmount());
-                break;
+                int newAmount = shoppingList.get(i).updateAmount(-ingredient.getAmount());
+                reference.child(Integer.toString(i)).child("amount").setValue(newAmount);                break;
             }
         }
     }

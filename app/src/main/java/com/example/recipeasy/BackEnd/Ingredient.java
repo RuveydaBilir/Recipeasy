@@ -53,10 +53,13 @@ public class Ingredient {
         return amount > 0;
     }
 
-    public void updateAmount(double increment){
-        amount += increment;
+    public int updateAmount(double increment){
+        int newAmount = 0;
+        newAmount+= increment;
         if(amount < 0){
-            amount = 0;
+            newAmount = 0;
         }
+        return newAmount;
+
     }
 }

@@ -1,5 +1,9 @@
 package com.example.recipeasy.BackEnd;
 
+import com.example.recipeasy.Controller;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class Favorites {
@@ -22,6 +26,7 @@ public class Favorites {
     }
 
     public void addRecipe(Recipe recipe){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("Favorites");
         boolean doesContain = false;
         for (int i = 0; i < recipes.size(); i++) {
             if(recipe.getName().equals(recipes.get(i).getName())){
@@ -30,16 +35,16 @@ public class Favorites {
             }
         }
         if(!doesContain){
-            recipes.add(recipe);
+            reference.setValue(recipe);
         }
     }
 
-    public void removeRecipe(Ingredient recipe){
+    public void removeRecipe(Recipe recipe){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("Favorites").child("recipes");
         boolean doesContain = false;
         for (int i = 0; i < recipes.size(); i++) {
             if(recipe.getName().equals(recipes.get(i).getName())){
-                doesContain = true;
-                recipes.remove(recipes.get(i));
+                reference.child(Integer.toString(i)).removeValue();
             }
         }
     }
