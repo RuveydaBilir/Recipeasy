@@ -1,323 +1,399 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".RecommendRecipesActivity"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".RecommendRecipesActivity"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/topBar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/topBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <ImageButton
-            android:id="@+id/recipes_return_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/return_border"
-            android:src="@drawable/return_icon"
-            android:contentDescription="return"
+            <ImageButton
+                android:id="@+id/recipes_return_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/return_border"
+                android:contentDescription="return"
+                android:src="@drawable/return_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.02"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnFilter"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="@color/koyu_pembe"
+                android:drawableRight="@drawable/filter_icon"
+                android:gravity="center"
+                android:text="Filter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recipes_return_button"
+                app:layout_constraintTop_toTopOf="@+id/topBar"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <Button
+                android:id="@+id/btnSort"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="@color/koyu_pembe"
+                android:drawableRight="@drawable/sort_icon"
+                android:gravity="center"
+                android:text="Sort"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btnFilter"
+                app:layout_constraintTop_toBottomOf="@id/recipes_return_button"
+                app:layout_constraintTop_toTopOf="@+id/topBar"
+                app:layout_constraintVertical_chainStyle="packed" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutFilterOptions"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@+id/topBar"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/btnServings"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="32dp"
+                android:backgroundTint="@color/acik_pembe"
+                android:drawableRight="@drawable/serving_icon2"
+                android:text="Servıngs"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/btnTime"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+
+                android:backgroundTint="@color/acik_pembe"
+                android:drawableRight="@drawable/time_icon"
+                android:text="Time"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.656"
+                app:layout_constraintStart_toEndOf="@+id/btnServings"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutServingsOptions"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="invisible"
+            android:layout_marginStart="45dp"
+            app:layout_constraintTop_toBottomOf="@+id/layoutFilterOptions"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <CheckBox
+                android:id="@+id/checkbox_2serv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 servings"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <CheckBox
+                android:id="@+id/checkbox_4serv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkbox_2serv"
+                android:text="4 servings"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkbox_2serv"
+                tools:ignore="MissingConstraints" />
+
+            <CheckBox
+                android:id="@+id/checkbox_6serv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkbox_4serv"
+                android:text="6 servings"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkbox_4serv"
+                tools:ignore="MissingConstraints" />
+
+            <CheckBox
+                android:id="@+id/checkbox_8serv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkbox_6serv"
+                android:text="8 servings"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkbox_6serv"
+                tools:ignore="MissingConstraints" />
+
+            <CheckBox
+                android:id="@+id/checkbox_8plus_serv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkbox_8serv"
+                android:text="8+ servings"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkbox_8serv"
+                tools:ignore="MissingConstraints" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutTimeOptions"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="90dp"
+            android:layout_marginEnd="41dp"
+            android:orientation="horizontal"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/layoutServingsOptions"
+            app:layout_constraintTop_toBottomOf="@+id/layoutFilterOptions">
+
+            <CheckBox
+                android:id="@+id/checkbox_filter_time1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15-30 minutes"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <CheckBox
+                android:id="@+id/checkbox_filter_time2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkbox_filter_time1"
+                android:text="30-45 minutes"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkbox_filter_time1"
+                tools:ignore="MissingConstraints" />
+
+            <CheckBox
+                android:id="@+id/checkbox_filter_time3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkbox_filter_time2"
+                android:text="45-60 minutes"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkbox_filter_time2"
+                tools:ignore="MissingConstraints" />
+
+            <CheckBox
+                android:id="@+id/checkbox_filter_time4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkbox_filter_time3"
+                android:text="60-120 minutes"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkbox_filter_time3"
+                tools:ignore="MissingConstraints" />
+
+            <CheckBox
+                android:id="@+id/checkbox_filter_time5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkbox_filter_time4"
+                android:text="120+ minutes"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkbox_filter_time4"
+                tools:ignore="MissingConstraints" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutSortOptions"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@+id/topBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <CheckBox
+                android:id="@+id/checkbox_sort_time1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/time_icon"
+                android:drawablePadding="6dp"
+                android:text="increasing time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <CheckBox
+                android:id="@+id/checkbox_sort_time2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkbox_sort_time1"
+                android:drawableRight="@drawable/time_icon"
+
+                android:drawablePadding="6dp"
+                android:text="decreasing time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkbox_sort_time1"
+                tools:ignore="MissingConstraints" />
+
+            <CheckBox
+                android:id="@+id/checkbox_sort_servings1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkbox_sort_time2"
+                android:drawableRight="@drawable/serving_icon2"
+
+                android:drawablePadding="6dp"
+                android:text="increasing servings"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkbox_sort_time2"
+                tools:ignore="MissingConstraints" />
+
+            <CheckBox
+                android:id="@+id/checkbox_sort_servings2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkbox_sort_servings1"
+                android:drawableRight="@drawable/serving_icon2"
+
+                android:drawablePadding="6dp"
+                android:text="decreasing servings"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkbox_sort_servings1"
+                tools:ignore="MissingConstraints" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav_view"
+            android:layout_width="409dp"
+            android:layout_height="67dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/nav_bar_background"
+            android:elevation="2dp"
+            app:itemIconSize="30dp"
+            app:itemIconTint="@drawable/bottom_nav_selector"
+            app:labelVisibilityMode="unlabeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:menu="@menu/bottom_nav_menu"
+            tools:ignore="MissingConstraints" />
 
-        <Button
-            android:id="@+id/btnFilter"
-            android:layout_width="180dp"
+        <!--<androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutRecipe"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:backgroundTint="@color/koyu_pembe"
-            android:drawableRight="@drawable/filter_icon"
-            app:layout_constraintTop_toBottomOf="@+id/recipes_return_button"
+            android:orientation="vertical"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@id/bottom_nav_view"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
-            app:layout_constraintTop_toTopOf="@+id/topBar"
-            app:layout_constraintVertical_chainStyle="packed"
-            android:text="Filter" />
+            app:layout_constraintTop_toBottomOf="@+id/topBar"
+            app:layout_constraintVertical_bias="0.1">
 
-        <Button
-            android:id="@+id/btnSort"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:backgroundTint="@color/koyu_pembe"
-            android:drawableRight="@drawable/sort_icon"
-            app:layout_constraintTop_toBottomOf="@id/recipes_return_button"
-            app:layout_constraintStart_toEndOf="@+id/btnFilter"
-            app:layout_constraintTop_toTopOf="@+id/topBar"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            app:layout_constraintVertical_chainStyle="packed"
-            android:text="Sort" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/recommendedRecipeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:text="Recommended Recipes"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutFilterOptions"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@+id/topBar"
-        tools:ignore="MissingConstraints"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recipes_recyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:clipToPadding="false"
+                android:padding="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recommendedRecipeText" />
 
-        <Button
-            android:id="@+id/btnServings"
-            android:layout_width="150dp"
-            android:layout_height="48dp"
-            android:backgroundTint="@color/acik_pembe"
-            android:drawableRight="@drawable/serving_icon2"
-            android:text="Servıngs"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="35dp"
-            tools:layout_editor_absoluteY="0dp" />
 
-        <Button
-            android:id="@+id/btnTime"
-            android:layout_width="150dp"
-            android:layout_height="48dp"
 
-            android:backgroundTint="@color/acik_pembe"
-            android:drawableRight="@drawable/time_icon"
-            android:text="Time"
+        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="225dp"
-            tools:layout_editor_absoluteY="0dp" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/layoutServingsOptions"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="invisible"
-        android:layout_marginStart="45dp"
-        app:layout_constraintTop_toBottomOf="@+id/layoutFilterOptions"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <CheckBox
-            android:id="@+id/checkbox_2serv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2 servings"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
-        <!-- Add other CheckBox elements here -->
-        <CheckBox android:id="@+id/checkbox_4serv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/checkbox_2serv"
-            android:text="4 servings"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="30dp" />
-        <CheckBox android:id="@+id/checkbox_6serv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/checkbox_4serv"
-            android:text="6 servings"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="60dp" />
-        <CheckBox android:id="@+id/checkbox_8serv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/checkbox_6serv"
-            android:text="8 servings"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="90dp" />
-        <CheckBox android:id="@+id/checkbox_8plus_serv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/checkbox_8serv"
-            android:text="8+ servings"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="120dp" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/layoutTimeOptions"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="invisible"
-        android:layout_marginStart="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/layoutFilterOptions"
-        app:layout_constraintStart_toEndOf="@id/layoutServingsOptions">
-
-        <CheckBox
-            android:id="@+id/checkbox_filter_time1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="15-30 minutes"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="70dp"
-            tools:layout_editor_absoluteY="0dp" />
-        <!-- Add other CheckBox elements here -->
-        <CheckBox android:id="@+id/checkbox_filter_time2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/checkbox_filter_time1"
-            android:text="30-45 minutes"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="70dp"
-            tools:layout_editor_absoluteY="30dp"
-            />
-        <CheckBox android:id="@+id/checkbox_filter_time3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/checkbox_filter_time2"
-            android:text="45-60 minutes"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="70dp"
-            tools:layout_editor_absoluteY="60dp"
-            />
-        <CheckBox android:id="@+id/checkbox_filter_time4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/checkbox_filter_time3"
-            android:text="60-120 minutes"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="70dp"
-            tools:layout_editor_absoluteY="90dp"
-            />
-        <CheckBox android:id="@+id/checkbox_filter_time5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/checkbox_filter_time4"
-            android:text="120+ minutes"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="70dp"
-            tools:layout_editor_absoluteY="120dp"
-            />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/layoutSortOptions"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@+id/topBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <CheckBox
-            android:id="@+id/checkbox_sort_time1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="increasing time"
-            android:drawablePadding="6dp"
-            android:drawableRight="@drawable/time_icon"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="30dp"
-            tools:layout_editor_absoluteY="0dp"/>
-        <CheckBox android:id="@+id/checkbox_sort_time2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/checkbox_sort_time1"
-            android:text="decreasing time"
-
-            android:drawablePadding="6dp"
-            android:drawableRight="@drawable/time_icon"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="30dp"
-            tools:layout_editor_absoluteY="30dp"/>
-        <CheckBox android:id="@+id/checkbox_sort_servings1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/checkbox_sort_time2"
-            android:text="increasing servings"
-
-            android:drawableRight="@drawable/serving_icon2"
-            android:drawablePadding="6dp"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="30dp"
-            tools:layout_editor_absoluteY="60dp"/>
-        <CheckBox android:id="@+id/checkbox_sort_servings2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/checkbox_sort_servings1"
-            android:text="decreasing servings"
-
-            android:drawableRight="@drawable/serving_icon2"
-            android:drawablePadding="6dp"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="30dp"
-            tools:layout_editor_absoluteY="90dp"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav_view"
-        android:layout_width="409dp"
-        android:layout_height="67dp"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/nav_bar_background"
-        android:elevation="2dp"
-        app:itemIconSize="30dp"
-        app:itemIconTint="@drawable/bottom_nav_selector"
-        app:labelVisibilityMode="unlabeled"
-        app:menu="@menu/bottom_nav_menu"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="648dp" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutRecipe"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@id/bottom_nav_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_above="@id/bottom_nav_view"
         app:layout_constraintTop_toBottomOf="@+id/topBar"
-        >
-
+        tools:ignore="MissingConstraints">
         <TextView
-            android:id="@+id/recommendedRecipeText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Recommended Recipes"
-            android:textColor="@color/black"
-            android:textSize="25dp"
             android:textStyle="bold"
+            android:textSize="25dp"
+            android:textColor="@color/black"
             android:visibility="visible"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="60dp" />
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recipes_recyclerView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:clipToPadding="false"
-            android:padding="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recommendedRecipeText" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:clipToPadding="false"/>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

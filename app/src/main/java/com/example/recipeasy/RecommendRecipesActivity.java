@@ -2,6 +2,8 @@ package com.example.recipeasy;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,10 +47,18 @@ public class RecommendRecipesActivity extends AppCompatActivity {
     private CheckBox sort_checkbox2;
     private CheckBox sort_checkbox3;
     private CheckBox sort_checkbox4;
-    RelativeLayout filterOpt;
+    ConstraintLayout filterOpt;
+    ConstraintLayout servingsOpt;
+    ConstraintLayout timeOpt;
+    ConstraintLayout sortOpt;
+    /*RelativeLayout filterOpt;
     RelativeLayout servingsOpt;
     RelativeLayout timeOpt;
-    RelativeLayout sortOpt;
+    RelativeLayout sortOpt;*/
+    private boolean filterButtonsVisible = false;
+    private boolean servingsCheckboxesVisible = false;
+    private boolean timeCheckboxesVisible = false;
+    private boolean sortCheckboxesVisible = false;
 
     RecyclerView recyclerView;
     //DatabaseReference database;
@@ -161,7 +171,7 @@ public class RecommendRecipesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Handle single serving button click
-                showSortCheckboxes();
+                toggleSortVisibility();
             }
         });
 
@@ -169,7 +179,7 @@ public class RecommendRecipesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Handle single serving button click
-                showFilterOptions();
+                toggleFilterOptVisibility();
             }
         });
 
@@ -177,7 +187,7 @@ public class RecommendRecipesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Handle single serving button click
-                showFilterServingsCheckboxes();
+                toggleServingsVisibility();
             }
         });
 
@@ -185,31 +195,31 @@ public class RecommendRecipesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Handle single serving button click
-                showFilterTimeCheckboxes();
+                toggleTimeVisibility();
             }
         });
 
 
     }
-    private void showSortCheckboxes() {
+    private void updateSortCheckboxes() {
         // Show checkboxes when servings button is clicked
         /*sort_checkbox1.setVisibility(View.VISIBLE);
         sort_checkbox2.setVisibility(View.VISIBLE);
         sort_checkbox3.setVisibility(View.VISIBLE);
         sort_checkbox4.setVisibility(View.VISIBLE);*/
         // Make more checkboxes visible as needed
-        sortOpt.setVisibility(View.VISIBLE);
+        sortOpt.setVisibility(sortCheckboxesVisible ? View.VISIBLE : View.INVISIBLE);
     }
 
-    private void showFilterOptions() {
+    private void updateFilterOptions() {
         // Show checkboxes when servings button is clicked
         /*servingsButton.setVisibility(View.VISIBLE);
         timeButton.setVisibility(View.VISIBLE);*/
         // Make more checkboxes visible as needed
-        filterOpt.setVisibility(View.VISIBLE);
+        filterOpt.setVisibility(filterButtonsVisible ? View.VISIBLE : View.INVISIBLE);
     }
 
-    private void showFilterServingsCheckboxes() {
+    private void updateFilterServingsCheckboxes() {
         // Show checkboxes when servings button is clicked
         /*servings_checkbox1.setVisibility(View.VISIBLE);
         servings_checkbox2.setVisibility(View.VISIBLE);
@@ -217,10 +227,10 @@ public class RecommendRecipesActivity extends AppCompatActivity {
         servings_checkbox4.setVisibility(View.VISIBLE);
         servings_checkbox5.setVisibility(View.VISIBLE);*/
         // Make more checkboxes visible as needed
-        servingsOpt.setVisibility(View.VISIBLE);
+        servingsOpt.setVisibility(servingsCheckboxesVisible ? View.VISIBLE : View.INVISIBLE);
     }
 
-    private void showFilterTimeCheckboxes() {
+    private void updateFilterTimeCheckboxes() {
         // Show checkboxes when servings button is clicked
         /*time_checkbox1.setVisibility(View.VISIBLE);
         time_checkbox2.setVisibility(View.VISIBLE);
@@ -228,7 +238,26 @@ public class RecommendRecipesActivity extends AppCompatActivity {
         time_checkbox4.setVisibility(View.VISIBLE);
         time_checkbox5.setVisibility(View.VISIBLE);*/
         // Make more checkboxes visible as needed
-        timeOpt.setVisibility(View.VISIBLE);
+        timeOpt.setVisibility(timeCheckboxesVisible ? View.VISIBLE : View.INVISIBLE);
     }
 
+    private void toggleFilterOptVisibility(){
+        filterButtonsVisible = ! filterButtonsVisible;
+        updateFilterOptions();
+    }
+
+    private void toggleServingsVisibility(){
+        servingsCheckboxesVisible = ! servingsCheckboxesVisible;
+        updateFilterServingsCheckboxes();
+    }
+
+    private void toggleTimeVisibility(){
+        timeCheckboxesVisible = ! timeCheckboxesVisible;
+        updateFilterTimeCheckboxes();
+    }
+
+    private void toggleSortVisibility(){
+        sortCheckboxesVisible = ! sortCheckboxesVisible;
+        updateSortCheckboxes();
+    }
 }
