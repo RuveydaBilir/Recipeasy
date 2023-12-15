@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
     private void filterList(String text) {
         ArrayList<Recipe> filteredList= new ArrayList<Recipe>();
         for (Recipe r: Controller.getAllRecipes()) {
-            if (r.getName().toLowerCase().contains(text.toLowerCase()) ) {
+            if (containsContiguousSubstring(r.getName().toLowerCase(), text.toLowerCase()) ) {
                 filteredList.add(r);
             }
         }
@@ -124,6 +124,21 @@ public class MainActivity extends AppCompatActivity {
             itemAdapter.setFilteredList(filteredList);
             search_recycler_view.setAdapter(itemAdapter);
         }
+    }
+
+    private static boolean containsContiguousSubstring(String str, String substring) {
+        int strLength = str.length();
+        int subLength = substring.length();
+
+        for (int i = 0; i <= strLength - subLength; i++) {
+            // Check if the substring starting from index i is equal to the desired substring
+            if (str.substring(i, i + subLength).equals(substring)) {
+                return true;
+            }
+        }
+
+        // If no match is found, return false
+        return false;
     }
 
 }
