@@ -74,27 +74,9 @@ public class RecommendRecipesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recommend_recipes);
         recipes = Controller.getAllRecipes();
         recyclerView = findViewById(R.id.recipes_recyclerView);
-        //database = FirebaseDatabase.getInstance().getReference("recipes");
-        //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //recipes = new ArrayList<>();
         RecipeAdapter recipeAdapter = new RecipeAdapter(this, recipes);
         recyclerView.setAdapter(recipeAdapter);
-
-        /*database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Recipe recipe = dataSnapshot.getValue(Recipe.class);
-                    recipes.add(recipe);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-
-        });*/
 
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);

@@ -1,19 +1,43 @@
 package com.example.recipeasy;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
+import com.example.recipeasy.BackEnd.Fridge;
+import com.example.recipeasy.BackEnd.Recipe;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 public class FridgeActivity extends AppCompatActivity {
+    RecyclerView recyclerView;
+    //DatabaseReference database;
+    FridgeAdapter fridgeAdapter;
+    ArrayList<String> category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fridge);
+
+
+        category = Controller.categories;
+        recyclerView = findViewById(R.id.fridge_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        FridgeAdapter fridgeAdapter = new FridgeAdapter(this, category);
+        recyclerView.setAdapter(fridgeAdapter);
+
+        Log.d("Category set:",category.toString());
+
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
         bottomNavigationView.setSelectedItemId(R.id.fridge);

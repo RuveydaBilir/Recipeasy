@@ -1,5 +1,7 @@
 package com.example.recipeasy;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.example.recipeasy.BackEnd.*;
@@ -27,6 +29,7 @@ public class Controller {
 
     private static ArrayList<Recipe> allRecipes = new ArrayList<>();
     private static ArrayList<Ingredient> allIngredients = new ArrayList<>();
+    public static ArrayList<String> categories = new ArrayList<>();
 
     public Controller() {
         Controller.user = new User();
@@ -35,11 +38,23 @@ public class Controller {
         Controller.planner = new Planner();
         Controller.shoppingList = new ShoppingList();
         Controller.recommendation = new Recommendation();
+        Controller.categories = new ArrayList<>();
         setAllIngredients();
         setAllRecipes();
+        setCategories();
     }
-    public static String[] categories = {"Vegetables", "Fruits", "Fish & Marine Products", "Dairy Products", "Legumes",
-                                         "Canned Products", "Nuts", "Meat Products", "Oils"};
+
+    public void setCategories(){
+        categories.add("Vegetables");
+        categories.add("Fruits");
+        categories.add("Fish & Marine Products");
+        categories.add("Dairy Products");
+        categories.add("Legumes");
+        categories.add("Canned Products");
+        categories.add("Nuts");
+        categories.add("Meat Products");
+        categories.add("Oils");
+    }
 
     public Controller(User user, Fridge fridge, Favorites favorites, Planner planner, ShoppingList shoppingList, Recommendation recommendation) {
         Controller.user = user;
@@ -48,6 +63,8 @@ public class Controller {
         Controller.planner = planner;
         Controller.shoppingList = shoppingList;
         Controller.recommendation = recommendation;
+        Controller.categories = new ArrayList<>();
+        setCategories();
     }
 
     public static void createUserData(String userID) {
