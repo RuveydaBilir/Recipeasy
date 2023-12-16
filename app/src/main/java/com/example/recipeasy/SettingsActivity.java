@@ -1,5 +1,6 @@
 package com.example.recipeasy;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -18,6 +19,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SettingsActivity extends AppCompatActivity {
 
     private Button editProfileButton, suggestionsButton, changePasswordButton, logOutButton, resetDataButton;
+    private AlertDialog alertDialog;
+    AlertDialog.Builder builderDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,18 +52,6 @@ public class SettingsActivity extends AppCompatActivity {
                 return true;
             }
             return false;
-        });
-
-        editProfileButton = findViewById(R.id.edit_profile_button);
-        editProfileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int itemId = v.getId();
-                if (itemId == R.id.edit_profile_button) {
-                    startActivity(new Intent(getApplicationContext(), EditProfileActivity.class));
-                    finish();
-                }
-            }
         });
 
         suggestionsButton = findViewById(R.id.suggestions_button);
@@ -102,17 +93,6 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        resetDataButton = findViewById(R.id.reset_data_button);
-        resetDataButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int itemId = v.getId();
-                if (itemId == R.id.reset_data_button) {
-                    startActivity(new Intent(getApplicationContext(), ResetDataActivity.class));
-                    finish();
-                }
-            }
-        });
 
         editProfileButton = findViewById(R.id.edit_profile_button);
         editProfileButton.setOnClickListener(new View.OnClickListener() {
@@ -125,5 +105,48 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
         });
+
+        resetDataButton = findViewById(R.id.reset_data_button);
+        resetDataButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int itemId = v.getId();
+                if (itemId == R.id.reset_data_button) {
+                    showAlertDialog(R.layout.activity_reset_data);
+                }
+            }
+
+        });
+    }
+
+    private void showAlertDialog(int layout) {
+        builderDialog = new AlertDialog.Builder(this);
+        View layoutView = getLayoutInflater().inflate(layout,null);
+        builderDialog.setView(layoutView);
+
+        Button yesButton = layoutView.findViewById(R.id.delete_yes_button);
+        Button noButton = layoutView.findViewById(R.id.delete_no_button);
+
+        alertDialog = builderDialog.create();
+        alertDialog.show();
+
+        yesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: delete user data ya da useri kandiralim :))
+
+                alertDialog.dismiss();
+            }
+        });
+
+        noButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+
+
     }
 }

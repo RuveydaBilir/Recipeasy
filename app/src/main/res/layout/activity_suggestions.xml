@@ -6,4 +6,107 @@
     android:layout_height="match_parent"
     tools:context=".SuggestionsActivity">
 
+    <ImageButton
+        android:id="@+id/suggestions_return_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/return_border"
+        android:src="@drawable/return_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/settings_text_background"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="68dp"
+
+        android:background="@drawable/settings_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/suggestions_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/settings_text_background"
+        app:layout_constraintEnd_toStartOf="@+id/settings_text"
+        app:layout_constraintTop_toTopOf="@+id/settings_text_background" />
+
+    <TextView
+        android:id="@+id/settings_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="Suggestions"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        app:cornerRadius="25dp"
+        app:layout_constraintBottom_toBottomOf="@id/settings_text_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.664"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/settings_text_background"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/suggestions_box"
+        android:layout_width="354dp"
+        android:layout_height="344dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/signin_border"
+        android:hint="Write your suggestions and complaints here..."
+        android:gravity="top"
+        android:paddingStart="16dp"
+        android:paddingTop="10dp"
+        android:shadowRadius="10"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings_text_background"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/suggestions_button"
+        android:layout_width="130dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/button_background"
+        android:drawableLeft="@drawable/suggestions_icon"
+        android:text="Send"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.843"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/suggestions_box" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/nav_bar_background"
+        android:elevation="2dp"
+        app:itemIconSize="30dp"
+        app:itemIconTint="@drawable/bottom_nav_selector"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:menu="@menu/bottom_nav_menu" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

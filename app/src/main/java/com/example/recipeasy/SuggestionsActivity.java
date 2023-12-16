@@ -4,10 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SuggestionsActivity extends AppCompatActivity {
+
+    Button sendButton;
+
+    ImageButton backButton;
+    EditText suggestionText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,5 +49,30 @@ public class SuggestionsActivity extends AppCompatActivity {
             }
             return false;
         });
+
+        sendButton = findViewById(R.id.suggestions_button);
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int itemId = v.getId();
+
+                if(itemId == R.id.suggestions_button){
+                    //TODO: receive user's suggestions?
+                }
+            }
+        });
+
+        backButton = findViewById(R.id.suggestions_return_button);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int itemId = v.getId();
+                if(itemId == R.id.suggestions_return_button){
+                    startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                    finish();
+                }
+            }
+        });
+
     }
 }
