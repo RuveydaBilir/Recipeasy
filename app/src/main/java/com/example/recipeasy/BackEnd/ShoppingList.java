@@ -29,30 +29,19 @@ public class ShoppingList {
     }
 
     public void addIngredient(Ingredient ingredient){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("ShoppingList").child("shoppingList");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("Shopping List").child("shoppingList");
         boolean doesContain = false;
+
         for (int i = 0; i < shoppingList.size(); i++) {
             if(ingredient.getName().equals(shoppingList.get(i).getName())){
                 doesContain = true;
                 double newAmount = shoppingList.get(i).updateAmount(ingredient.getAmount());
-                reference.child(Integer.toString(i)).child("amount").setValue(newAmount);
+                reference.child("" + i).child("amount").setValue(newAmount);
                 break;
             }
         }
         if(!doesContain){
-            reference.setValue(ingredient);
-        }
-    }
-
-    public void removeIngredient(Ingredient ingredient){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("ShoppingList").child("shoppingList");
-        boolean doesContain = false;
-        for (int i = 0; i < shoppingList.size(); i++) {
-            if(ingredient.getName().equals(shoppingList.get(i).getName())){
-                doesContain = true;
-                double newAmount = shoppingList.get(i).updateAmount(-ingredient.getAmount());
-                reference.child(Integer.toString(i)).child("amount").setValue(newAmount);                break;
-            }
+            reference.child("" + shoppingList.size()).setValue(ingredient);
         }
     }
 

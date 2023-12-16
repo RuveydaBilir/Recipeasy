@@ -1,5 +1,9 @@
 package com.example.recipeasy.BackEnd;
 
+import com.example.recipeasy.Controller;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class Planner {
@@ -23,11 +27,17 @@ public class Planner {
     }
 
     public void addRecipe(int day, Recipe recipe){
-        recipes[day]= recipe;
+        if(day <= 4 && day >= 0) {
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("Planner").child("recipes");
+            reference.child("" + day).setValue(recipe);
+        }
     }
 
     public void removeRecipe(int day){
-        recipes[day] = null;
+        if(day <= 4 && day >= 0 && recipes[day] != null) {
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("Planner").child("recipes");
+            reference.child("" + day).removeValue();
+        }
     }
 
 }

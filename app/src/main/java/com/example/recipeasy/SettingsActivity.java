@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.util.Log;
 
 import com.example.recipeasy.BackEnd.Ingredient;
+import com.example.recipeasy.BackEnd.ShoppingList;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SettingsActivity extends AppCompatActivity {

@@ -1,5 +1,6 @@
 package com.example.recipeasy;
 
+import android.content.Intent;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -350,5 +351,12 @@ public class Controller {
 
     private static void addIngredientToTheShoppingList(Ingredient ingredient) {
         shoppingList.getShoppingList().add(ingredient);
+    }
+
+    public static void logOut() {
+        if(FirebaseAuth.getInstance().getCurrentUser() != null) {
+            FirebaseAuth.getInstance().signOut();
+            //User should be directed to the sing up page
+        }
     }
 }

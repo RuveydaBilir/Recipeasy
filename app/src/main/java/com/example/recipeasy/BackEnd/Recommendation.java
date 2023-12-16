@@ -1,5 +1,7 @@
 package com.example.recipeasy.BackEnd;
 import com.example.recipeasy.Controller;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -17,11 +19,13 @@ public class Recommendation {
 
     public void filterServings(ArrayList<Integer> servings) {
         ArrayList<Recipe> allRecipes = Controller.getAllRecipes();
-        recipes = null;
+        recipes.clear();
+
         for (int i = 0; i < allRecipes.size(); i++) {
             for (int j = 0; j < servings.size(); j++) {
-                if(allRecipes.get(i).getServings()==servings.get(j)){
-                    recipes.add(allRecipes.get(i));
+
+                if(allRecipes.get(i).getServings() == servings.get(j)){
+                    addRecipe(allRecipes.get(i));
                     break;
                 }
             }
@@ -29,11 +33,13 @@ public class Recommendation {
     }
     public void filterTime(ArrayList<Integer> time){
         ArrayList<Recipe> allRecipes = Controller.getAllRecipes();
-        recipes = null;
+        recipes.clear();
+
         for (int i = 0; i < allRecipes.size(); i++) {
             for (int j = 0; j < time.size(); j++) {
-                if(allRecipes.get(i).getServings()==time.get(j)){
-                    recipes.add(allRecipes.get(i));
+
+                if(allRecipes.get(i).getServings() == time.get(j)){
+                    addRecipe(allRecipes.get(i));
                     break;
                 }
             }
@@ -122,9 +128,11 @@ public class Recommendation {
     }
 
     private void swap(int i, int j) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("Recommendation").child("recipes");
+
         Recipe temp = recipes.get(i);
-        recipes.set(i, recipes.get(j));
-        recipes.set(j, temp);
+        reference.child("" + i).setValue(recipes.get(j));
+        reference.child("" + j).setValue(temp);
     }
 
 
@@ -135,6 +143,11 @@ public class Recommendation {
     public void setRecipes(ArrayList<Recipe> recipes) {
         this.recipes = recipes;
         }
+
+    public void addRecipe(Recipe recipe) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("Recommendation").child("recipes");
+        reference.child("" + recipes.size()).setValue(recipe);
+    }
 
 }
 

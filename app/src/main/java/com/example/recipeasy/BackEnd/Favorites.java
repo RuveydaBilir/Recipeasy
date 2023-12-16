@@ -1,5 +1,7 @@
 package com.example.recipeasy.BackEnd;
 
+import android.util.Log;
+
 import com.example.recipeasy.Controller;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -27,7 +29,7 @@ public class Favorites {
     }
 
     public void addRecipe(Recipe recipe){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("Favorites");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("Favorites").child("recipes");
         boolean doesContain = false;
         for (int i = 0; i < recipes.size(); i++) {
             if(recipe.getName().equals(recipes.get(i).getName())){
