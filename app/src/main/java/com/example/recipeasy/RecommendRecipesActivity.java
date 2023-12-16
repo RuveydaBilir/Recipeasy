@@ -51,6 +51,8 @@ public class RecommendRecipesActivity extends AppCompatActivity {
     ConstraintLayout servingsOpt;
     ConstraintLayout timeOpt;
     ConstraintLayout sortOpt;
+    ArrayList<Integer> servings = new ArrayList<>();
+    ArrayList<Integer> timeList = new ArrayList<>();
     /*RelativeLayout filterOpt;
     RelativeLayout servingsOpt;
     RelativeLayout timeOpt;
@@ -72,7 +74,8 @@ public class RecommendRecipesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommend_recipes);
-        recipes = Controller.getAllRecipes();
+        Controller.getRecommendation().mainSort();
+        recipes = Controller.getRecommendation().getRecipes();
         recyclerView = findViewById(R.id.recipes_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         RecipeAdapter recipeAdapter = new RecipeAdapter(this, recipes);
@@ -180,9 +183,199 @@ public class RecommendRecipesActivity extends AppCompatActivity {
                 toggleTimeVisibility();
             }
         });
+        servings_checkbox1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(servings_checkbox1.isChecked()){
+                    if(!servings.contains(2)){
+                        servings.add(2);
+                    }
+                }
+                else{
+                    if(servings.contains(2)){
+                        servings.remove(Integer.valueOf(2));
+                    }
+                }
+                Controller.getRecommendation().filterServings(servings);
+                recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
+                recipeAdapter.notifyDataSetChanged();
+            }
+        });
+        servings_checkbox2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("ekliyo mu", servings.size()+" " );
+                if(servings_checkbox2.isChecked()){
+                    if(!servings.contains(4)){
+                        servings.add(4);
+                    }
+                }
+                else{
+                    if(servings.contains(4)){
+                        servings.remove(Integer.valueOf(4));
+                    }
+                }
+                Controller.getRecommendation().filterServings(servings);
+                recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
+                recipeAdapter.notifyDataSetChanged();
+            }
+        });
+        servings_checkbox3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(servings_checkbox3.isChecked()){
+                    if(!servings.contains(6)){
+                        servings.add(6);
+                    }
+                }
+                else{
+                    if(servings.contains(6)){
+                        servings.remove(Integer.valueOf(6));
+                    }
+                }
+                Controller.getRecommendation().filterServings(servings);
+                recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
+                recipeAdapter.notifyDataSetChanged();
+
+            }
+        });
+        servings_checkbox4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(servings_checkbox4.isChecked()){
+                    if(!servings.contains(8)){
+                        servings.add(8);
+                    }
+                }
+                else{
+                    if(servings.contains(8)){
+                        servings.remove(Integer.valueOf(8));
+                    }
+                }
+                Controller.getRecommendation().filterServings(servings);
+                recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
+                recipeAdapter.notifyDataSetChanged();
+
+            }
+        });
+        time_checkbox1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(time_checkbox1.isChecked()){
+                    if(!timeList.contains(15)){
+                        timeList.add(15);
+                    }
+                }
+                else{
+                    if(timeList.contains(15)){
+                        timeList.remove(Integer.valueOf(15));
+                    }
+                }
+                Controller.getRecommendation().filterTime(timeList);
+                recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
+                recipeAdapter.notifyDataSetChanged();
+                if(servings.isEmpty() && timeList.isEmpty()){
+                    Controller.getRecommendation().setRecipes(Controller.getAllRecipes());
+                    recipeAdapter.setFilteredList(recipes);
+                    recipeAdapter.notifyDataSetChanged();
+                }
+            }
+        });
+        time_checkbox2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(time_checkbox2.isChecked()){
+                    if(!timeList.contains(30)){
+                        timeList.add(30);
+                    }
+                }
+                else{
+                    if(timeList.contains(30)){
+                        timeList.remove(Integer.valueOf(30));
+                    }
+                }
+                Controller.getRecommendation().filterTime(timeList);
+                recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
+                recipeAdapter.notifyDataSetChanged();
+                if(servings.isEmpty() && timeList.isEmpty()){
+                    Controller.getRecommendation().setRecipes(Controller.getAllRecipes());
+                    recipeAdapter.setFilteredList(recipes);
+                    recipeAdapter.notifyDataSetChanged();
+                }
+            }
+        });
+        time_checkbox3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(time_checkbox3.isChecked()){
+                    if(!timeList.contains(45)){
+                        timeList.add(45);
+                    }
+                }
+                else{
+                    if(timeList.contains(45)){
+                        timeList.remove(Integer.valueOf(45));
+                    }
+                }
+                Controller.getRecommendation().filterTime(timeList);
+                recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
+                recipeAdapter.notifyDataSetChanged();
+                if(servings.isEmpty() && timeList.isEmpty()){
+                    Controller.getRecommendation().setRecipes(Controller.getAllRecipes());
+                    recipeAdapter.setFilteredList(recipes);
+                    recipeAdapter.notifyDataSetChanged();
+                }
+            }
+        });
+        time_checkbox4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(time_checkbox4.isChecked()){
+                    if(!timeList.contains(60)){
+                        timeList.add(60);
+                    }
+                }
+                else{
+                    if(timeList.contains(60)){
+                        timeList.remove(Integer.valueOf(60));
+                    }
+                }
+                Controller.getRecommendation().filterTime(timeList);
+                recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
+                recipeAdapter.notifyDataSetChanged();
+                if(servings.isEmpty() && timeList.isEmpty()){
+                    Controller.getRecommendation().setRecipes(Controller.getAllRecipes());
+                    recipeAdapter.setFilteredList(recipes);
+                    recipeAdapter.notifyDataSetChanged();
+                }
+            }
+        });
+
+
+
+        /*servings_checkbox1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(servings_checkbox1.isChecked()){
+                    servings.add(2);
+                }
+                else{
+                    servings.remove(2);
+                }
+            }
+        }); */
+   /* recyclerView.setHasFixedSize( Controller.getRecommendation().filterServings(servings);
+        recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
+        );*/
+
+
 
 
     }
+
+
+
+
     private void updateSortCheckboxes() {
         // Show checkboxes when servings button is clicked
         /*sort_checkbox1.setVisibility(View.VISIBLE);
@@ -242,4 +435,5 @@ public class RecommendRecipesActivity extends AppCompatActivity {
         sortCheckboxesVisible = ! sortCheckboxesVisible;
         updateSortCheckboxes();
     }
+
 }

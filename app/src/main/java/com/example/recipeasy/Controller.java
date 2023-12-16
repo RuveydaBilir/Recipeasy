@@ -181,7 +181,7 @@ public class Controller {
         return recommendation;
     }
 
-    private static void setRecommendation() {
+    /*private static void setRecommendation() {
         FirebaseDatabase.getInstance().getReference("Users").child(getUser().getUserID()).child("Recommendation").child("recipes").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -195,7 +195,7 @@ public class Controller {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-    }
+    }*/
 
     public static ArrayList<Ingredient> findMissingIngredients(Recipe recipe){
         ArrayList<Ingredient> missingList = new ArrayList<Ingredient>();
@@ -318,7 +318,7 @@ public class Controller {
         setFavorites();
         setPlanner();
         setShoppingList();
-        setRecommendation();
+        //setRecommendation();
     }
 
     public static ArrayList<Recipe> getAllRecipes() {

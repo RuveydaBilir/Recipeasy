@@ -10,17 +10,17 @@ public class Recommendation {
     private ArrayList<Recipe> recipes;
 
     public Recommendation() {
-        recipes = new ArrayList<>();
+        recipes = Controller.getAllRecipes();
     }
 
-    public Recommendation(ArrayList<Recipe> recipes) {
-        this.recipes = recipes;
-    }
 
     public void filterServings(ArrayList<Integer> servings) {
         ArrayList<Recipe> allRecipes = Controller.getAllRecipes();
-        recipes.clear();
-
+        recipes = new ArrayList<>();
+        if(servings.isEmpty()){
+            recipes = Controller.getAllRecipes();
+            return;
+        }
         for (int i = 0; i < allRecipes.size(); i++) {
             for (int j = 0; j < servings.size(); j++) {
 
@@ -30,16 +30,19 @@ public class Recommendation {
                 }
             }
         }
+
     }
     public void filterTime(ArrayList<Integer> time){
         ArrayList<Recipe> allRecipes = Controller.getAllRecipes();
-        recipes.clear();
-
+        recipes = new ArrayList<>();
+        if(time.isEmpty()){
+            recipes = Controller.getAllRecipes();
+            return;
+        }
         for (int i = 0; i < allRecipes.size(); i++) {
             for (int j = 0; j < time.size(); j++) {
-
-                if(allRecipes.get(i).getServings() == time.get(j)){
-                    addRecipe(allRecipes.get(i));
+                if(allRecipes.get(i).getCookingTime()>=time.get(j)&&allRecipes.get(i).getCookingTime()< time.get(j)+15){
+                    recipes.add(allRecipes.get(i));
                     break;
                 }
             }
@@ -52,6 +55,7 @@ public class Recommendation {
         quickSortForTime(0, recipes.size() - 1, ascending);
     }
     public void mainSort(){
+        recipes = Controller.getAllRecipes();
         quickSortMain(0, recipes.size()-1);
     }
     private void quickSortForServings(int low, int high, boolean ascendingOrder) {

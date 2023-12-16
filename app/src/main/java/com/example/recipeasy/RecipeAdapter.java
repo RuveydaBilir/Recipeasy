@@ -72,5 +72,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
 
 
         }
+
+    }
+    public void setFilteredList(ArrayList<Recipe> filteredList){
+        this.recipes = filteredList;
     }
 }

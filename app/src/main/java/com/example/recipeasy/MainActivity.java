@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         }
         Log.d("uyarı", text);
 
-        if(filteredList.isEmpty()||filteredList==null){
+        if(filteredList.isEmpty()){
             Toast.makeText(this, filteredList.size()+"size is", Toast.LENGTH_SHORT).show();
             search_recycler_view.setVisibility(View.GONE);
         }
