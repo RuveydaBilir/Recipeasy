@@ -159,10 +159,13 @@ public class Recommendation {
         Recipe pivot = recipes.get(high);
         int i = low - 1;
         for (int j = low; j < high; j++) {
-            if (Controller.findMissingIngredients(recipes.get(j)).size() <= Controller.findMissingIngredients(pivot).size()) {
-                i++;
-                swap(i,j);
+            if(Controller.findMissingIngredients(recipes.get(j)) != null && Controller.findMissingIngredients(pivot)!=null ){
+                if (Controller.findMissingIngredients(recipes.get(j)).size() <= Controller.findMissingIngredients(pivot).size()) {
+                    i++;
+                    swap(i,j);
+                }
             }
+
         }
         swap(i+1,high);
         return i + 1;

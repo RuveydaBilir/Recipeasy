@@ -420,4 +420,5 @@ public class RecommendRecipesActivity extends AppCompatActivity {
         updateSortCheckboxes();
     }
 
+
 }
