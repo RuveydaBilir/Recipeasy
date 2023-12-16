@@ -1,0 +1,205 @@
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardViewRecipe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <!-- Your existing recipe item layout content goes here -->
+
+    <!-- Example layout for a recipe item -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Recipe Name -->
+        <TextView
+            android:id="@+id/textViewRecipeName"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="@drawable/recipenamebackground"
+            android:gravity="center"
+            android:text="Recipe Name"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_editor_absoluteY="5dp"
+            tools:ignore="MissingConstraints" />
+
+        <!-- Serving Size -->
+
+        <!-- Cooking Time -->
+
+        <!-- Ingredient List -->
+
+        <TextView
+            android:id="@+id/textViewServingSize"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/serving_icon2"
+            android:drawablePadding="4dp"
+            android:text="Serves"
+            android:textSize="25dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRecipeName"
+            app:layout_editor_absoluteX="15dp"
+            app:layout_editor_absoluteY="107dp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textViewServingSizeNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="7dp"
+            android:text="5"
+            android:textSize="25dp"
+            app:layout_constraintStart_toEndOf="@+id/textViewServingSize"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRecipeName"
+            app:layout_editor_absoluteX="125dp"
+            app:layout_editor_absoluteY="107dp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textViewCookingTimeNum"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/time_icon"
+            android:layout_marginStart="10dp"
+            android:drawablePadding="4dp"
+            android:text="60"
+            android:textSize="25dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewServingSize"
+            app:layout_editor_absoluteX="15dp"
+            app:layout_editor_absoluteY="145dp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textViewCookingTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:text="min"
+            android:textSize="25dp"
+            app:layout_constraintStart_toEndOf="@+id/textViewCookingTimeNum"
+            app:layout_constraintTop_toBottomOf="@+id/textViewServingSizeNum"
+            app:layout_editor_absoluteX="90dp"
+            app:layout_editor_absoluteY="145dp"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/recipeImage"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/example_recipe_img"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCookingTimeNum"
+            app:layout_editor_absoluteX="7dp"
+            app:layout_editor_absoluteY="185dp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textViewIngredients"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/directionsbackground"
+            android:gravity="center"
+            android:text="Ingredients"
+            android:textSize="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewServingSizeNum"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRecipeName"
+            app:layout_editor_absoluteX="200dp"
+            app:layout_editor_absoluteY="107dp"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cardViewIngredients"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:padding="8dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/recipeImage"
+            app:layout_constraintTop_toBottomOf="@+id/textViewIngredients"
+            app:layout_editor_absoluteX="200dp"
+            app:layout_editor_absoluteY="160dp"
+            tools:ignore="MissingConstraints" />
+
+        <!-- Instructions -->
+
+
+        <TextView
+            android:id="@+id/textViewInstructions"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/directionsbackground"
+            android:gravity="center"
+            android:text="Directions"
+            android:textSize="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.025"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recipeImage"
+            app:layout_editor_absoluteX="7dp"
+            app:layout_editor_absoluteY="365dp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textViewInstructionsVariable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="jakjfab"
+            android:textSize="18dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewInstructions"
+            app:layout_editor_absoluteX="15dp"
+            app:layout_editor_absoluteY="420dp"
+            tools:ignore="MissingConstraints" />
+
+
+        <!-- Like Button -->
+
+        <ImageButton
+            android:id="@+id/recipes_favorites_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/return_border"
+            android:contentDescription="favorites"
+            android:src="@drawable/favorite_icibos"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewRecipeName"
+            app:layout_constraintEnd_toEndOf="@+id/textViewRecipeName"
+            app:layout_constraintHorizontal_bias="0.968"
+            app:layout_constraintStart_toStartOf="@+id/textViewRecipeName"
+            app:layout_constraintTop_toTopOf="@+id/textViewRecipeName"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_editor_absoluteX="300dp"
+            app:layout_editor_absoluteY="10dp"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

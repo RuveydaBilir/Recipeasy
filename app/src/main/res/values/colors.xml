@@ -22,6 +22,10 @@
     <color name="gri">#F9F1F1</color>
     <color name="arama_pembesi">#FFE5E5</color>
 
+    079005
+    ED2020
+    <color name="yesil_malzeme">#079005</color>
+    <color name="kirmizi_malzeme">#ED2020</color>
 
 
 </resources>
