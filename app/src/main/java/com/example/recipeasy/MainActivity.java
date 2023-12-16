@@ -106,6 +106,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         weeklyPlannerButton = findViewById(R.id.weekly_planner_button);
+        weeklyPlannerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int itemId = v.getId();
+
+                if(itemId == R.id.weekly_planner_button){
+                    startActivity(new Intent(getApplicationContext(), WeeklyPlannerActivity.class));
+                    //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    finish();
+                }
+            }
+        });
     }
 
     private void filterList(String text) {
