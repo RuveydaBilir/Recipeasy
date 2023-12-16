@@ -23,14 +23,12 @@ public class Recommendation {
         }
         for (int i = 0; i < allRecipes.size(); i++) {
             for (int j = 0; j < servings.size(); j++) {
-
                 if(allRecipes.get(i).getServings() == servings.get(j)){
-                    addRecipe(allRecipes.get(i));
+                    recipes.add(allRecipes.get(i));
                     break;
                 }
             }
         }
-
     }
     public void filterTime(ArrayList<Integer> time){
         ArrayList<Recipe> allRecipes = Controller.getAllRecipes();
@@ -48,6 +46,45 @@ public class Recommendation {
             }
         }
     }
+
+    public void filter (ArrayList<Integer> time, ArrayList<Integer> servings) {
+        if (time.isEmpty() && servings.isEmpty()) {
+            recipes = new ArrayList<>();
+            recipes = Controller.getAllRecipes();
+            mainSort();
+        } else if (servings.isEmpty()) {
+            filterTime(time);
+        } else if (time.isEmpty()) {
+            filterServings(servings);
+        } else {
+            ArrayList<Recipe> allRecipes = Controller.getAllRecipes();
+            recipes = new ArrayList<>();
+            for (int i = 0; i < allRecipes.size(); i++) {
+                boolean servingsMatch = servings.isEmpty();
+                boolean timeMatch = time.isEmpty();
+
+                for (int j = 0; j < servings.size(); j++) {
+                    if (allRecipes.get(i).getServings() == servings.get(j)) {
+                        servingsMatch = true;
+                        break;
+                    }
+                }
+
+                for (int j = 0; j < time.size(); j++) {
+                    if (allRecipes.get(i).getCookingTime() >= time.get(j) && allRecipes.get(i).getCookingTime() < time.get(j) + 15) {
+                        timeMatch = true;
+                        break;
+                    }
+                }
+
+                if (servingsMatch && timeMatch) {
+                    recipes.add(allRecipes.get(i));
+                }
+            }
+        }
+        mainSort();
+    }
+
     public void sortServings(boolean ascending){
         quickSortForServings(0, recipes.size() - 1, ascending);
     }
@@ -55,7 +92,7 @@ public class Recommendation {
         quickSortForTime(0, recipes.size() - 1, ascending);
     }
     public void mainSort(){
-        recipes = Controller.getAllRecipes();
+//        recipes = Controller.getAllRecipes();
         quickSortMain(0, recipes.size()-1);
     }
     private void quickSortForServings(int low, int high, boolean ascendingOrder) {
@@ -132,11 +169,10 @@ public class Recommendation {
     }
 
     private void swap(int i, int j) {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("Recommendation").child("recipes");
 
         Recipe temp = recipes.get(i);
-        reference.child("" + i).setValue(recipes.get(j));
-        reference.child("" + j).setValue(temp);
+        recipes.set(i, recipes.get(j));
+        recipes.set(j, temp);
     }
 
 
@@ -148,11 +184,7 @@ public class Recommendation {
         this.recipes = recipes;
         }
 
-    public void addRecipe(Recipe recipe) {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("Recommendation").child("recipes");
-        reference.child("" + recipes.size()).setValue(recipe);
-    }
-
+    
 }
 
 
