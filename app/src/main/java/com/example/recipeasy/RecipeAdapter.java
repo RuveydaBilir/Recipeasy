@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -45,6 +46,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
         else {
             holder.missing.setText("You have " + Controller.findMissingIngredients(recipes.get(position)).size() + " missing ingredients");
         }
+        //holder.favorite.
        // recipes.get(position).getRecipeImage();
         //holder.imageView.set;
     }
@@ -61,6 +63,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
         private TextView servings;
         private TextView time;
         private TextView missing;
+        private ImageButton favorite;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -69,6 +72,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
             servings = itemView.findViewById(R.id.recipeServings);
             time = itemView.findViewById(R.id.recipeTime);
             missing = itemView.findViewById(R.id.recipeMissIng);
+            favorite = itemView.findViewById(R.id.recipes_favorites_button);
 
 
         }

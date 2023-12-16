@@ -274,11 +274,7 @@ public class RecommendRecipesActivity extends AppCompatActivity {
                 Controller.getRecommendation().filterTime(timeList);
                 recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
                 recipeAdapter.notifyDataSetChanged();
-                if(servings.isEmpty() && timeList.isEmpty()){
-                    Controller.getRecommendation().setRecipes(Controller.getAllRecipes());
-                    recipeAdapter.setFilteredList(recipes);
-                    recipeAdapter.notifyDataSetChanged();
-                }
+
             }
         });
         time_checkbox2.setOnClickListener(new View.OnClickListener() {
@@ -297,11 +293,7 @@ public class RecommendRecipesActivity extends AppCompatActivity {
                 Controller.getRecommendation().filterTime(timeList);
                 recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
                 recipeAdapter.notifyDataSetChanged();
-                if(servings.isEmpty() && timeList.isEmpty()){
-                    Controller.getRecommendation().setRecipes(Controller.getAllRecipes());
-                    recipeAdapter.setFilteredList(recipes);
-                    recipeAdapter.notifyDataSetChanged();
-                }
+
             }
         });
         time_checkbox3.setOnClickListener(new View.OnClickListener() {
@@ -320,11 +312,6 @@ public class RecommendRecipesActivity extends AppCompatActivity {
                 Controller.getRecommendation().filterTime(timeList);
                 recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
                 recipeAdapter.notifyDataSetChanged();
-                if(servings.isEmpty() && timeList.isEmpty()){
-                    Controller.getRecommendation().setRecipes(Controller.getAllRecipes());
-                    recipeAdapter.setFilteredList(recipes);
-                    recipeAdapter.notifyDataSetChanged();
-                }
             }
         });
         time_checkbox4.setOnClickListener(new View.OnClickListener() {
@@ -343,11 +330,7 @@ public class RecommendRecipesActivity extends AppCompatActivity {
                 Controller.getRecommendation().filterTime(timeList);
                 recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
                 recipeAdapter.notifyDataSetChanged();
-                if(servings.isEmpty() && timeList.isEmpty()){
-                    Controller.getRecommendation().setRecipes(Controller.getAllRecipes());
-                    recipeAdapter.setFilteredList(recipes);
-                    recipeAdapter.notifyDataSetChanged();
-                }
+
             }
         });
 

@@ -2,6 +2,8 @@ package com.example.recipeasy.BackEnd;
 
 import android.media.Image;
 
+import com.example.recipeasy.Controller;
+
 import java.util.ArrayList;
 
 public class Recipe {
@@ -12,6 +14,7 @@ public class Recipe {
 
     public Recipe() {
     }
+
 
     public Recipe(String name, String directions,  int servings, int cookingTime, String imageURL, ArrayList<Ingredient> ingredients) {
         this.name = name;
@@ -68,6 +71,14 @@ public class Recipe {
 
     public void setRecipeIngredients(ArrayList<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public boolean isInFavorites() {
+        ArrayList<Recipe> favorites = Controller.getFavorites().getRecipes();
+            if(favorites.contains(this)){
+                return true;
+            }
+            return false;
     }
 }
 
