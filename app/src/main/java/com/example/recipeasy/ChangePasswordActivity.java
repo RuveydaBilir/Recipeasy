@@ -4,10 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ChangePasswordActivity extends AppCompatActivity {
+
+    ImageButton backButton;
+    Button updatePasswordButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,29 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 return true;
             }
             return false;
+        });
+
+        backButton = findViewById(R.id.change_password_return_button);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int itemId = v.getId();
+                if(itemId == R.id.change_password_return_button){
+                    startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                    finish();
+                }
+            }
+        });
+
+        updatePasswordButton = findViewById(R.id.change_password_button);
+        updatePasswordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int itemId = v.getId();
+                if(itemId == R.id.change_password_button){
+                    //TODO: change user password
+                }
+            }
         });
     }
 }
