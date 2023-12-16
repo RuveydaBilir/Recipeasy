@@ -25,12 +25,11 @@ public class Recommendation {
             for (int j = 0; j < servings.size(); j++) {
 
                 if(allRecipes.get(i).getServings() == servings.get(j)){
-                    addRecipe(allRecipes.get(i));
+                    recipes.add(allRecipes.get(i));
                     break;
                 }
             }
         }
-
     }
     public void filterTime(ArrayList<Integer> time){
         ArrayList<Recipe> allRecipes = Controller.getAllRecipes();
@@ -48,6 +47,45 @@ public class Recommendation {
             }
         }
     }
+
+    public void filter (ArrayList<Integer> time, ArrayList<Integer> servings) {
+        if (time.isEmpty() && servings.isEmpty()) {
+            recipes = new ArrayList<>();
+            recipes = Controller.getAllRecipes();
+            mainSort();
+            return;
+        } else if (servings.isEmpty()) {
+            filterTime(time);
+        } else if (time.isEmpty()) {
+            filterServings(servings);
+        } else {
+            ArrayList<Recipe> allRecipes = Controller.getAllRecipes();
+            recipes = new ArrayList<>();
+            for (int i = 0; i < allRecipes.size(); i++) {
+                boolean servingsMatch = servings.isEmpty();
+                boolean timeMatch = time.isEmpty();
+
+                for (int j = 0; j < servings.size(); j++) {
+                    if (allRecipes.get(i).getServings() == servings.get(j)) {
+                        servingsMatch = true;
+                        break;
+                    }
+                }
+
+                for (int j = 0; j < time.size(); j++) {
+                    if (allRecipes.get(i).getCookingTime() >= time.get(j) && allRecipes.get(i).getCookingTime() < time.get(j) + 15) {
+                        timeMatch = true;
+                        break;
+                    }
+                }
+
+                if (servingsMatch && timeMatch) {
+                    recipes.add(allRecipes.get(i));
+                }
+            }
+        }
+    }
+
     public void sortServings(boolean ascending){
         quickSortForServings(0, recipes.size() - 1, ascending);
     }

@@ -196,7 +196,7 @@ public class RecommendRecipesActivity extends AppCompatActivity {
                         servings.remove(Integer.valueOf(2));
                     }
                 }
-                Controller.getRecommendation().filterServings(servings);
+                Controller.getRecommendation().filter(timeList, servings);
                 recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
                 recipeAdapter.notifyDataSetChanged();
             }
@@ -215,7 +215,7 @@ public class RecommendRecipesActivity extends AppCompatActivity {
                         servings.remove(Integer.valueOf(4));
                     }
                 }
-                Controller.getRecommendation().filterServings(servings);
+                Controller.getRecommendation().filter(timeList, servings);
                 recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
                 recipeAdapter.notifyDataSetChanged();
             }
@@ -233,7 +233,7 @@ public class RecommendRecipesActivity extends AppCompatActivity {
                         servings.remove(Integer.valueOf(6));
                     }
                 }
-                Controller.getRecommendation().filterServings(servings);
+                Controller.getRecommendation().filter(timeList, servings);
                 recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
                 recipeAdapter.notifyDataSetChanged();
 
@@ -252,7 +252,7 @@ public class RecommendRecipesActivity extends AppCompatActivity {
                         servings.remove(Integer.valueOf(8));
                     }
                 }
-                Controller.getRecommendation().filterServings(servings);
+                Controller.getRecommendation().filter(timeList, servings);
                 recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
                 recipeAdapter.notifyDataSetChanged();
 
@@ -271,7 +271,7 @@ public class RecommendRecipesActivity extends AppCompatActivity {
                         timeList.remove(Integer.valueOf(15));
                     }
                 }
-                Controller.getRecommendation().filterTime(timeList);
+                Controller.getRecommendation().filter(timeList, servings);
                 recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
                 recipeAdapter.notifyDataSetChanged();
                 if(servings.isEmpty() && timeList.isEmpty()){
@@ -294,7 +294,7 @@ public class RecommendRecipesActivity extends AppCompatActivity {
                         timeList.remove(Integer.valueOf(30));
                     }
                 }
-                Controller.getRecommendation().filterTime(timeList);
+                Controller.getRecommendation().filter(timeList, servings);
                 recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
                 recipeAdapter.notifyDataSetChanged();
                 if(servings.isEmpty() && timeList.isEmpty()){
@@ -317,7 +317,7 @@ public class RecommendRecipesActivity extends AppCompatActivity {
                         timeList.remove(Integer.valueOf(45));
                     }
                 }
-                Controller.getRecommendation().filterTime(timeList);
+                Controller.getRecommendation().filter(timeList, servings);
                 recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
                 recipeAdapter.notifyDataSetChanged();
                 if(servings.isEmpty() && timeList.isEmpty()){
@@ -340,7 +340,7 @@ public class RecommendRecipesActivity extends AppCompatActivity {
                         timeList.remove(Integer.valueOf(60));
                     }
                 }
-                Controller.getRecommendation().filterTime(timeList);
+                Controller.getRecommendation().filter(timeList, servings);
                 recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
                 recipeAdapter.notifyDataSetChanged();
                 if(servings.isEmpty() && timeList.isEmpty()){
