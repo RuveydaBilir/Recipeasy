@@ -1,6 +1,8 @@
 package com.example.recipeasy;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -9,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.recipeasy.BackEnd.Ingredient;
@@ -22,14 +23,19 @@ public class Fridge_SearchForIngredientActivity extends AppCompatActivity {
 
     ImageButton backButton;
 
-    private SearchView searchView;
+    private androidx.appcompat.widget.SearchView searchView;
     private RecyclerView search_recycler_view;
-    private ItemAdapter itemAdapter;
+    private FridgeItemAdapter itemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fridge_search_for_ingredient);
+
+        search_recycler_view = findViewById(R.id.search_bar_fridge_ingredient);
+        search_recycler_view.setLayoutManager(new LinearLayoutManager(this));
+        itemAdapter = new FridgeItemAdapter(Controller.getAllIngredients());
+        search_recycler_view.setAdapter(itemAdapter);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
         bottomNavigationView.setSelectedItemId(R.id.fridge);

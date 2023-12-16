@@ -7,11 +7,12 @@
     tools:context=".Fridge_SearchForIngredientActivity">
 
     <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="238dp"
         android:layout_height="238dp"
         android:layout_marginTop="176dp"
-        android:background="@drawable/main_logo"
         android:alpha="0.5"
+        android:background="@drawable/main_logo"
         android:elevation="-10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -48,16 +49,18 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_bar_fridge_ingredient"
         android:layout_width="297dp"
-        android:layout_height="144dp"
+        android:layout_height="550dp"
         android:layout_below="@id/fridge_search"
         android:layout_alignStart="@id/fridge_search"
         android:layout_alignEnd="@id/fridge_search"
         android:layout_marginTop="4dp"
 
         android:elevation="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fridge_search" />
+        app:layout_constraintTop_toBottomOf="@+id/fridge_search"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_view"

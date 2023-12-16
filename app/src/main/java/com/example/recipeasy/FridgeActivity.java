@@ -78,7 +78,7 @@ public class FridgeActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Fridge_SearchForIngredientActivity.class));
+                startActivity(new Intent(FridgeActivity.this, Fridge_SearchForIngredientActivity.class));
                 //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 finish();
             }
