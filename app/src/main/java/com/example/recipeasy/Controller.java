@@ -27,7 +27,6 @@ public class Controller {
     private static Planner planner;
     private static ShoppingList shoppingList;
     private static Recommendation recommendation;
-
     private static ArrayList<Recipe> allRecipes;
     private static ArrayList<Ingredient> allIngredients;
     private static ArrayList<String> categories;
