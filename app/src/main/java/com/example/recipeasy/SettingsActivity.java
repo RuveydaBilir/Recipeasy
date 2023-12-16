@@ -8,10 +8,12 @@ import android.service.controls.Control;
 import android.view.View;
 import android.widget.Button;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.recipeasy.BackEnd.Ingredient;
 import com.example.recipeasy.BackEnd.ShoppingList;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -86,13 +88,17 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         logOutButton = findViewById(R.id.log_out_button);
-        editProfileButton.setOnClickListener(new View.OnClickListener() {
+
+        logOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int itemId = v.getId();
                 if (itemId == R.id.log_out_button) {
-                    //TODO: logout user
-                }
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent(SettingsActivity.this, SignUpActivity.class);
+                    startActivity(intent);
+                    finish();
+                    Toast.makeText(SettingsActivity.this, "Logout Successful.", Toast.LENGTH_SHORT).show();                }
             }
         });
 
