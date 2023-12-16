@@ -27,8 +27,8 @@ public class Controller {
     private static ShoppingList shoppingList;
     private static Recommendation recommendation;
 
-    private static ArrayList<Recipe> allRecipes = new ArrayList<>();
-    private static ArrayList<Ingredient> allIngredients = new ArrayList<>();
+    private static ArrayList<Recipe> allRecipes;
+    private static ArrayList<Ingredient> allIngredients;
     private static ArrayList<String> categories;
 
     public Controller() {
@@ -106,7 +106,7 @@ public class Controller {
                 fridge.getFridgeList().clear();
                 for (DataSnapshot snap : snapshot.getChildren()) {
                         Ingredient ingredient = snap.getValue(Ingredient.class);
-                        fridge.addIngredientToTheList(ingredient);
+                        addIngredientToTheFridgeList(ingredient);
                 }
             }
             @Override
@@ -126,7 +126,7 @@ public class Controller {
                 favorites.getRecipes().clear();
                 for (DataSnapshot snap : snapshot.getChildren()) {
                     Recipe recipe = snap.getValue(Recipe.class);
-                    favorites.addRecipeToTheList(recipe);
+                    addRecipeToTheFavoritesList(recipe);
                 }
             }
             @Override
@@ -146,7 +146,7 @@ public class Controller {
                 int day = 0;
                 for (DataSnapshot snap : snapshot.getChildren()) {
                     Recipe recipe = snap.getValue(Recipe.class);
-                    planner.addRecipeToTheList(day, recipe);
+                    addRecipeToThePlannerList(day, recipe);
                     day++;
                 }
             }
@@ -167,7 +167,7 @@ public class Controller {
                 shoppingList.getShoppingList().clear();
                 for (DataSnapshot snap : snapshot.getChildren()) {
                     Ingredient ingredient = snap.getValue(Ingredient.class);
-                    shoppingList.addIngredientToTheList(ingredient);
+                    addIngredientToTheShoppingList(ingredient);
                 }
             }
             @Override
@@ -187,7 +187,7 @@ public class Controller {
                 recommendation.getRecipes().clear();
                 for (DataSnapshot snap : snapshot.getChildren()) {
                     Recipe recipe = snap.getValue(Recipe.class);
-                    recommendation.addRecipeToTheList(recipe);
+                    addRecipeToTheRecommendationList(recipe);
                 }
             }
             @Override
@@ -330,5 +330,25 @@ public class Controller {
 
     public static ArrayList<String> getCategories() {
         return categories;
+    }
+
+    private static void addIngredientToTheFridgeList(Ingredient ingredient) {
+        fridge.getFridgeList().add(ingredient);
+    }
+
+    private static void addRecipeToTheFavoritesList(Recipe recipe) {
+        favorites.getRecipes().add(recipe);
+    }
+
+    private static void addRecipeToThePlannerList(int day, Recipe recipe) {
+        getPlanner().getRecipes()[day] = recipe;
+    }
+
+    private static void addRecipeToTheRecommendationList(Recipe recipe) {
+        recommendation.getRecipes().add(recipe);
+    }
+
+    private static void addIngredientToTheShoppingList(Ingredient ingredient) {
+        shoppingList.getShoppingList().add(ingredient);
     }
 }

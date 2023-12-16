@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
                 if (itemId == R.id.recommend_recipes_button) {
                     startActivity(new Intent(getApplicationContext(), RecommendRecipesActivity.class));
                     //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                    finish();
                 }
             }
         });

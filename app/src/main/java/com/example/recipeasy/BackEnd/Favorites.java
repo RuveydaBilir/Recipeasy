@@ -50,11 +50,4 @@ public class Favorites {
         }
     }
 
-    /**
-     * Adds recipe to the list. It is a helper method for the controller class. Do not use it! Use addRecipe instead.
-     * @param recipe
-     */
-    public void addRecipeToTheList(Recipe recipe) {
-        recipes.add(recipe);
-    }
 }

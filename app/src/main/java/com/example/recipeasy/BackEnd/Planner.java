@@ -30,12 +30,4 @@ public class Planner {
         recipes[day] = null;
     }
 
-    /**
-     * Adds recipe to the list. It is a helper method for the controller class. Do not use it! Use addRecipe instead.
-     * @param day
-     * @param recipe
-     */
-    public void addRecipeToTheList(int day, Recipe recipe) {
-        recipes[day] = recipe;
-    }
 }

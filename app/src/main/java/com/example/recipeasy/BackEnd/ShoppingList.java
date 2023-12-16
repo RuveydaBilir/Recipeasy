@@ -66,11 +66,4 @@ public class ShoppingList {
         return typeList;
     }
 
-    /**
-     * Adds ingredient to the list. It is a helper method for the controller class. Do not use it! Use addRecipe instead.
-     * @param ingredient
-     */
-    public void addIngredientToTheList(Ingredient ingredient) {
-        shoppingList.add(ingredient);
-    }
 }
