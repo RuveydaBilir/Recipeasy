@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 
 
@@ -43,10 +44,10 @@ public class RecommendRecipesActivity extends AppCompatActivity {
     private CheckBox time_checkbox3;
     private CheckBox time_checkbox4;
     private CheckBox time_checkbox5;
-    private CheckBox sort_checkbox1;
-    private CheckBox sort_checkbox2;
-    private CheckBox sort_checkbox3;
-    private CheckBox sort_checkbox4;
+    private RadioButton sort_checkbox1;
+    private RadioButton sort_checkbox2;
+    private RadioButton sort_checkbox3;
+    private RadioButton sort_checkbox4;
     ConstraintLayout filterOpt;
     ConstraintLayout servingsOpt;
     ConstraintLayout timeOpt;
