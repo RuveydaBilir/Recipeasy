@@ -93,6 +93,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 Controller.setUser(new User(email, password, FirebaseAuth.getInstance().getCurrentUser().getUid()));
                                 Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                                 startActivity(intent);
+                                finish();
                             }
                             else {
                                 errorText.setText("Sign up failed.");

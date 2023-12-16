@@ -13,7 +13,6 @@ public class Recommendation {
         recipes = Controller.getAllRecipes();
     }
 
-
     public void filterServings(ArrayList<Integer> servings) {
         ArrayList<Recipe> allRecipes = Controller.getAllRecipes();
         recipes = new ArrayList<>();

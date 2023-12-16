@@ -74,6 +74,7 @@ public class SignInActivity extends AppCompatActivity {
                             Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                             startActivity(intent);
                             //TODO: Update the current user
+                            finish();
                         }
                         else{
                             errorText.setText("Login failed. Email or password is incorrect.");
