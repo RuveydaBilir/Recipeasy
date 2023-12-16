@@ -74,8 +74,9 @@ public class RecommendRecipesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommend_recipes);
-        Controller.getRecommendation().mainSort();
         recipes = Controller.getRecommendation().getRecipes();
+        Controller.getRecommendation().mainSort();
+
         recyclerView = findViewById(R.id.recipes_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         RecipeAdapter recipeAdapter = new RecipeAdapter(this, recipes);
