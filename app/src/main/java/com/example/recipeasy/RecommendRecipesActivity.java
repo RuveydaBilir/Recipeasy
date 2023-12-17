@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 
 
@@ -44,10 +45,12 @@ public class RecommendRecipesActivity extends AppCompatActivity implements Recyc
     private CheckBox time_checkbox3;
     private CheckBox time_checkbox4;
     private CheckBox time_checkbox5;
-    private RadioButton sort_checkbox1;
-    private RadioButton sort_checkbox2;
-    private RadioButton sort_checkbox3;
-    private RadioButton sort_checkbox4;
+    private RadioGroup radioGroup;
+    private RadioButton selectedRadioButton;
+    private RadioButton sort_time_i;
+    private RadioButton sort_time_d;
+    private RadioButton sort_servings_i;
+    private RadioButton sort_servings_d;
     ConstraintLayout filterOpt;
     ConstraintLayout servingsOpt;
     ConstraintLayout timeOpt;
@@ -80,7 +83,7 @@ public class RecommendRecipesActivity extends AppCompatActivity implements Recyc
 
         recyclerView = findViewById(R.id.recipes_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecipeAdapter recipeAdapter = new RecipeAdapter(this, recipes, this);
+        recipeAdapter = new RecipeAdapter(this, recipes, this);
         recyclerView.setAdapter(recipeAdapter);
 
 
@@ -139,10 +142,10 @@ public class RecommendRecipesActivity extends AppCompatActivity implements Recyc
         servingsOpt = findViewById(R.id.layoutServingsOptions);
         timeOpt = findViewById(R.id.layoutTimeOptions);
         sortOpt = findViewById(R.id.layoutSortOptions);
-        sort_checkbox1 = findViewById(R.id.checkbox_sort_time1);
-        sort_checkbox2 = findViewById(R.id.checkbox_sort_time2);
-        sort_checkbox3 = findViewById(R.id.checkbox_sort_servings1);
-        sort_checkbox4 = findViewById(R.id.checkbox_sort_servings2);
+        sort_time_i = findViewById(R.id.radio_button_sort_time_increasing);
+        sort_time_d = findViewById(R.id.radio_button_sort_time_decreasing);
+        sort_servings_i = findViewById(R.id.radio_button_sort_servings_increasing);
+        sort_servings_d = findViewById(R.id.radio_button_sort_servings_decreasing);
         servings_checkbox1 = findViewById(R.id.checkbox_2serv);
         servings_checkbox2 = findViewById(R.id.checkbox_4serv);
         servings_checkbox3 = findViewById(R.id.checkbox_6serv);
@@ -153,6 +156,8 @@ public class RecommendRecipesActivity extends AppCompatActivity implements Recyc
         time_checkbox3 = findViewById(R.id.checkbox_filter_time3);
         time_checkbox4 = findViewById(R.id.checkbox_filter_time4);
         time_checkbox5 = findViewById(R.id.checkbox_filter_time5);
+        radioGroup = findViewById(R.id.radio_group_sort);
+
 
         sortButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -344,6 +349,13 @@ public class RecommendRecipesActivity extends AppCompatActivity implements Recyc
             }
         });
 
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                sortOptions(findViewById(checkedId));
+            }
+        });
+
 
 
         /*servings_checkbox1.setOnClickListener(new View.OnClickListener() {
@@ -365,6 +377,27 @@ public class RecommendRecipesActivity extends AppCompatActivity implements Recyc
 
 
     }
+
+    private void sortOptions(View v) {
+        int radioId = radioGroup.getCheckedRadioButtonId();
+        Controller.getRecommendation().mainSort();
+        if (radioId == R.id.radio_button_sort_time_increasing) {
+            Controller.getRecommendation().sortTime(true);
+        } else if (radioId == R.id.radio_button_sort_time_decreasing) {
+            Controller.getRecommendation().sortTime(false);
+        } else if (radioId == R.id.radio_button_sort_servings_increasing) {
+            Controller.getRecommendation().sortServings(true);
+        } else if (radioId == R.id.radio_button_sort_servings_decreasing) {
+            Controller.getRecommendation().sortServings(false);
+        }
+        recipeAdapter.setFilteredList(Controller.getRecommendation().getRecipes());
+        recipeAdapter.notifyDataSetChanged();
+    }
+
+
+
+
+
 
 
 

@@ -254,6 +254,7 @@
             android:elevation="10dp">
 
             <RadioGroup
+                android:id="@+id/radio_group_sort"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -261,7 +262,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <RadioButton
-                    android:id="@+id/checkbox_sort_time1"
+                    android:id="@+id/radio_button_sort_time_increasing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableRight="@drawable/time_icon"
@@ -273,38 +274,38 @@
                     tools:ignore="MissingConstraints" />
 
                 <RadioButton
-                    android:id="@+id/checkbox_sort_time2"
+                    android:id="@+id/radio_button_sort_time_decreasing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/checkbox_sort_time1"
+                    android:layout_below="@id/radio_button_sort_time_increasing"
                     android:drawableRight="@drawable/time_icon"
 
                     android:drawablePadding="6dp"
                     android:text="decreasing time"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/checkbox_sort_time1"
+                    app:layout_constraintTop_toBottomOf="@+id/radio_button_sort_time_increasing"
                     tools:ignore="MissingConstraints" />
 
                 <RadioButton
-                    android:id="@+id/checkbox_sort_servings1"
+                    android:id="@+id/radio_button_sort_servings_increasing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/checkbox_sort_time2"
+                    android:layout_below="@id/radio_button_sort_time_decreasing"
                     android:drawableRight="@drawable/serving_icon2"
 
                     android:drawablePadding="6dp"
                     android:text="increasing servings"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/checkbox_sort_time2"
+                    app:layout_constraintTop_toBottomOf="@+id/radio_button_sort_time_decreasing"
                     tools:ignore="MissingConstraints" />
 
                 <RadioButton
-                    android:id="@+id/checkbox_sort_servings2"
+                    android:id="@+id/radio_button_sort_servings_decreasing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/checkbox_sort_servings1"
+                    android:layout_below="@id/radio_button_sort_servings_increasing"
                     android:drawableRight="@drawable/serving_icon2"
 
                     android:drawablePadding="6dp"
@@ -312,7 +313,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/checkbox_sort_servings1"
+                    app:layout_constraintTop_toBottomOf="@+id/radio_button_sort_servings_increasing"
                     tools:ignore="MissingConstraints" />
             </RadioGroup>
 
