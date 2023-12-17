@@ -159,6 +159,10 @@ public class RecommendRecipesActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Handle single serving button click
                 toggleSortVisibility();
+
+                if(filterButtonsVisible == true) {
+                    toggleFilterOptVisibility();
+                }
             }
         });
 
@@ -167,6 +171,10 @@ public class RecommendRecipesActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Handle single serving button click
                 toggleFilterOptVisibility();
+
+                if(sortCheckboxesVisible == true) {
+                   toggleSortVisibility();
+                }
             }
         });
 
@@ -377,6 +385,14 @@ public class RecommendRecipesActivity extends AppCompatActivity {
         timeButton.setVisibility(View.VISIBLE);*/
         // Make more checkboxes visible as needed
         filterOpt.setVisibility(filterButtonsVisible ? View.VISIBLE : View.INVISIBLE);
+
+        if(filterButtonsVisible == false) {
+            servingsCheckboxesVisible = false;
+            timeCheckboxesVisible = false;
+        }
+
+        updateFilterServingsCheckboxes();
+        updateFilterTimeCheckboxes();
     }
 
     private void updateFilterServingsCheckboxes() {
