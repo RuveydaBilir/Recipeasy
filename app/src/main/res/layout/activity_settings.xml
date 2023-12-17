@@ -15,38 +15,41 @@
         android:layout_height="60dp"
         android:background="@drawable/settings_background"
 
-        app:layout_constraintBottom_toBottomOf="@+id/settings_text"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_profile_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        android:layout_marginTop="0dp"
+        app:layout_constraintVertical_bias="0.1" />
 
     <ImageView
+        android:id="@+id/imageView3"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="36dp"
         android:background="@drawable/settings_icon"
         app:layout_constraintBottom_toBottomOf="@+id/settings_text_background"
-        app:layout_constraintEnd_toStartOf="@+id/settings_text"
-        app:layout_constraintTop_toTopOf="@+id/settings_text_background" />
+        app:layout_constraintStart_toStartOf="@+id/settings_text_background"
+        app:layout_constraintTop_toTopOf="@+id/settings_text_background"
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/settings_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
+        android:layout_height="50dp"
         android:fontFamily="sans-serif-medium"
-        android:text="SETTINGS"
+        android:text="Settings"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/black"
-        android:textSize="40sp"
+        android:textSize="35sp"
         android:textStyle="bold"
         app:cornerRadius="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/settings_text_background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.615"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.173"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/settings_text_background" />
 
     <Button
         android:id="@+id/edit_profile_button"
@@ -54,7 +57,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="28dp"
         android:backgroundTint="#D5D1D1"
-        android:text="Edit Profile"
+        android:text="Edıt Profıle"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
@@ -62,7 +65,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settings_text"
+        app:layout_constraintTop_toBottomOf="@+id/settings_text_background"
         />
 
     <Button
@@ -87,7 +90,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="28dp"
         android:backgroundTint="#D5D1D1"
-        android:text="Suggestions"
+        android:text="Suggestıons"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
@@ -135,7 +138,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="15dp"
         android:background="@drawable/nav_bar_background"

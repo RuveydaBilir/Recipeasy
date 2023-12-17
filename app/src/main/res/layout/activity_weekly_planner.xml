@@ -8,9 +8,9 @@
 
     <ImageView
         android:id="@+id/weekly_planner_heading"
-        android:layout_width="306dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="25dp"
         android:textAlignment="center"
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:text="Weekly Meal Planner"
         android:textColor="@color/black"
-        android:textSize="28dp"
+        android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/weekly_planner_heading"
         app:layout_constraintEnd_toEndOf="@+id/weekly_planner_heading"
@@ -68,8 +68,9 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_view"
-        android:layout_width="409dp"
-        android:layout_height="67dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="15dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/nav_bar_background"
         android:elevation="2dp"

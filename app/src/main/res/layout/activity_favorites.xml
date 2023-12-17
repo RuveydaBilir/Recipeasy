@@ -32,16 +32,17 @@
         android:layout_marginTop="35dp"
         tools:ignore="MissingConstraints">
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="55dp"
             android:gravity="center"
             android:text="Your Favorites"
             android:textStyle="bold"
-            android:textSize="30dp"
+            android:textSize="35dp"
             android:textColor="@color/black"
             android:visibility="visible"
             android:layout_marginTop="25dp"
-            android:background="@drawable/text_background"
+            android:background="@drawable/settings_background"
             />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -61,7 +62,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="15dp"
         android:background="@drawable/nav_bar_background"

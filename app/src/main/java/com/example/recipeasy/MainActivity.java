@@ -3,6 +3,7 @@ package com.example.recipeasy;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         searchView = findViewById(R.id.main_search);
         searchView.clearFocus();
+        search_recycler_view.setVisibility(View.GONE);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -126,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
                 filteredList.add(r);
             }
         }
-        Log.d("uyarı", text);
 
         if(filteredList.isEmpty() || text == null || text.equals("")){
             //Toast.makeText(this, filteredList.size()+"size is", Toast.LENGTH_SHORT).show();
