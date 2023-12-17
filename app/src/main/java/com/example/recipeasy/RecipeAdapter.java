@@ -31,7 +31,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
     Context context;
     public RecipeAdapter(Context context, ArrayList<Recipe> recipes){
         this.context = context;
-        //this.recipes = recipes;
         this.recipes = recipes;
     }
 

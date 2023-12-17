@@ -114,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
                 if(itemId == R.id.weekly_planner_button){
                     startActivity(new Intent(getApplicationContext(), WeeklyPlannerActivity.class));
                     //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                    finish();
                 }
             }
         });

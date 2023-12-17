@@ -74,13 +74,30 @@ public class Recipe {
     }
 
     public boolean isInFavorites() {
-        for(int i = 0; i < Controller.getFavorites().getRecipes().size(); i++ ){
-            if(this.getName().equals(Controller.getFavorites().getRecipes().get(i).getName())){
-                return true;}
-            }
+        if(Controller.getFavorites().getRecipes().contains(this)) {
+            return true;
+        }
         return false;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null) {
+            return false;
         }
 
+        if(obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Recipe recipe = (Recipe)obj;
+
+        if(recipe.getName() != this.getName()) {
+            return false;
+        }
+
+        return true;
     }
+}
 
 

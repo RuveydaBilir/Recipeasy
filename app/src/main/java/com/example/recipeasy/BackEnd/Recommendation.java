@@ -1,7 +1,5 @@
 package com.example.recipeasy.BackEnd;
 import com.example.recipeasy.Controller;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -186,7 +184,6 @@ public class Recommendation {
         this.recipes = recipes;
         }
 
-    
 }
 
 

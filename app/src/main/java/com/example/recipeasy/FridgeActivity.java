@@ -80,7 +80,6 @@ public class FridgeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(FridgeActivity.this, Fridge_SearchForIngredientActivity.class));
                 //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                finish();
             }
         });
     }

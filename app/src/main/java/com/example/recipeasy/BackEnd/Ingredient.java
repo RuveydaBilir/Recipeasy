@@ -50,12 +50,11 @@ public class Ingredient {
     }
 
     public double updateAmount(double increment){
-        double newAmount = amount;
-        newAmount+= increment;
+        double newAmount = amount + increment;
+
         if(newAmount < 0){
             newAmount = 0;
         }
         return newAmount;
-
     }
 }

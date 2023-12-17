@@ -74,7 +74,6 @@ public class Controller {
         FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Favorites").child("recipes").setValue(0);
         FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Planner").child("recipes").setValue(0);
         FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Shopping List").child("shoppingList").setValue(0);
-        FirebaseDatabase.getInstance().getReference("Users").child(userID).child("Recommendation").child("recipes").setValue(0);
     }
 
     public static void addRecipe(Recipe recipe, DatabaseReference reference) {
@@ -178,22 +177,6 @@ public class Controller {
 
     public static Recommendation getRecommendation() {
         return recommendation;
-    }
-
-    private static void setRecommendation() {
-        FirebaseDatabase.getInstance().getReference("Users").child(getUser().getUserID()).child("Recommendation").child("recipes").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                recommendation.getRecipes().clear();
-                for (DataSnapshot snap : snapshot.getChildren()) {
-                    Recipe recipe = snap.getValue(Recipe.class);
-                    addRecipeToTheRecommendationList(recipe);
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
     }
 
     public static ArrayList<Ingredient> findMissingIngredients(Recipe recipe){
@@ -317,7 +300,6 @@ public class Controller {
         setFavorites();
         setPlanner();
         setShoppingList();
-        setRecommendation();
     }
 
     public static ArrayList<Recipe> getAllRecipes() {

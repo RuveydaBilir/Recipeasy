@@ -1,8 +1,14 @@
 package com.example.recipeasy.BackEnd;
 
+import androidx.annotation.NonNull;
+
 import com.example.recipeasy.Controller;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -29,20 +35,36 @@ public class ShoppingList {
     }
 
     public void addIngredient(Ingredient ingredient){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("Shopping List").child("shoppingList");
-        boolean doesContain = false;
+        if(ingredient.getAmount() <= 0) {
+            return;
+        }
 
-        for (int i = 0; i < shoppingList.size(); i++) {
-            if(ingredient.getName().equals(shoppingList.get(i).getName())){
-                doesContain = true;
-                double newAmount = shoppingList.get(i).updateAmount(ingredient.getAmount());
-                reference.child("" + i).child("amount").setValue(newAmount);
-                break;
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("Shopping List").child("shoppingList");
+        Query query = reference.orderByKey();
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot snap : snapshot.getChildren()) {
+                    if(snap.getValue(Ingredient.class).getName().equals(ingredient.getName())) {
+                        double newAmount = snap.getValue(Ingredient.class).updateAmount(ingredient.getAmount());
+
+                        if(newAmount == 0) {
+                            reference.child(snap.getKey()).removeValue();
+
+                        }
+                        else {
+                            reference.child(snap.getKey()).child("amount").setValue(newAmount);
+                        }
+                        return;
+                    }
+                }
+                reference.push().setValue(ingredient);
             }
-        }
-        if(!doesContain){
-            reference.child("" + shoppingList.size()).setValue(ingredient);
-        }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
     public ArrayList<Ingredient> getSpecifiedTypeOfIngredient(String typeName){
