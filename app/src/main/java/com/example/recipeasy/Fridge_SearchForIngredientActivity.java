@@ -101,7 +101,7 @@ public class Fridge_SearchForIngredientActivity extends AppCompatActivity {
                 filteredList.add(r);
             }
         }
-        Log.d("uyarı", text);
+        //Log.d("uyarı", text);
 
         if (filteredList.isEmpty()) {
             Toast.makeText(this, filteredList.size() + "size is", Toast.LENGTH_SHORT).show();

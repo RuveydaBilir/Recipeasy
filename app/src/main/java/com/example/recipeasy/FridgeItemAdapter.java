@@ -1,8 +1,12 @@
 package com.example.recipeasy;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,6 +37,31 @@ public class FridgeItemAdapter extends RecyclerView.Adapter<FridgeItemAdapter.Fr
     @Override
     public void onBindViewHolder(@NonNull FridgeItemAdapter.FridgeItemViewHolder holder, int position) {
         holder.ingredientName.setText(ingredients.get(position).getName());
+        holder.ingredientAmount.setText(String.valueOf(ingredients.get(position).getAmount()));
+        holder.ingredientAmountType.setText(String.valueOf(ingredients.get(position).getMeasureType()));
+
+        holder.ingredientAmount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String amountString = s.toString();
+                amountString = amountString.replace(".","");
+                Log.d("OLD AMOUNT: ", amountString);
+                double newAmount = ((double) Integer.valueOf(amountString))/10;
+                Log.d("CONVERTING AMOUNT: ", String.valueOf(newAmount));
+
+                if(newAmount>=0){
+                    ingredients.get(position).setAmount(newAmount);
+                }
+
+                Log.d("NEW AMOUNT: " , String.valueOf(newAmount));
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                holder.ingredientAmountType.setText(String.valueOf(ingredients.get(position).getMeasureType()));
+            }
+        });
     }
 
     @Override
@@ -42,9 +71,13 @@ public class FridgeItemAdapter extends RecyclerView.Adapter<FridgeItemAdapter.Fr
 
     public static class FridgeItemViewHolder extends RecyclerView.ViewHolder {
         private TextView ingredientName;
+        private TextView ingredientAmount;
+        private TextView ingredientAmountType;
         public FridgeItemViewHolder(@NonNull View itemView) {
             super(itemView);
             ingredientName= itemView.findViewById(R.id.ingredient_name);
+            ingredientAmount = itemView.findViewById(R.id.ingredient_amount);
+            ingredientAmountType = itemView.findViewById(R.id.ingredient_amount_type);
         }
     }
 }
