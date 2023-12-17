@@ -1,6 +1,7 @@
 package com.example.recipeasy.BackEnd;
 
 import android.media.Image;
+import android.util.Log;
 
 import com.example.recipeasy.Controller;
 
@@ -82,17 +83,17 @@ public class Recipe {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj == null) {
+        if (obj == null) {
             return false;
         }
 
-        if(obj.getClass() != this.getClass()) {
+        if (obj.getClass() != this.getClass()) {
             return false;
         }
 
         Recipe recipe = (Recipe)obj;
 
-        if(recipe.getName() != this.getName()) {
+        if(!recipe.getName().equals(this.getName())) {
             return false;
         }
 
