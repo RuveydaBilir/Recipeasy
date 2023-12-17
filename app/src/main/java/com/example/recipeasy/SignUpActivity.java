@@ -91,6 +91,8 @@ public class SignUpActivity extends AppCompatActivity {
                                 Controller.createUserData(FirebaseAuth.getInstance().getCurrentUser().getUid());
                                 //Set the user
                                 Controller.setUser(new User(email, password, FirebaseAuth.getInstance().getCurrentUser().getUid()));
+                                //Set the user data
+                                Controller.setUserData();
                                 Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                                 startActivity(intent);
                                 finish();

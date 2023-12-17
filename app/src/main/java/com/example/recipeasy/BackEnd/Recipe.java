@@ -74,7 +74,7 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
-    public boolean isInFavorites() {
+    public boolean inFavorites() {
         if(Controller.getFavorites().getRecipes().contains(this)) {
             return true;
         }

@@ -61,15 +61,15 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
         holder.background.setBackgroundResource(drawableResourceId);
         String imageUrl = recipes.get(position).getImageURL();
         Picasso.get().load(imageUrl).into(holder.imageView);
-        
-        int heartDrawable = recipes.get(position).isInFavorites() ? R.drawable.favorite_icon : R.drawable.favorite_icibos;
+
+        int heartDrawable = recipes.get(position).inFavorites() ? R.drawable.favorite_icon : R.drawable.favorite_icibos;
         holder.favorite.setImageResource(heartDrawable);
 
         holder.favorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int newHeartDrawable;
-                if(recipes.get(position).isInFavorites()){
+                if(recipes.get(position).inFavorites()){
                     Controller.getFavorites().removeRecipe(recipes.get(position));
                     newHeartDrawable = R.drawable.favorite_icibos;
                 }
