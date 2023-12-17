@@ -28,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class RecommendRecipesActivity extends AppCompatActivity {
+public class RecommendRecipesActivity extends AppCompatActivity implements RecyclerViewInterface{
     private ImageButton backButton;
     private Button servingsButton;
     private Button timeButton;
@@ -80,7 +80,7 @@ public class RecommendRecipesActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recipes_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecipeAdapter recipeAdapter = new RecipeAdapter(this, recipes);
+        RecipeAdapter recipeAdapter = new RecipeAdapter(this, recipes, this);
         recyclerView.setAdapter(recipeAdapter);
 
 
@@ -438,4 +438,18 @@ public class RecommendRecipesActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onItemClick(int position) {
+
+        Intent intent = new Intent(RecommendRecipesActivity.this, SingleRecipeActivity.class);
+
+        intent.putExtra("NAME", Controller.getRecommendation().getRecipes().get(position).getName());
+        intent.putExtra("SERVE", Controller.getRecommendation().getRecipes().get(position).getServings());
+        intent.putExtra("TIME", Controller.getRecommendation().getRecipes().get(position).getCookingTime());
+        intent.putExtra("DIRECTIONS", Controller.getRecommendation().getRecipes().get(position).getDirections());
+        intent.putExtra("IMAGE_URL", Controller.getRecommendation().getRecipes().get(position).getImageURL());
+
+
+        startActivity(intent);
+    }
 }

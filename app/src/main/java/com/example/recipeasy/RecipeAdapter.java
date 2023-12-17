@@ -29,9 +29,12 @@ import com.squareup.picasso.Picasso;
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHolder> {
     ArrayList<Recipe> recipes;
     Context context;
-    public RecipeAdapter(Context context, ArrayList<Recipe> recipes){
+
+    private final RecyclerViewInterface recyclerViewInterface;
+    public RecipeAdapter(Context context, ArrayList<Recipe> recipes, RecyclerViewInterface recyclerViewInterface){
         this.context = context;
         this.recipes = recipes;
+        this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @NonNull
@@ -39,7 +42,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
     public RecipeAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.recipes, parent, false);
-        return new RecipeAdapter.MyViewHolder(view);
+        return new RecipeAdapter.MyViewHolder(view, recyclerViewInterface);
     }
 
 
@@ -62,7 +65,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
         String imageUrl = recipes.get(position).getImageURL();
         Picasso.get().load(imageUrl).into(holder.imageView);
 
-        int heartDrawable = recipes.get(position).inFavorites() ? R.drawable.favorite_icon : R.drawable.favorite_icibos;
+        int heartDrawable = recipes.get(position).inFavorites() ? R.drawable.favorite_icon_kirmizi : R.drawable.favorite_icibos;
         holder.favorite.setImageResource(heartDrawable);
 
         holder.favorite.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +78,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
                 }
                 else{
                     Controller.getFavorites().addRecipe(recipes.get(position));
-                    newHeartDrawable = R.drawable.favorite_icon;
+                    newHeartDrawable = R.drawable.favorite_icon_kirmizi;
                 }
                 // Update the heart button drawable
                 //int newHeartDrawable = recipes.get(position).isInFavorites() ? R.drawable.favorite_icibos : R.drawable.favorite_icon;
@@ -99,7 +102,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
         private TextView missing;
         private ImageButton favorite;
         private ConstraintLayout background;
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
 
             //imageView = itemView.findViewById(R.id.recipeImage);
@@ -110,6 +113,19 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
             favorite = itemView.findViewById(R.id.recipes_favorites_button);
             imageView = itemView.findViewById(R.id.recipeImage);
             background = itemView.findViewById(R.id.recipeLayout1);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(recyclerViewInterface != null){
+                        int pos = getAdapterPosition();
+
+                        if(pos != RecyclerView.NO_POSITION){
+                            recyclerViewInterface.onItemClick(pos);
+                        }
+                    }
+                }
+            });
 
         }
 
