@@ -53,6 +53,8 @@ public class FridgeItemAdapter extends RecyclerView.Adapter<FridgeItemAdapter.Fr
 
                 if(newAmount>=0){
                     ingredients.get(position).setAmount(newAmount);
+                    //notifyDataSetChanged();
+                    //TODO: Amount change i database kaydetmiyor sanirim. notifyDataSetChanged() i calistirinca hata aliyorum.
                 }
 
                 Log.d("NEW AMOUNT: " , String.valueOf(newAmount));

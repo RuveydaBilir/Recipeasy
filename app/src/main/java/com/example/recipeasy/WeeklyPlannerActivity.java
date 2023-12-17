@@ -1,22 +1,44 @@
 package com.example.recipeasy;
 
+import static java.util.Arrays.*;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.example.recipeasy.BackEnd.Ingredient;
+import com.example.recipeasy.BackEnd.Planner;
+import com.example.recipeasy.BackEnd.Recipe;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class WeeklyPlannerActivity extends AppCompatActivity {
 
     ImageButton backButton;
 
+    RecyclerView recyclerView;
+    WeeklyPlannerAdapter weeklyPlannerAdapter;
+    ArrayList<Recipe> weeklyRecipes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weekly_planner);
+
+        setWeeklyRecipes();
+        recyclerView = findViewById(R.id.weekly_planner_recycler_view_layout);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        weeklyPlannerAdapter = new WeeklyPlannerAdapter(this, weeklyRecipes);
+        recyclerView.setAdapter(weeklyPlannerAdapter);
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
         bottomNavigationView.setSelectedItemId(R.id.recipe);
@@ -62,5 +84,20 @@ public class WeeklyPlannerActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void setWeeklyRecipes(){
+        //TODO: Test amacli tum recipeleri aldim ama Controller.getPlanner().getRecipes() calismiyor - null pointer exception
+        //Recipe[] arr = Controller.getPlanner().getRecipes();
+        ArrayList<Recipe> arr = Controller.getAllRecipes();
+        weeklyRecipes = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            if(arr != null){
+                weeklyRecipes.add(arr.get(i));
+            }
+            else{
+                Log.d("Weekly Arr: ", "null");
+            }
+        }
     }
 }

@@ -1,130 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/weekly_planner_recycler_view_layout"
+    android:layout_marginBottom="10dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/choose_from_favorites"
-            android:layout_width="53dp"
-            android:layout_height="53dp"
-            android:layout_marginEnd="8dp"
-            android:backgroundTint="@color/acik_pembe"
-            android:drawableLeft="@drawable/favorite_icon"
-            android:drawableTint="@color/bordo"
-            android:text=" "
-            android:textColor="@color/black"
-            android:textSize="10dp"
-            app:cornerRadius="10dp"
-            app:layout_constraintEnd_toStartOf="@+id/textView6"
-            app:layout_constraintTop_toBottomOf="@+id/get_another_recommendation" />
-
-        <Button
-            android:id="@+id/get_another_recommendation"
-            android:layout_width="53dp"
-            android:layout_height="53dp"
-            android:layout_marginEnd="8dp"
-            android:backgroundTint="@color/acik_pembe"
-            android:drawableLeft="@drawable/recommend_icon"
-            android:drawableTint="@color/bordo"
-            android:text=" "
-            android:textColor="@color/black"
-            android:textSize="10dp"
-            app:cornerRadius="10dp"
-            app:layout_constraintEnd_toStartOf="@+id/textView4"
-            tools:layout_editor_absoluteY="209dp"
-            tools:ignore="MissingConstraints"/>
-
-        <Button
-            android:id="@+id/search_for_another_recipe"
-            android:layout_width="53dp"
-            android:layout_height="53dp"
-            android:layout_marginEnd="8dp"
-            android:backgroundTint="@color/acik_pembe"
-            android:drawableLeft="@drawable/change_icon"
-            android:drawableTint="@color/bordo"
-            android:text=" "
-            android:textColor="@color/black"
-            android:textSize="10dp"
-            app:cornerRadius="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/get_another_recommendation"
-            app:layout_constraintEnd_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/day_heading"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <ImageView
-            android:id="@+id/recipe"
-            android:layout_width="163dp"
-            android:layout_height="186dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/choose_from_favorites"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/day_heading" />
-
-        <ImageView
-            android:id="@+id/day_heading"
-            android:layout_width="233dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="96dp"
-            android:background="@drawable/nav_bar_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/day_of_the_week"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Day of the week"
-            android:textColor="@color/black"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/day_heading"
-            app:layout_constraintEnd_toEndOf="@+id/day_heading"
-            app:layout_constraintStart_toStartOf="@+id/day_heading"
-            app:layout_constraintTop_toTopOf="@+id/day_heading" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="151dp"
-            android:layout_height="36dp"
-            android:layout_marginBottom="16dp"
-            android:text="Search for another recipe"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@+id/textView4"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="151dp"
-            android:layout_height="36dp"
-            android:layout_marginBottom="17dp"
-            android:text="Get another recommendation"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@+id/textView6"
-            tools:layout_editor_absoluteX="248dp"
-            tools:ignore="MissingConstraints"/>
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="132dp"
-            android:layout_height="38dp"
-            android:text="Choose from favorites"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            tools:layout_editor_absoluteX="248dp"
-            tools:layout_editor_absoluteY="270dp"
-            tools:ignore="MissingConstraints"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
-</androidx.cardview.widget.CardView>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/choose_from_favorites"
+                android:layout_width="53dp"
+                android:layout_height="53dp"
+                android:layout_marginEnd="7dp"
+                android:backgroundTint="@color/acik_pembe"
+                android:drawableLeft="@drawable/favorite_icon"
+                android:drawableTint="@color/bordo"
+                android:text=" "
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"
+                app:layout_constraintStart_toEndOf="@+id/background"
+                app:layout_constraintEnd_toStartOf="@+id/textView6"
+                app:layout_constraintTop_toBottomOf="@+id/get_another_recommendation" />
+
+            <Button
+                android:id="@+id/get_another_recommendation"
+                android:layout_width="53dp"
+                android:layout_height="53dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/acik_pembe"
+                android:drawableLeft="@drawable/recommend_icon"
+                android:drawableTint="@color/bordo"
+                android:text=" "
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"
+                app:layout_constraintStart_toEndOf="@+id/background"
+                app:layout_constraintEnd_toStartOf="@+id/textView4"
+                app:layout_constraintTop_toBottomOf="@+id/search_for_another_recipe"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/search_for_another_recipe"
+                android:layout_width="53dp"
+                android:layout_height="53dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="4dp"
+                android:backgroundTint="@color/acik_pembe"
+                android:drawableLeft="@drawable/change_icon"
+                android:drawableTint="@color/bordo"
+                android:text=" "
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                app:cornerRadius="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/get_another_recommendation"
+                app:layout_constraintEnd_toStartOf="@+id/textView2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/background"
+                app:layout_constraintTop_toBottomOf="@+id/day_heading" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/background"
+                android:layout_width="200dp"
+                android:layout_height="230dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/green_recipe_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/get_another_recommendation"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/day_heading">
+
+                <TextView
+                    android:id="@+id/recipeNameWL"
+                    android:layout_width="186dp"
+                    android:layout_height="33dp"
+                    android:layout_above="@id/recipeImageWL"
+                    android:layout_marginTop="4dp"
+                    android:text="Chorizo and mozzarella gnocchi bake"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/recipeImageWL"
+                    android:layout_width="115dp"
+                    android:layout_height="116dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="3dp"
+                    android:src="@drawable/example_recipe_img"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.505"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recipeNameWL" />
+
+                <TextView
+                    android:id="@+id/recipeServingsWL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/recipeImageWL"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:drawableRight="@drawable/serving_icon2"
+                    android:drawablePadding="4dp"
+                    android:text="Serves 4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recipeImageWL" />
+
+                <TextView
+                    android:id="@+id/recipeTimeWL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/recipeImageWL"
+                    android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@id/recipeServingsWL"
+                    android:drawableRight="@drawable/time_icon"
+                    android:drawablePadding="4dp"
+                    android:text="45 min"
+                    app:layout_constraintEnd_toStartOf="@+id/recipeServingsWL"
+                    app:layout_constraintHorizontal_bias="0.533"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recipeImageWL" />
+
+                <TextView
+                    android:id="@+id/recipeMissIngWL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/recipeTimeWL"
+                    android:layout_marginTop="32dp"
+                    android:text="You have all the ingredients"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.517"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recipeImageWL" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/day_heading"
+                android:layout_width="233dp"
+                android:layout_height="40dp"
+                android:background="@drawable/nav_bar_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/day_of_the_week"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Day of the week"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/day_heading"
+                app:layout_constraintEnd_toEndOf="@+id/day_heading"
+                app:layout_constraintStart_toStartOf="@+id/day_heading"
+                app:layout_constraintTop_toTopOf="@+id/day_heading" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="146dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="15dp"
+                android:text="Search for another recipe"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@+id/textView4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="151dp"
+                android:layout_height="36dp"
+                android:layout_marginBottom="16dp"
+                android:text="Get another recommendation"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@+id/textView6"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="132dp"
+                android:layout_height="38dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginBottom="68dp"
+                android:text="Choose from favorites"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/background"
+                tools:ignore="MissingConstraints" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
