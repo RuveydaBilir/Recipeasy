@@ -8,9 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.recipeasy.BackEnd.Recipe;
@@ -48,31 +50,36 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
         holder.title.setText(recipes.get(position).getName());
         holder.time.setText(String.valueOf(recipes.get(position).getCookingTime()));
         holder.servings.setText(String.valueOf(recipes.get(position).getServings()));
+        int drawableResourceId;
         if(Controller.findMissingIngredients(recipes.get(position)) == null){
             holder.missing.setText("You have all the ingredients");
+            drawableResourceId = R.drawable.green_recipe_background;
         }
         else {
             holder.missing.setText("You have " + Controller.findMissingIngredients(recipes.get(position)).size() + " missing ingredients");
+            drawableResourceId = R.drawable.red_recipe_background;
         }
+        holder.background.setBackgroundResource(drawableResourceId);
         String imageUrl = recipes.get(position).getImageURL();
-        // Using Picasso to load image from URL
         Picasso.get().load(imageUrl).into(holder.imageView);
+
         int heartDrawable = recipes.get(position).isInFavorites() ? R.drawable.favorite_icon : R.drawable.favorite_icibos;
         holder.favorite.setImageResource(heartDrawable);
 
-        // Set click listener for the heart button
         holder.favorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Toggle the "isFavorite" state of the Recipe
+                int newHeartDrawable;
                 if(recipes.get(position).isInFavorites()){
                     Controller.getFavorites().removeRecipe(recipes.get(position));
+                    newHeartDrawable = R.drawable.favorite_icibos;
                 }
                 else{
                     Controller.getFavorites().addRecipe(recipes.get(position));
+                    newHeartDrawable = R.drawable.favorite_icon;
                 }
                 // Update the heart button drawable
-                int newHeartDrawable = recipes.get(position).isInFavorites() ? R.drawable.favorite_icibos : R.drawable.favorite_icon;
+                //int newHeartDrawable = recipes.get(position).isInFavorites() ? R.drawable.favorite_icibos : R.drawable.favorite_icon;
                 holder.favorite.setImageResource(newHeartDrawable);
             }
         });
@@ -92,6 +99,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
         private TextView time;
         private TextView missing;
         private ImageButton favorite;
+        private ConstraintLayout background;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -102,7 +110,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
             missing = itemView.findViewById(R.id.recipeMissIng);
             favorite = itemView.findViewById(R.id.recipes_favorites_button);
             imageView = itemView.findViewById(R.id.recipeImage);
-
+            background = itemView.findViewById(R.id.recipeLayout1);
 
         }
 

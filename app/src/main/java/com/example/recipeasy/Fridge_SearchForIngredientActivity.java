@@ -93,20 +93,20 @@ public class Fridge_SearchForIngredientActivity extends AppCompatActivity {
             }
         });
     }
+
     private void filterList(String text) {
-        ArrayList<Ingredient> filteredList= new ArrayList<Ingredient>();
-        for (Ingredient r: Controller.getAllIngredients()) {
-            if (containsContiguousSubstring(r.getName().toLowerCase(), text.toLowerCase()) ) {
+        ArrayList<Ingredient> filteredList = new ArrayList<Ingredient>();
+        for (Ingredient r : Controller.getAllIngredients()) {
+            if (containsContiguousSubstring(r.getName().toLowerCase(), text.toLowerCase())) {
                 filteredList.add(r);
             }
         }
         Log.d("uyarı", text);
 
-        if(filteredList.isEmpty()){
-            Toast.makeText(this, filteredList.size()+"size is", Toast.LENGTH_SHORT).show();
+        if (filteredList.isEmpty()) {
+            Toast.makeText(this, filteredList.size() + "size is", Toast.LENGTH_SHORT).show();
             search_recycler_view.setVisibility(View.GONE);
-        }
-        else{
+        } else {
             search_recycler_view.setVisibility(View.VISIBLE);
             itemAdapter.setFilteredList(filteredList);
             search_recycler_view.setAdapter(itemAdapter);

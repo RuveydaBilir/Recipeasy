@@ -74,11 +74,13 @@ public class Recipe {
     }
 
     public boolean isInFavorites() {
-        ArrayList<Recipe> favorites = Controller.getFavorites().getRecipes();
-            if(favorites.contains(this)){
-                return true;
+        for(int i = 0; i < Controller.getFavorites().getRecipes().size(); i++ ){
+            if(this.getName().equals(Controller.getFavorites().getRecipes().get(i).getName())){
+                return true;}
             }
-            return false;
+        return false;
+        }
+
     }
-}
+
 
