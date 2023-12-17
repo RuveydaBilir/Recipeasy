@@ -234,21 +234,21 @@ public class Controller {
         }
     }
 
-    /*public void createMealPlanner(){
+    public void createMealPlanner(){
         int[] intOfRecipeIndex = new int[7];
         Random random = new Random();
         for (int i = 0; i < 7; i++) {
             int randomIndex;
             do {
-                randomIndex = random.nextInt(recommendation.getRecipes().size());
+                randomIndex = random.nextInt(getAllRecipes().size());
             } while (!contains(intOfRecipeIndex, randomIndex));
 
             intOfRecipeIndex[i] = randomIndex;
         }
         for (int i = 0; i < 7; i++) {
-            planner.getRecipes()[i] = recommendation.getRecipes().get(intOfRecipeIndex[i]);
+            planner.addRecipe(i,getAllRecipes().get(i));
         }
-    }*/
+    }
 
     private static boolean contains(int[] array, int value) {
         for (int element : array) {
