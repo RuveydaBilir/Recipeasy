@@ -145,8 +145,8 @@
                 app:layout_editor_absoluteY="107dp"
                 tools:ignore="MissingConstraints" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/cardViewIngredients"
+            <LinearLayout
+                android:id="@+id/layoutIngredients"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
@@ -158,7 +158,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewIngredients"
                 app:layout_editor_absoluteX="200dp"
                 app:layout_editor_absoluteY="160dp"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                android:orientation="vertical" />
 
             <!-- Instructions -->
 

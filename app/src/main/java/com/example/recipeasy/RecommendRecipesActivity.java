@@ -19,6 +19,7 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 
 
+import com.example.recipeasy.BackEnd.Ingredient;
 import com.example.recipeasy.BackEnd.Recipe;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -474,14 +475,17 @@ public class RecommendRecipesActivity extends AppCompatActivity implements Recyc
     public void onItemClick(int position) {
 
         Intent intent = new Intent(RecommendRecipesActivity.this, SingleRecipeActivity.class);
-
+        Recipe currentRecipe = Controller.getRecommendation().getRecipes().get(position);
+        ArrayList<Ingredient> ingredients = currentRecipe.getIngredients();
+        ArrayList<Ingredient> missingIngredients = Controller.findMissingIngredients(currentRecipe);
         intent.putExtra("callerActivity", "RecommendRecipes");
-        intent.putExtra("NAME", Controller.getRecommendation().getRecipes().get(position).getName());
-        intent.putExtra("SERVE", Controller.getRecommendation().getRecipes().get(position).getServings());
-        intent.putExtra("TIME", Controller.getRecommendation().getRecipes().get(position).getCookingTime());
-        intent.putExtra("DIRECTIONS", Controller.getRecommendation().getRecipes().get(position).getDirections());
-        intent.putExtra("IMAGE_URL", Controller.getRecommendation().getRecipes().get(position).getImageURL());
-
+        intent.putExtra("NAME", currentRecipe.getName());
+        intent.putExtra("SERVE",currentRecipe.getServings());
+        intent.putExtra("TIME", currentRecipe.getCookingTime());
+        intent.putExtra("DIRECTIONS", currentRecipe.getDirections());
+        intent.putExtra("IMAGE_URL", currentRecipe.getImageURL());
+        intent.putExtra("INGREDIENTS", ingredients);
+        intent.putExtra("MISSING", missingIngredients);
 
         startActivity(intent);
     }

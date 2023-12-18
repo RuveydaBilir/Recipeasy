@@ -1,9 +1,12 @@
 
 package com.example.recipeasy.BackEnd;
 
+import androidx.annotation.Nullable;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Ingredient {
+public class Ingredient implements Serializable {
     private String name, measureType, category;
     private double amount;
 
@@ -53,5 +56,19 @@ public class Ingredient {
         double newAmount = amount + increment;
 
         return newAmount;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if(obj == null){
+            return false;
+        }
+        if(obj instanceof Ingredient){
+            Ingredient ing = (Ingredient) obj;
+            if(this.name.equals(ing.name)){
+                return true;
+            }
+        }
+        return false;
     }
 }
