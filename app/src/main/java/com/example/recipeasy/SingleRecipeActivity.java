@@ -11,12 +11,16 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.recipeasy.BackEnd.Recipe;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class SingleRecipeActivity extends AppCompatActivity {
 
     private ImageButton backButton;
+    private ImageButton favoriteButton;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -25,13 +29,10 @@ public class SingleRecipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_single_recipe);
 
         String name = getIntent().getStringExtra("NAME");
-        //String serveNum = getIntent().getStringExtra("SERVE_NUM");
         int serve = getIntent().getIntExtra("SERVE",0);
         int time = getIntent().getIntExtra("TIME",0);
-        //String time = getIntent().getStringExtra("TIME");
         String directions = getIntent().getStringExtra("DIRECTIONS");
         String imageURL = getIntent().getStringExtra("IMAGE_URL");
-        //int image = getIntent().getIntExtra("IMAGE",0);
 
         TextView nameTextView = findViewById(R.id.textViewRecipeName);
         TextView serveTextView = findViewById(R.id.textViewServingSizeNum);
@@ -87,13 +88,6 @@ public class SingleRecipeActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*int itemId = v.getId();
-
-                if(itemId == R.id.single_recipe_return_button) {
-                    startActivity(new Intent(getApplicationContext(), RecommendRecipesActivity.class));
-                    finish();
-                }*/
-
                 String callerActivity = getIntent().getStringExtra("callerActivity");
 
                 if (callerActivity != null) {
@@ -118,10 +112,45 @@ public class SingleRecipeActivity extends AppCompatActivity {
             }
         });
 
+        favoriteButton = findViewById(R.id.recipes_favorites_button);
+
+        int recipePosition = findRecipePosition(getIntent().getStringExtra("NAME"));
+        Recipe thisRecipe;
+
+        thisRecipe = Controller.getAllRecipes().get(recipePosition);
+
+        int heartDrawable = thisRecipe.inFavorites() ? R.drawable.favorite_icon_kirmizi : R.drawable.favorite_icibos;
+        favoriteButton.setImageResource(heartDrawable);
+
+        favoriteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int newHeartDrawable;
+                if(thisRecipe.inFavorites()){
+                    Controller.getFavorites().removeRecipe(thisRecipe);
+                    newHeartDrawable = R.drawable.favorite_icibos;
+                }
+                else{
+                    Controller.getFavorites().addRecipe(thisRecipe);
+                    newHeartDrawable = R.drawable.favorite_icon_kirmizi;
+                }
+                favoriteButton.setImageResource(newHeartDrawable);
+            }
+        });
+
 
 
     }
-     public Activity getActivity(){
-        return null;
-     }
+
+    private int findRecipePosition(String recipeName){
+        ArrayList<Recipe> allRecipes = Controller.getAllRecipes();
+        recipeName = recipeName.toLowerCase();
+        for (int i = 0; i < allRecipes.size(); i++) {
+            if(allRecipes.get(i).getName().equalsIgnoreCase(recipeName)){
+                return i;
+            }
+        }
+
+        return allRecipes.size();
+    }
 }
