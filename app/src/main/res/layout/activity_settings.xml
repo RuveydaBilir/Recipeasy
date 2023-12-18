@@ -15,13 +15,10 @@
         android:layout_height="60dp"
         android:background="@drawable/settings_background"
 
-        app:layout_constraintBottom_toBottomOf="@+id/edit_profile_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="0dp"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -52,27 +49,10 @@
         app:layout_constraintTop_toTopOf="@+id/settings_text_background" />
 
     <Button
-        android:id="@+id/edit_profile_button"
-        android:layout_width="350dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="28dp"
-        android:backgroundTint="#D5D1D1"
-        android:text="Edıt Profıle"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:cornerRadius="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settings_text_background"
-        />
-
-    <Button
         android:id="@+id/change_password_button"
         android:layout_width="350dp"
         android:layout_height="60dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="50dp"
         android:backgroundTint="#D5D1D1"
         android:text="Change Password"
         android:textColor="@color/black"
@@ -82,7 +62,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_profile_button" />
+        app:layout_constraintTop_toBottomOf="@+id/settings_text_background" />
 
     <Button
         android:id="@+id/suggestions_button"

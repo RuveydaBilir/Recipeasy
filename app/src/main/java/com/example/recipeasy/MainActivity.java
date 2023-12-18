@@ -29,7 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewInterface{
 
     private ActivityMainBinding binding;
     private SearchView searchView;
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         search_recycler_view = findViewById(R.id.search_bar_recipe_recycler_view);
         search_recycler_view.setLayoutManager(new LinearLayoutManager(this));
-        itemAdapter = new ItemAdapter(Controller.getAllRecipes());
+        itemAdapter = new ItemAdapter(Controller.getAllRecipes(),this);
         search_recycler_view.setAdapter(itemAdapter);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
         bottomNavigationView.setSelectedItemId(R.id.recipe);
@@ -120,9 +120,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    private ArrayList<Recipe> filteredList;
 
     private void filterList(String text) {
-        ArrayList<Recipe> filteredList= new ArrayList<Recipe>();
+        filteredList= new ArrayList<Recipe>();
         for (Recipe r: Controller.getAllRecipes()) {
             if (containsContiguousSubstring(r.getName().toLowerCase(), text.toLowerCase()) ) {
                 filteredList.add(r);
@@ -155,4 +156,17 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(MainActivity.this, SingleRecipeActivity.class);
+
+        intent.putExtra("NAME", filteredList.get(position).getName());
+        intent.putExtra("SERVE", filteredList.get(position).getServings());
+        intent.putExtra("TIME", filteredList.get(position).getCookingTime());
+        intent.putExtra("DIRECTIONS", filteredList.get(position).getDirections());
+        intent.putExtra("IMAGE_URL", filteredList.get(position).getImageURL());
+
+
+        startActivity(intent);
+    }
 }

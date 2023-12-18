@@ -25,8 +25,10 @@ public class WeeklyPlannerAdapter extends RecyclerView.Adapter<WeeklyPlannerAdap
     ArrayList<String> dayOfWeek;
     ArrayList<Recipe> weeklyRecipes;
     Context context;
+    private final RecyclerViewInterface recyclerViewInterface;
 
-    public WeeklyPlannerAdapter(Context context, ArrayList<Recipe> weeklyRecipes){
+    public WeeklyPlannerAdapter(Context context, ArrayList<Recipe> weeklyRecipes, RecyclerViewInterface recyclerViewInterface){
+        this.recyclerViewInterface = recyclerViewInterface;
         this.weeklyRecipes = weeklyRecipes;
         this.context = context;
         setDayOfWeek();
@@ -128,6 +130,19 @@ public class WeeklyPlannerAdapter extends RecyclerView.Adapter<WeeklyPlannerAdap
             imageView = view.findViewById(R.id.recipeImageWL);
             chooseFromFavorites = view.findViewById(R.id.choose_from_favorites);
             randomRecipe = view.findViewById(R.id.get_another_recommendation);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(recyclerViewInterface != null){
+                        int pos = getAdapterPosition();
+
+                        if(pos != RecyclerView.NO_POSITION){
+                            recyclerViewInterface.onItemClick(pos);
+                        }
+                    }
+                }
+            });
         }
     }
 }

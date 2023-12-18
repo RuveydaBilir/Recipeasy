@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.recipeasy.BackEnd.User;
@@ -18,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignInActivity extends AppCompatActivity {
 
+    private ImageButton backButton;
     private EditText emailText;
     private EditText passwordText;
     private Button signInButton;
@@ -36,6 +38,19 @@ public class SignInActivity extends AppCompatActivity {
         forgotPassword = findViewById(R.id.forgot_password);
         signInClicked();
         forgotPasswordClicked();
+
+        backButton = findViewById(R.id.signin_return_button);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int itemId = v.getId();
+
+                if(itemId == R.id.signin_return_button) {
+                    startActivity(new Intent(getApplicationContext(), SignUpActivity.class));
+                    finish();
+                }
+            }
+        });
 
     }
 
@@ -85,4 +100,6 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
     }
+
+
     }

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Recipeasy"
         tools:targetApi="31">
         <activity
+            android:name=".ListSearchForIngredientActivity"
+            android:exported="false" />
+        <activity
             android:name=".SingleRecipeActivity"
             android:exported="false" />
         <activity
@@ -28,9 +31,6 @@
             android:exported="false" />
         <activity
             android:name=".SuggestionsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".EditProfileActivity"
             android:exported="false" />
         <activity
             android:name=".WeeklyPlannerActivity"

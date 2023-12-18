@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private Button editProfileButton, suggestionsButton, changePasswordButton, logOutButton, resetDataButton;
+    private Button suggestionsButton, changePasswordButton, logOutButton, resetDataButton;
     private AlertDialog alertDialog;
     AlertDialog.Builder builderDialog;
 
@@ -94,17 +94,6 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
 
-        editProfileButton = findViewById(R.id.edit_profile_button);
-        editProfileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int itemId = v.getId();
-                if (itemId == R.id.edit_profile_button) {
-                    startActivity(new Intent(getApplicationContext(), EditProfileActivity.class));
-                    finish();
-                }
-            }
-        });
 
         resetDataButton = findViewById(R.id.reset_data_button);
         resetDataButton.setOnClickListener(new View.OnClickListener() {

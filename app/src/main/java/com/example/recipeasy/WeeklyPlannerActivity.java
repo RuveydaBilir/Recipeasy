@@ -20,7 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class WeeklyPlannerActivity extends AppCompatActivity {
+public class WeeklyPlannerActivity extends AppCompatActivity implements RecyclerViewInterface{
 
     ImageButton backButton;
 
@@ -36,7 +36,7 @@ public class WeeklyPlannerActivity extends AppCompatActivity {
         setWeeklyRecipes();
         recyclerView = findViewById(R.id.weekly_planner_recycler_view_layout);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        weeklyPlannerAdapter = new WeeklyPlannerAdapter(this, weeklyRecipes);
+        weeklyPlannerAdapter = new WeeklyPlannerAdapter(this, weeklyRecipes,this);
         recyclerView.setAdapter(weeklyPlannerAdapter);
 
 
@@ -98,5 +98,20 @@ public class WeeklyPlannerActivity extends AppCompatActivity {
                 Log.d("Weekly Arr: ", "null");
             }
         }
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
+        Intent intent = new Intent(WeeklyPlannerActivity.this, SingleRecipeActivity.class);
+
+        intent.putExtra("NAME", Controller.getPlanner().getRecipes()[position].getName());
+        intent.putExtra("SERVE", Controller.getPlanner().getRecipes()[position].getServings());
+        intent.putExtra("TIME", Controller.getPlanner().getRecipes()[position].getCookingTime());
+        intent.putExtra("DIRECTIONS", Controller.getPlanner().getRecipes()[position].getDirections());
+        intent.putExtra("IMAGE_URL", Controller.getPlanner().getRecipes()[position].getImageURL());
+
+
+        startActivity(intent);
     }
 }
