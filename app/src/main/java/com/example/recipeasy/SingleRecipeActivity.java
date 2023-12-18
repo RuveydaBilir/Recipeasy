@@ -61,6 +61,7 @@ public class SingleRecipeActivity extends AppCompatActivity {
             else{
                 textView.setTextColor(ContextCompat.getColor(this,R.color.kirmizi_malzeme));
             }
+            linearLayout.addView(textView);
         }
 
 
