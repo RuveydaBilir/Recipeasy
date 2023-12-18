@@ -22,23 +22,24 @@
                 android:id="@+id/choose_from_favorites"
                 android:layout_width="53dp"
                 android:layout_height="53dp"
-                android:layout_marginEnd="7dp"
                 android:backgroundTint="@color/acik_pembe"
                 android:drawableLeft="@drawable/favorite_icon"
                 android:drawableTint="@color/bordo"
+                android:layout_marginEnd="8dp"
                 android:text=" "
                 android:textColor="@color/black"
                 android:textSize="10dp"
                 app:cornerRadius="10dp"
-                app:layout_constraintStart_toEndOf="@+id/background"
                 app:layout_constraintEnd_toStartOf="@+id/textView6"
+                app:layout_constraintHorizontal_bias="0.391"
+                app:layout_constraintStart_toEndOf="@+id/background"
                 app:layout_constraintTop_toBottomOf="@+id/get_another_recommendation" />
 
             <Button
                 android:id="@+id/get_another_recommendation"
                 android:layout_width="53dp"
                 android:layout_height="53dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginTop="52dp"
                 android:backgroundTint="@color/acik_pembe"
                 android:drawableLeft="@drawable/recommend_icon"
                 android:drawableTint="@color/bordo"
@@ -46,29 +47,10 @@
                 android:textColor="@color/black"
                 android:textSize="10dp"
                 app:cornerRadius="10dp"
-                app:layout_constraintStart_toEndOf="@+id/background"
                 app:layout_constraintEnd_toStartOf="@+id/textView4"
-                app:layout_constraintTop_toBottomOf="@+id/search_for_another_recipe"
-                tools:ignore="MissingConstraints" />
-
-            <Button
-                android:id="@+id/search_for_another_recipe"
-                android:layout_width="53dp"
-                android:layout_height="53dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="4dp"
-                android:backgroundTint="@color/acik_pembe"
-                android:drawableLeft="@drawable/change_icon"
-                android:drawableTint="@color/bordo"
-                android:text=" "
-                android:textColor="@color/black"
-                android:textSize="10dp"
-                app:cornerRadius="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/get_another_recommendation"
-                app:layout_constraintEnd_toStartOf="@+id/textView2"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/background"
-                app:layout_constraintTop_toBottomOf="@+id/day_heading" />
+                app:layout_constraintTop_toBottomOf="@+id/day_of_the_week"
+                tools:ignore="MissingConstraints" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/background"
@@ -79,7 +61,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/get_another_recommendation"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/day_heading">
+                app:layout_constraintTop_toBottomOf="@+id/day_heading"
+                app:layout_constraintVertical_bias="0.0">
 
                 <TextView
                     android:id="@+id/recipeNameWL"
@@ -89,8 +72,9 @@
                     android:layout_marginTop="4dp"
                     android:text="Chorizo and mozzarella gnocchi bake"
                     android:textAlignment="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/background"
+                    app:layout_constraintStart_toStartOf="@id/background"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
@@ -143,9 +127,10 @@
                     android:text="You have all the ingredients"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.517"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/background"
                     app:layout_constraintTop_toBottomOf="@+id/recipeImageWL" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <ImageView
                 android:id="@+id/day_heading"
                 android:layout_width="233dp"
@@ -169,24 +154,11 @@
                 app:layout_constraintTop_toTopOf="@+id/day_heading" />
 
             <TextView
-                android:id="@+id/textView2"
-                android:layout_width="146dp"
-                android:layout_height="36dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginBottom="15dp"
-                android:text="Search for another recipe"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toTopOf="@+id/textView4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <TextView
                 android:id="@+id/textView4"
-                android:layout_width="151dp"
-                android:layout_height="36dp"
-                android:layout_marginBottom="16dp"
+                android:layout_width="128dp"
+                android:layout_height="34dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="20dp"
                 android:text="Get another recommendation"
                 android:textAlignment="center"
                 android:textColor="@color/black"
@@ -196,10 +168,10 @@
 
             <TextView
                 android:id="@+id/textView6"
-                android:layout_width="132dp"
-                android:layout_height="38dp"
-                android:layout_marginLeft="60dp"
-                android:layout_marginBottom="68dp"
+                android:layout_width="112dp"
+                android:layout_height="33dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginBottom="88dp"
                 android:text="Choose from favorites"
                 android:textAlignment="center"
                 android:textColor="@color/black"

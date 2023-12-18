@@ -51,8 +51,8 @@ public class WeeklyPlannerAdapter extends RecyclerView.Adapter<WeeklyPlannerAdap
     @Override
     public void onBindViewHolder(@NonNull WeeklyPlannerAdapter.WeeklyViewHolder holder, int position) {
         holder.title.setText(weeklyRecipes.get(position).getName());
-        holder.time.setText(String.valueOf(weeklyRecipes.get(position).getCookingTime()));
-        holder.servings.setText(String.valueOf(weeklyRecipes.get(position).getServings()));
+        holder.time.setText(String.valueOf(weeklyRecipes.get(position).getCookingTime()) + " min");
+        holder.servings.setText("Serve " + String.valueOf(weeklyRecipes.get(position).getServings()));
         holder.day.setText(dayOfWeek.get(position));
         int drawableResourceId;
         if(Controller.findMissingIngredients(weeklyRecipes.get(position)) == null){
@@ -60,7 +60,7 @@ public class WeeklyPlannerAdapter extends RecyclerView.Adapter<WeeklyPlannerAdap
             drawableResourceId = R.drawable.green_recipe_background;
         }
         else {
-            holder.missing.setText("You have " + Controller.findMissingIngredients(weeklyRecipes.get(position)).size() + " missing ingredients");
+            holder.missing.setText(Controller.findMissingIngredients(weeklyRecipes.get(position)).size() + " missing ingredients");
             drawableResourceId = R.drawable.red_recipe_background;
         }
         holder.background.setBackgroundResource(drawableResourceId);
