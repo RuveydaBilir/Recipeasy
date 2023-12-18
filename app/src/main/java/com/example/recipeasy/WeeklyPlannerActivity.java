@@ -105,6 +105,7 @@ public class WeeklyPlannerActivity extends AppCompatActivity implements Recycler
 
         Intent intent = new Intent(WeeklyPlannerActivity.this, SingleRecipeActivity.class);
 
+        intent.putExtra("callerActivity", "WeeklyPlanner");
         intent.putExtra("NAME", Controller.getPlanner().getRecipes()[position].getName());
         intent.putExtra("SERVE", Controller.getPlanner().getRecipes()[position].getServings());
         intent.putExtra("TIME", Controller.getPlanner().getRecipes()[position].getCookingTime());

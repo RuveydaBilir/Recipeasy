@@ -160,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     public void onItemClick(int position) {
         Intent intent = new Intent(MainActivity.this, SingleRecipeActivity.class);
 
+        intent.putExtra("callerActivity", "MainActivity");
         intent.putExtra("NAME", filteredList.get(position).getName());
         intent.putExtra("SERVE", filteredList.get(position).getServings());
         intent.putExtra("TIME", filteredList.get(position).getCookingTime());

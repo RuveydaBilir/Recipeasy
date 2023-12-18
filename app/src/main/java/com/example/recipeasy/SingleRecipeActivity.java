@@ -87,11 +87,33 @@ public class SingleRecipeActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int itemId = v.getId();
+                /*int itemId = v.getId();
 
                 if(itemId == R.id.single_recipe_return_button) {
                     startActivity(new Intent(getApplicationContext(), RecommendRecipesActivity.class));
                     finish();
+                }*/
+
+                String callerActivity = getIntent().getStringExtra("callerActivity");
+
+                if (callerActivity != null) {
+                    switch (callerActivity) {
+                        case "RecommendRecipes":
+                            startActivity(new Intent(getApplicationContext(), RecommendRecipesActivity.class));
+                            finish();
+                            break;
+                        case "WeeklyPlanner":
+                            startActivity(new Intent(getApplicationContext(), WeeklyPlannerActivity.class));
+                            finish();
+                            break;
+                        case "Favorites":
+                            startActivity(new Intent(getApplicationContext(), FavoritesActivity.class));
+                            finish();
+                            break;
+                        default:
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            finish();
+                    }
                 }
             }
         });

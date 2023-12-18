@@ -69,6 +69,7 @@ public class FavoritesActivity extends AppCompatActivity implements RecyclerView
     public void onItemClick(int position) {
         Intent intent = new Intent(FavoritesActivity.this, SingleRecipeActivity.class);
 
+        intent.putExtra("callerActivity", "Favorites");
         intent.putExtra("NAME", Controller.getRecommendation().getRecipes().get(position).getName());
         intent.putExtra("SERVE", Controller.getRecommendation().getRecipes().get(position).getServings());
         intent.putExtra("TIME", Controller.getRecommendation().getRecipes().get(position).getCookingTime());
