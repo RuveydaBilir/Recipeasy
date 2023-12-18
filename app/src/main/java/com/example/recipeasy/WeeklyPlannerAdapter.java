@@ -85,6 +85,16 @@ public class WeeklyPlannerAdapter extends RecyclerView.Adapter<WeeklyPlannerAdap
             }
         });
 
+        if(Controller.findMissingIngredients(weeklyRecipes.get(position)) == null || Controller.findMissingIngredients(weeklyRecipes.get(position)).size() == 0){
+            holder.missing.setText("You have all the ingredients");
+            drawableResourceId = R.drawable.green_recipe_background;
+        }
+        else {
+            holder.missing.setText("You have " + Controller.findMissingIngredients(weeklyRecipes.get(position)).size() + " missing ingredients");
+            drawableResourceId = R.drawable.red_recipe_background;
+        }
+        holder.background.setBackgroundResource(drawableResourceId);
+
 
     }
 
