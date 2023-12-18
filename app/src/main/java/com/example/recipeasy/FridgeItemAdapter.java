@@ -37,9 +37,9 @@ public class FridgeItemAdapter extends RecyclerView.Adapter<FridgeItemAdapter.Fr
 
     @Override
     public void onBindViewHolder(@NonNull FridgeItemAdapter.FridgeItemViewHolder holder, int position) {
-        holder.ingredientName.setText(ingredients.get(position).getName());
-        holder.ingredientAmount.setText(String.valueOf(ingredients.get(position).getAmount()));
-        holder.ingredientAmountType.setText(String.valueOf(ingredients.get(position).getMeasureType()));
+        holder.ingredientName.setText(ingredients.get(holder.getAdapterPosition()).getName());
+        holder.ingredientAmount.setText(String.valueOf(ingredients.get(holder.getAdapterPosition()).getAmount()));
+        holder.ingredientAmountType.setText(String.valueOf(ingredients.get(holder.getAdapterPosition()).getMeasureType()));
 
         holder.ingredientAmount.addTextChangedListener(new TextWatcher() {
             @Override
@@ -47,25 +47,29 @@ public class FridgeItemAdapter extends RecyclerView.Adapter<FridgeItemAdapter.Fr
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String amountString = s.toString();
-                amountString = amountString.replace(".","");
-                Log.d("OLD AMOUNT: ", amountString);
-                double newAmount = (Double.valueOf(amountString))/10;
-                Log.d("CONVERTING AMOUNT: ", String.valueOf(newAmount));
-
-                if(newAmount>=0){
-                    Ingredient ingredient = ingredients.get(position);
-                    ingredient.setAmount(newAmount);
-                    Controller.getFridge().setIngredient(ingredient);
-                    ingredients.set(position, ingredient);
-                    //notifyDataSetChanged();
-                    //TODO: Amount change i database kaydetmiyor sanirim. notifyDataSetChanged() i calistirinca hata aliyorum. SOLVED
+                if(amountString.equals("0.0")) {
+                    return;
                 }
 
-                Log.d("NEW AMOUNT: " , String.valueOf(newAmount));
+                amountString = amountString.replace(".","");
+                double newAmount = (Double.valueOf(amountString))/10;
+
+                if(ingredients.get(holder.getAdapterPosition()).getAmount() == newAmount) {
+                    return;
+                }
+                if(newAmount >= 0){
+                    Ingredient ingredient = ingredients.get(holder.getAdapterPosition());
+                    ingredient.setAmount(newAmount);
+                    Log.d("AMOUNT: ", " " + ingredient.getAmount() + " " + ingredient.getName());
+                    Controller.getFridge().setIngredient(ingredient);
+                    ingredients.set(holder.getAdapterPosition(), ingredient);
+                    //notifyDataSetChanged();
+                }
+
             }
             @Override
             public void afterTextChanged(Editable s) {
-                holder.ingredientAmountType.setText(String.valueOf(ingredients.get(position).getMeasureType()));
+                holder.ingredientAmountType.setText(String.valueOf(ingredients.get(holder.getAdapterPosition()).getMeasureType()));
             }
         });
     }

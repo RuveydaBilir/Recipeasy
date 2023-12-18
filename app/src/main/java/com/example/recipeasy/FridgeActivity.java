@@ -39,9 +39,6 @@ public class FridgeActivity extends AppCompatActivity {
         FridgeAdapter fridgeAdapter = new FridgeAdapter(this, category);
         recyclerView.setAdapter(fridgeAdapter);
 
-        Log.d("Category set: ",category.toString());
-
-
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
         bottomNavigationView.setSelectedItemId(R.id.fridge);

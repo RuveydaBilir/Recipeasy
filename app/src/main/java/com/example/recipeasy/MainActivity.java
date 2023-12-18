@@ -31,7 +31,6 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewInterface{
 
-    private ActivityMainBinding binding;
     private SearchView searchView;
     private Button recomRecButton;
     private RecyclerView search_recycler_view;
