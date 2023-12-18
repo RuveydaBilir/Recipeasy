@@ -234,10 +234,10 @@ public class Controller {
         }
     }
 
-    public void createMealPlanner(){
+    public static void createMealPlanner(){
         int[] intOfRecipeIndex = new int[7];
         Random random = new Random();
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 5; i++) {
             int randomIndex;
             do {
                 randomIndex = random.nextInt(getAllRecipes().size());
@@ -245,7 +245,7 @@ public class Controller {
 
             intOfRecipeIndex[i] = randomIndex;
         }
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 5; i++) {
             planner.addRecipe(i,getAllRecipes().get(i));
         }
     }

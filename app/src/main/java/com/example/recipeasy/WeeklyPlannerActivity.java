@@ -32,7 +32,7 @@ public class WeeklyPlannerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weekly_planner);
-
+        Controller.createMealPlanner();
         setWeeklyRecipes();
         recyclerView = findViewById(R.id.weekly_planner_recycler_view_layout);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -87,13 +87,12 @@ public class WeeklyPlannerActivity extends AppCompatActivity {
     }
 
     private void setWeeklyRecipes(){
-        //TODO: Test amacli tum recipeleri aldim ama Controller.getPlanner().getRecipes() calismiyor - null pointer exception
-        //Recipe[] arr = Controller.getPlanner().getRecipes();
-        ArrayList<Recipe> arr = Controller.getAllRecipes();
+        Recipe[] array = Controller.getPlanner().getRecipes();
+        ArrayList<Recipe> arrayList = Controller.getAllRecipes();
         weeklyRecipes = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            if(arr != null){
-                weeklyRecipes.add(arr.get(i));
+            if(array != null){
+                weeklyRecipes.add(arrayList.get(i));
             }
             else{
                 Log.d("Weekly Arr: ", "null");
