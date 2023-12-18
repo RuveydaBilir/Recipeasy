@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -66,6 +67,24 @@ public class WeeklyPlannerAdapter extends RecyclerView.Adapter<WeeklyPlannerAdap
         holder.background.setBackgroundResource(drawableResourceId);
         String imageUrl = weeklyRecipes.get(position).getImageURL();
         Picasso.get().load(imageUrl).into(holder.imageView);
+        holder.chooseFromFavorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int newHeartDrawable;
+                weeklyRecipes.set(position, Controller.chooseFromFavorites());
+                notifyDataSetChanged();
+            }
+        });
+
+        holder.randomRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int randomInt = (int)(Controller.getAllRecipes().size()*Math.random()-1);
+                weeklyRecipes.set(position, Controller.getAllRecipes().get(randomInt));
+                notifyDataSetChanged();
+            }
+        });
+
 
     }
 
@@ -82,6 +101,8 @@ public class WeeklyPlannerAdapter extends RecyclerView.Adapter<WeeklyPlannerAdap
         private TextView missing;
         private ConstraintLayout background;
         private TextView day;
+        private Button chooseFromFavorites;
+        private Button randomRecipe;
         public WeeklyViewHolder(View view) {
             super(view);
 
@@ -92,6 +113,8 @@ public class WeeklyPlannerAdapter extends RecyclerView.Adapter<WeeklyPlannerAdap
             day = view.findViewById(R.id.day_of_the_week);
             background = view.findViewById(R.id.background);
             imageView = view.findViewById(R.id.recipeImageWL);
+            chooseFromFavorites = view.findViewById(R.id.choose_from_favorites);
+            randomRecipe = view.findViewById(R.id.get_another_recommendation);
         }
     }
 }
