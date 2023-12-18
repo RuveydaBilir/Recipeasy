@@ -8,15 +8,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SuggestionsActivity extends AppCompatActivity {
 
     Button sendButton;
 
     ImageButton backButton;
-    EditText suggestionText;
+    EditText suggestionBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,13 +53,17 @@ public class SuggestionsActivity extends AppCompatActivity {
         });
 
         sendButton = findViewById(R.id.suggestions_button);
+        suggestionBox = findViewById(R.id.suggestions_box);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int itemId = v.getId();
 
                 if(itemId == R.id.suggestions_button){
-                    //TODO: receive user's suggestions?
+                    FirebaseDatabase.getInstance().getReference().child("Suggestions").push().child(Controller.getUser().getUserID()).setValue(suggestionBox.getText().toString());
+                    //TODO: Show the message that the suggestion is send, belki aşağıdaki
+                    Toast.makeText(SuggestionsActivity.this, "Your suggestion is send!", Toast.LENGTH_LONG).show();
+
                 }
             }
         });

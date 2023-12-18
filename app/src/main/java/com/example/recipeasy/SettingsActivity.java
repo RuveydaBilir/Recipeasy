@@ -133,7 +133,7 @@ public class SettingsActivity extends AppCompatActivity {
         yesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: delete user data ya da useri kandiralim :))
+                Controller.createUserData(Controller.getUser().getUserID());
 
                 alertDialog.dismiss();
             }

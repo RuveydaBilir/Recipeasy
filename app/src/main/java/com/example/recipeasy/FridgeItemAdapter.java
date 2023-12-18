@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.recipeasy.BackEnd.Fridge;
 import com.example.recipeasy.BackEnd.Ingredient;
 import com.example.recipeasy.BackEnd.Recipe;
 
@@ -48,13 +49,16 @@ public class FridgeItemAdapter extends RecyclerView.Adapter<FridgeItemAdapter.Fr
                 String amountString = s.toString();
                 amountString = amountString.replace(".","");
                 Log.d("OLD AMOUNT: ", amountString);
-                double newAmount = ((double) Integer.valueOf(amountString))/10;
+                double newAmount = (Double.valueOf(amountString))/10;
                 Log.d("CONVERTING AMOUNT: ", String.valueOf(newAmount));
 
                 if(newAmount>=0){
-                    ingredients.get(position).setAmount(newAmount);
+                    Ingredient ingredient = ingredients.get(position);
+                    ingredient.setAmount(newAmount);
+                    Controller.getFridge().setIngredient(ingredient);
+                    ingredients.set(position, ingredient);
                     //notifyDataSetChanged();
-                    //TODO: Amount change i database kaydetmiyor sanirim. notifyDataSetChanged() i calistirinca hata aliyorum.
+                    //TODO: Amount change i database kaydetmiyor sanirim. notifyDataSetChanged() i calistirinca hata aliyorum. SOLVED
                 }
 
                 Log.d("NEW AMOUNT: " , String.valueOf(newAmount));

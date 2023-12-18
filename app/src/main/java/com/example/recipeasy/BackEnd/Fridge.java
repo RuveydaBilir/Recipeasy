@@ -34,9 +34,6 @@ public class Fridge {
         this.fridgeList = fridgeList;
     }
     public void addIngredient(Ingredient ingredient){
-        if(ingredient.getAmount() <= 0) {
-            return;
-        }
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("Fridge").child("fridgeList");
         Query query = reference.orderByKey();
@@ -54,6 +51,27 @@ public class Fridge {
                         else {
                             reference.child(snap.getKey()).child("amount").setValue(newAmount);
                         }
+                        return;
+                    }
+                }
+                reference.push().setValue(ingredient);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
+    public void setIngredient(Ingredient ingredient) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("Fridge").child("fridgeList");
+        Query query = reference.orderByKey();
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot snap : snapshot.getChildren()) {
+                    if(snap.getValue(Ingredient.class).getName().equals(ingredient.getName())) {
+                        reference.child(snap.getKey()).child("amount").setValue(ingredient.getAmount());
                         return;
                     }
                 }
