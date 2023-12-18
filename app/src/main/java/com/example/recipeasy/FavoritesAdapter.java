@@ -42,7 +42,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
         holder.time.setText(String.valueOf(favorites.get(position).getCookingTime()));
         holder.servings.setText(String.valueOf(favorites.get(position).getServings()));
         int drawableResourceId;
-        if(Controller.findMissingIngredients(favorites.get(position)) == null){
+        if(Controller.findMissingIngredients(favorites.get(position)) == null || Controller.findMissingIngredients(favorites.get(position)).size() == 0){
             holder.missing.setText("You have all the ingredients");
             drawableResourceId = R.drawable.green_recipe_background;
         }
