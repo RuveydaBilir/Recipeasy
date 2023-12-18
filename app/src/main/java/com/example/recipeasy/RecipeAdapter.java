@@ -53,7 +53,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
         holder.time.setText(String.valueOf(recipes.get(position).getCookingTime()));
         holder.servings.setText(String.valueOf(recipes.get(position).getServings()));
         int drawableResourceId;
-        if(Controller.findMissingIngredients(recipes.get(position)) == null){
+        if(Controller.findMissingIngredients(recipes.get(position)) == null || Controller.findMissingIngredients(recipes.get(position)).size() == 0){
             holder.missing.setText("You have all the ingredients");
             drawableResourceId = R.drawable.green_recipe_background;
         }
