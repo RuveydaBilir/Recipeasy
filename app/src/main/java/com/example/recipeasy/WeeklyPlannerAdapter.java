@@ -71,6 +71,9 @@ public class WeeklyPlannerAdapter extends RecyclerView.Adapter<WeeklyPlannerAdap
             @Override
             public void onClick(View v) {
                 int newHeartDrawable;
+                if(Controller.chooseFromFavorites() == null){
+                    return;
+                }
                 weeklyRecipes.set(position, Controller.chooseFromFavorites());
                 notifyDataSetChanged();
             }

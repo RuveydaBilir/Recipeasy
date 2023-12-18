@@ -208,6 +208,9 @@ public class Controller {
 
     public static Recipe chooseFromFavorites(){
         Random random = new Random();
+        if(favorites.getRecipes().size()==0 || favorites.getRecipes()==null){
+            return null;
+        }
         int rand_int1 = random.nextInt(favorites.getRecipes().size());
         Recipe r = favorites.getRecipes().get(rand_int1);
         return r;
