@@ -111,7 +111,8 @@ public class WeeklyPlannerActivity extends AppCompatActivity implements Recycler
         intent.putExtra("TIME", Controller.getPlanner().getRecipes()[position].getCookingTime());
         intent.putExtra("DIRECTIONS", Controller.getPlanner().getRecipes()[position].getDirections());
         intent.putExtra("IMAGE_URL", Controller.getPlanner().getRecipes()[position].getImageURL());
-
+        intent.putExtra("INGREDIENTS", Controller.getPlanner().getRecipes()[position].getIngredients());
+        intent.putExtra("MISSING", Controller.findMissingIngredients(Controller.getPlanner().getRecipes()[position]));
 
         startActivity(intent);
     }
