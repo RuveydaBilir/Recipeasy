@@ -105,13 +105,10 @@ public class Recommendation {
         int i = low - 1;
 
         for (int j = low; j < high; j++) {
-            // Sort only if missingNum is the same
-            if (Controller.findMissingIngredients(recipes.get(j)).size() == Controller.findMissingIngredients(pivot).size()) {
-                if ((ascending && recipes.get(j).getServings() <= pivot.getServings()) ||
-                        (!ascending && recipes.get(j).getServings() >= pivot.getServings())) {
-                    i++;
-                    swap(i, j);
-                }
+            if ((ascending && recipes.get(j).getServings() <= pivot.getServings()) ||
+                    (!ascending && recipes.get(j).getServings() >= pivot.getServings())) {
+                i++;
+                swap(i, j);
             }
         }
 
@@ -129,19 +126,16 @@ public class Recommendation {
     private int partitionForTime(int low, int high, boolean ascending) {
         Recipe pivot = recipes.get(high);
         int i = low - 1;
+
         for (int j = low; j < high; j++) {
-            if (Controller.findMissingIngredients(recipes.get(j)).size() == Controller.findMissingIngredients(pivot).size()) {
-                if ((ascending && recipes.get(j).getCookingTime() <= pivot.getCookingTime()) ||
-                        (!ascending && recipes.get(j).getCookingTime() >= pivot.getCookingTime())) {
-                    i++;
-                    // Swap recipes[i] and recipes[j]
-                    swap(i,j);
-                }
+            if ((ascending && recipes.get(j).getCookingTime() <= pivot.getCookingTime()) ||
+                    (!ascending && recipes.get(j).getCookingTime() >= pivot.getCookingTime())) {
+                i++;
+                swap(i, j);
             }
         }
 
-        // Swap recipes[i + 1] and recipes[high] (or pivot)
-        swap(i+1,high);
+        swap(i + 1, high);
         return i + 1;
     }
 
