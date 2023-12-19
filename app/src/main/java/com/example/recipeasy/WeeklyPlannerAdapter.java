@@ -86,6 +86,11 @@ public class WeeklyPlannerAdapter extends RecyclerView.Adapter<WeeklyPlannerAdap
             public void onClick(View v) {
                 int randomInt = (int)(Controller.getAllRecipes().size()*Math.random()-1);
                 weeklyRecipes.set(position, Controller.getAllRecipes().get(randomInt));
+                Recipe[] recipeArr = new Recipe[5];
+                for (int i = 0; i <weeklyRecipes.size() ; i++) {
+                    recipeArr[i] = weeklyRecipes.get(i);
+                }
+                Controller.getPlanner().setRecipes(recipeArr);
                 notifyDataSetChanged();
             }
         });
