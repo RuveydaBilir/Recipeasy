@@ -1,6 +1,7 @@
 package com.example.recipeasy;
 
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,19 +38,20 @@ public class FridgeItemAdapter extends RecyclerView.Adapter<FridgeItemAdapter.Fr
 
     @Override
     public void onBindViewHolder(@NonNull FridgeItemAdapter.FridgeItemViewHolder holder, int position) {
-        holder.ingredientName.setText(ingredients.get(holder.getAdapterPosition()).getName());
-        holder.ingredientAmount.setText(String.valueOf(ingredients.get(holder.getAdapterPosition()).getAmount()));
-        holder.ingredientAmountType.setText(String.valueOf(ingredients.get(holder.getAdapterPosition()).getMeasureType()));
+        holder.ingredientName.setText(ingredients.get(position).getName());
+        holder.ingredientAmount.setText(String.valueOf(ingredients.get(position).getAmount()));
+        holder.ingredientAmountType.setText(String.valueOf(ingredients.get(position).getMeasureType()));
 
         holder.ingredientAmount.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String amountString = s.toString();
-                if(amountString.equals("0.0")) {
+                if(TextUtils.isEmpty(s)) {
                     return;
                 }
+
+                String amountString = s.toString();
 
                 amountString = amountString.replace(".","");
                 double newAmount = (Double.valueOf(amountString))/10;
@@ -58,9 +60,9 @@ public class FridgeItemAdapter extends RecyclerView.Adapter<FridgeItemAdapter.Fr
                     return;
                 }
                 if(newAmount >= 0){
+
                     Ingredient ingredient = ingredients.get(holder.getAdapterPosition());
                     ingredient.setAmount(newAmount);
-                    Log.d("AMOUNT: ", " " + ingredient.getAmount() + " " + ingredient.getName());
                     Controller.getFridge().setIngredient(ingredient);
                     ingredients.set(holder.getAdapterPosition(), ingredient);
                     //notifyDataSetChanged();

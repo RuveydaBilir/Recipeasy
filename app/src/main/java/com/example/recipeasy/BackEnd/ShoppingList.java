@@ -1,5 +1,7 @@
 package com.example.recipeasy.BackEnd;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.example.recipeasy.Controller;
@@ -67,6 +69,34 @@ public class ShoppingList {
         });
     }
 
+    public void setIngredient(Ingredient ingredient) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("Shopping List").child("shoppingList");
+        Query query = reference.orderByKey();
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot snap : snapshot.getChildren()) {
+
+                    if(snap.getValue(Ingredient.class).getName().equals(ingredient.getName())) {
+                        if(ingredient.getAmount() == 0.0) {
+                            Log.d("message", "REMOVED");
+                            reference.child(snap.getKey()).removeValue();
+                            return;
+                        }
+
+                        reference.child(snap.getKey()).child("amount").setValue(ingredient.getAmount());
+                        return;
+                    }
+                }
+                reference.push().setValue(ingredient);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
     public ArrayList<Ingredient> getSpecifiedTypeOfIngredient(String typeName){
         ArrayList<Ingredient> typeList = new ArrayList<Ingredient>();
         for (int i = 0; i < shoppingList.size(); i++) {
@@ -76,5 +106,6 @@ public class ShoppingList {
         }
         return typeList;
     }
+
 
 }

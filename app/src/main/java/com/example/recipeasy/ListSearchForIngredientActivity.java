@@ -22,7 +22,7 @@ public class ListSearchForIngredientActivity extends AppCompatActivity {
 
     private androidx.appcompat.widget.SearchView searchView;
     private RecyclerView search_recycler_view;
-    private FridgeItemAdapter itemAdapter;
+    private ShoppingListSearchAdapter itemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class ListSearchForIngredientActivity extends AppCompatActivity {
 
         search_recycler_view = findViewById(R.id.search_bar_fridge_ingredient);
         search_recycler_view.setLayoutManager(new LinearLayoutManager(this));
-        itemAdapter = new FridgeItemAdapter(Controller.getAllIngredients());
+        itemAdapter = new ShoppingListSearchAdapter(this, Controller.getUsersShoppingList());
         search_recycler_view.setAdapter(itemAdapter);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);

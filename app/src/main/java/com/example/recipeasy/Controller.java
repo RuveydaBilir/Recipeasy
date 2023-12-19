@@ -349,4 +349,40 @@ public class Controller {
             //User should be directed to the sing up page
         }
     }
+
+    public static ArrayList<Ingredient> getUsersIngredientsList() {
+        ArrayList<Ingredient> list = getAllIngredients();
+        Log.d("MESSAGE", ""+fridge.getFridgeList().size());
+        for(Ingredient fridgeIngredient: fridge.getFridgeList()) {
+
+            for(Ingredient allIngredient: list) {
+                if (fridgeIngredient.getName().equals(allIngredient.getName())) {
+                    allIngredient.setAmount(fridgeIngredient.getAmount());
+                }
+            }
+        }
+
+        return list;
+    }
+
+    public static ArrayList<Ingredient> getUsersShoppingList() {
+        ArrayList<Ingredient> list = getAllIngredients();
+
+        for(Ingredient listIngredient: shoppingList.getShoppingList()) {
+
+            for(Ingredient allIngredient: list) {
+                if (listIngredient.getName().equals(allIngredient.getName())) {
+                    allIngredient.setAmount(listIngredient.getAmount());
+                }
+            }
+        }
+
+        return list;
+    }
+
+    public static void addIngredientsToShoppingList() {
+
+        
+        fridge = new Fridge();
+    }
 }

@@ -34,7 +34,7 @@ public class Fridge_SearchForIngredientActivity extends AppCompatActivity {
 
         search_recycler_view = findViewById(R.id.search_bar_fridge_ingredient);
         search_recycler_view.setLayoutManager(new LinearLayoutManager(this));
-        itemAdapter = new FridgeItemAdapter(Controller.getAllIngredients());
+        itemAdapter = new FridgeItemAdapter(Controller.getUsersIngredientsList());
         search_recycler_view.setAdapter(itemAdapter);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);

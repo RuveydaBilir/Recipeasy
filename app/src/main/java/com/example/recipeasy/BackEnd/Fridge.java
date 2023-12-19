@@ -1,5 +1,7 @@
 package com.example.recipeasy.BackEnd;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.example.recipeasy.Controller;
@@ -70,12 +72,14 @@ public class Fridge {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot snap : snapshot.getChildren()) {
-                    if(ingredient.getAmount() == 0) {
-                        reference.child(snap.getKey()).removeValue();
-                        return;
-                    }
 
                     if(snap.getValue(Ingredient.class).getName().equals(ingredient.getName())) {
+                        if(ingredient.getAmount() == 0.0) {
+                            Log.d("message", "REMOVED");
+                            reference.child(snap.getKey()).removeValue();
+                            return;
+                        }
+
                         reference.child(snap.getKey()).child("amount").setValue(ingredient.getAmount());
                         return;
                     }
