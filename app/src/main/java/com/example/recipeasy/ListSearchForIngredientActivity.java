@@ -31,7 +31,7 @@ public class ListSearchForIngredientActivity extends AppCompatActivity {
 
         search_recycler_view = findViewById(R.id.search_bar_fridge_ingredient);
         search_recycler_view.setLayoutManager(new LinearLayoutManager(this));
-        itemAdapter = new ShoppingListSearchAdapter(this, Controller.getUsersShoppingList());
+        itemAdapter = new ShoppingListSearchAdapter(this, Controller.getUsersShoppingListWithEmptyIngredients());
         search_recycler_view.setAdapter(itemAdapter);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
@@ -95,7 +95,7 @@ public class ListSearchForIngredientActivity extends AppCompatActivity {
 
     private void filterList(String text) {
         ArrayList<Ingredient> filteredList = new ArrayList<Ingredient>();
-        for (Ingredient r : Controller.getAllIngredients()) {
+        for (Ingredient r : Controller.getUsersShoppingListWithEmptyIngredients()) {
             if (containsContiguousSubstring(r.getName().toLowerCase(), text.toLowerCase())) {
                 filteredList.add(r);
             }

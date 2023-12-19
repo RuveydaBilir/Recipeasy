@@ -43,7 +43,9 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapte
             @Override
             public void onClick(View v) {
                 if(holder.checkBox.isChecked()){
-                    shoppingList.get(position).setAmount(0);
+                    //TODO:
+                    //just adds it to the fridge
+                    Controller.getFridge().addIngredient(shoppingList.get(position));
                 }
                 else{
                     holder.itemView.setVisibility(View.GONE);

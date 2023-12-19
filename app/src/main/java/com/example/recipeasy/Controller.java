@@ -350,9 +350,14 @@ public class Controller {
         }
     }
 
-    public static ArrayList<Ingredient> getUsersIngredientsList() {
-        ArrayList<Ingredient> list = getAllIngredients();
-        Log.d("MESSAGE", ""+fridge.getFridgeList().size());
+    public static ArrayList<Ingredient> getUsersFridgeListWithEmptyIngredients() {
+        ArrayList<Ingredient> list = new ArrayList<>();
+
+        for(int i = 0; i < getAllIngredients().size(); i++) {
+            Ingredient ingredient = new Ingredient(getAllIngredients().get(i).getName(), getAllIngredients().get(i).getMeasureType(), getAllIngredients().get(i).getCategory(), getAllIngredients().get(i).getAmount());
+            list.add(ingredient);
+        }
+
         for(Ingredient fridgeIngredient: fridge.getFridgeList()) {
 
             for(Ingredient allIngredient: list) {
@@ -365,8 +370,13 @@ public class Controller {
         return list;
     }
 
-    public static ArrayList<Ingredient> getUsersShoppingList() {
-        ArrayList<Ingredient> list = getAllIngredients();
+    public static ArrayList<Ingredient> getUsersShoppingListWithEmptyIngredients() {
+        ArrayList<Ingredient> list = new ArrayList<>();
+
+        for(int i = 0; i < getAllIngredients().size(); i++) {
+            Ingredient ingredient = new Ingredient(getAllIngredients().get(i).getName(), getAllIngredients().get(i).getMeasureType(), getAllIngredients().get(i).getCategory(), getAllIngredients().get(i).getAmount());
+            list.add(ingredient);
+        }
 
         for(Ingredient listIngredient: shoppingList.getShoppingList()) {
 
@@ -380,4 +390,12 @@ public class Controller {
         return list;
     }
 
+    public static void addShoppingListToFridge() {
+        for(Ingredient ingredient : getShoppingList().getShoppingList()) {
+            getFridge().addIngredient(ingredient);
+        }
+
+        FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("Shopping List").child("shoppingList").setValue(0);
+        shoppingList = new ShoppingList();
+    }
 }

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.recipeasy.BackEnd.Ingredient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -20,6 +21,7 @@ public class ShoppingListActivity extends AppCompatActivity {
     ArrayList<Ingredient> shoppingList;
 
     Button addButton;
+    Button addToFridgeButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +61,7 @@ public class ShoppingListActivity extends AppCompatActivity {
         });
 
         addButton = findViewById(R.id.fridge_add_button);
+        addToFridgeButton = findViewById(R.id.list_all_to_fridge_button);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,5 +70,14 @@ public class ShoppingListActivity extends AppCompatActivity {
             }
         });
 
+        addToFridgeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Controller.addShoppingListToFridge();
+                Toast.makeText(ShoppingListActivity.this, "Your shopping list ingredients are added to your fridge!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(ShoppingListActivity.this, MainActivity.class));
+                finish();
+            }
+        });
     }
 }
