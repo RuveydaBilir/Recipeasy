@@ -380,9 +380,4 @@ public class Controller {
         return list;
     }
 
-    public static void addIngredientsToShoppingList() {
-
-        
-        fridge = new Fridge();
-    }
 }
