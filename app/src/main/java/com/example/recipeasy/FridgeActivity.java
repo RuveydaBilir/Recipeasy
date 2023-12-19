@@ -19,11 +19,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class FridgeActivity extends AppCompatActivity {
+public class FridgeActivity extends AppCompatActivity implements RecyclerViewInterface{
     RecyclerView recyclerView;
     //DatabaseReference database;
     FridgeAdapter fridgeAdapter;
     ArrayList<String> category;
+
+    RecyclerView recyclerViewIngredientInCategory;
+    FridgeIngredientInCategoryAdapter fridgeIngredientInCategoryAdapter;
 
     Button addButton;
 
@@ -36,7 +39,7 @@ public class FridgeActivity extends AppCompatActivity {
         category = Controller.getCategories();
         recyclerView = findViewById(R.id.fridge_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        FridgeAdapter fridgeAdapter = new FridgeAdapter(this, category);
+        FridgeAdapter fridgeAdapter = new FridgeAdapter(this, category,this);
         recyclerView.setAdapter(fridgeAdapter);
 
 
@@ -79,5 +82,11 @@ public class FridgeActivity extends AppCompatActivity {
                 //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
+
     }
 }

@@ -2,6 +2,8 @@ package com.example.recipeasy;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -30,7 +32,8 @@ public class SingleRecipeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_recipe);
-
+        RecyclerView recyclerView;
+        IngredientAdapter ingredientAdapter;
         String name = getIntent().getStringExtra("NAME");
         int serve = getIntent().getIntExtra("SERVE",0);
         int time = getIntent().getIntExtra("TIME",0);
@@ -45,14 +48,17 @@ public class SingleRecipeActivity extends AppCompatActivity {
         TextView timeTextView = findViewById(R.id.textViewCookingTimeNum);
         TextView directionsTextView = findViewById(R.id.textViewInstructionsVariable);
         ImageView imageView = findViewById(R.id.recipeImage);
-        LinearLayout linearLayout = findViewById(R.id.layoutIngredients);
+        recyclerView = findViewById(R.id.cardViewIngredients);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ingredientAdapter = new IngredientAdapter(this, ingredients, missingIng);
+        recyclerView.setAdapter(ingredientAdapter);
 
         nameTextView.setText(name);
         serveTextView.setText(Integer.toString(serve));
         timeTextView.setText(Integer.toString(time));
         directionsTextView.setText(directions);
 
-        for(Ingredient ing : ingredients){
+        /*for(Ingredient ing : ingredients){
             TextView textView = new TextView(this);
             textView.setText(ing.toString());
             if(missingIng == null || !missingIng.contains(ing)){
@@ -62,7 +68,7 @@ public class SingleRecipeActivity extends AppCompatActivity {
                 textView.setTextColor(ContextCompat.getColor(this,R.color.kirmizi_malzeme));
             }
             linearLayout.addView(textView);
-        }
+        } */
 
 
         //String imageUrl = recipes.get(position).getImageURL();
