@@ -60,12 +60,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ResetPasswordActivity3"
-            android:exported="false" />
-        <activity
-            android:name=".ResetPasswordActivity2"
-            android:exported="false" />
-        <activity
             android:name=".ResetPasswordActivity1"
             android:exported="false" />
         <activity

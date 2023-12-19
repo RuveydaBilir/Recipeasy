@@ -4,16 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 
-    ImageButton backButton;
-    Button updatePasswordButton;
+    EditText emailText;
+    Button sendEmailButton;
+
+    ImageButton returnButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,27 +53,32 @@ public class ChangePasswordActivity extends AppCompatActivity {
             return false;
         });
 
-        backButton = findViewById(R.id.change_password_return_button);
-        backButton.setOnClickListener(new View.OnClickListener() {
+        sendEmailButton = findViewById(R.id.change_password_button);
+        emailText = findViewById(R.id.editText);
+        returnButton = findViewById(R.id.change_password_return_button);
+        sendEmailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int itemId = v.getId();
-                if(itemId == R.id.change_password_return_button){
-                    startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
-                    finish();
+                String email = emailText.getText().toString();
+                if(TextUtils.isEmpty(email)) {
+                    Toast.makeText(ChangePasswordActivity.this, "Please enter your email!", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                FirebaseAuth.getInstance().sendPasswordResetEmail(email);
+                Toast.makeText(ChangePasswordActivity.this, "Password reset email has been send!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(ChangePasswordActivity.this, SettingsActivity.class));
+                finish();
             }
         });
 
-        updatePasswordButton = findViewById(R.id.change_password_button);
-        updatePasswordButton.setOnClickListener(new View.OnClickListener() {
+        returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int itemId = v.getId();
-                if(itemId == R.id.change_password_button){
-                    //TODO: change user password
-                }
+                startActivity(new Intent(ChangePasswordActivity.this, SettingsActivity.class));
+                finish();
             }
         });
+
     }
 }
