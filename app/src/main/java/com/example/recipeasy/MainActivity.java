@@ -166,6 +166,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         intent.putExtra("TIME", filteredList.get(position).getCookingTime());
         intent.putExtra("DIRECTIONS", filteredList.get(position).getDirections());
         intent.putExtra("IMAGE_URL", filteredList.get(position).getImageURL());
+        intent.putExtra("INGREDIENTS", filteredList.get(position).getIngredients());
+        intent.putExtra("MISSING", Controller.findMissingIngredients(filteredList.get(position)));
 
 
         startActivity(intent);
