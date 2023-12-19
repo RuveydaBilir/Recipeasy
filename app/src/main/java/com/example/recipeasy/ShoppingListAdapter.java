@@ -2,6 +2,7 @@ package com.example.recipeasy;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,19 +44,19 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapte
             @Override
             public void onClick(View v) {
                 if(holder.checkBox.isChecked()){
-                    //TODO:
-                    //just adds it to the fridge
                     Controller.getFridge().addIngredient(shoppingList.get(position));
                     removeIngredient(shoppingList.get(position));
+                    removeIngredientAtPosition(position);
+
                 }
                 else{
-                    holder.itemView.setVisibility(View.GONE);
+                    //holder.itemView.setVisibility(View.GONE);
                 }
             }
 
 
         });
-        setFilteredList(shoppingList);
+        setFilteredList(Controller.getShoppingList().getShoppingList());
     }
 
     public void setFilteredList(ArrayList<Ingredient> filteredList){
@@ -88,5 +89,13 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapte
         cancelIngredient.setName(ingredient.getName());
         cancelIngredient.setAmount((-1)*ingredient.getAmount());
         Controller.getShoppingList().addIngredient(cancelIngredient);
+    }
+
+    private void removeIngredientAtPosition(int position) {
+        if (position >= 0 && position < shoppingList.size()) {
+            shoppingList.remove(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, shoppingList.size());
+        }
     }
 }
