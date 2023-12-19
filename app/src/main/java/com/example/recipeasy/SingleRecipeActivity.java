@@ -55,7 +55,7 @@ public class SingleRecipeActivity extends AppCompatActivity {
         for(Ingredient ing : ingredients){
             TextView textView = new TextView(this);
             textView.setText(ing.toString());
-            if(missingIng.contains(ing)){
+            if(missingIng == null || !missingIng.contains(ing)){
                 textView.setTextColor(ContextCompat.getColor(this,R.color.yesil_malzeme));
             }
             else{
