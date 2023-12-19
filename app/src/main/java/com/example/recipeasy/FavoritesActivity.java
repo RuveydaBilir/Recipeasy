@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.recipeasy.BackEnd.Ingredient;
 import com.example.recipeasy.BackEnd.Recipe;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -75,7 +76,8 @@ public class FavoritesActivity extends AppCompatActivity implements RecyclerView
         intent.putExtra("TIME", Controller.getRecommendation().getRecipes().get(position).getCookingTime());
         intent.putExtra("DIRECTIONS", Controller.getRecommendation().getRecipes().get(position).getDirections());
         intent.putExtra("IMAGE_URL", Controller.getRecommendation().getRecipes().get(position).getImageURL());
-
+        intent.putExtra("INGREDIENTS", Controller.getRecommendation().getRecipes().get(position).getIngredients());
+        intent.putExtra("MISSING", Controller.findMissingIngredients(Controller.getRecommendation().getRecipes().get(position)));
 
         startActivity(intent);
     }

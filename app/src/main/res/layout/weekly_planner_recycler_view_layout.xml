@@ -22,16 +22,15 @@
                 android:id="@+id/choose_from_favorites"
                 android:layout_width="53dp"
                 android:layout_height="53dp"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="20dp"
                 android:backgroundTint="@color/acik_pembe"
                 android:drawableLeft="@drawable/favorite_icon"
                 android:drawableTint="@color/bordo"
-                android:layout_marginEnd="8dp"
                 android:text=" "
                 android:textColor="@color/black"
                 android:textSize="10dp"
                 app:cornerRadius="10dp"
-                app:layout_constraintEnd_toStartOf="@+id/textView6"
-                app:layout_constraintHorizontal_bias="0.391"
                 app:layout_constraintStart_toEndOf="@+id/background"
                 app:layout_constraintTop_toBottomOf="@+id/get_another_recommendation" />
 
@@ -39,7 +38,7 @@
                 android:id="@+id/get_another_recommendation"
                 android:layout_width="53dp"
                 android:layout_height="53dp"
-                android:layout_marginTop="52dp"
+                android:layout_marginTop="56dp"
                 android:backgroundTint="@color/acik_pembe"
                 android:drawableLeft="@drawable/recommend_icon"
                 android:drawableTint="@color/bordo"
@@ -48,6 +47,7 @@
                 android:textSize="10dp"
                 app:cornerRadius="10dp"
                 app:layout_constraintEnd_toStartOf="@+id/textView4"
+                app:layout_constraintHorizontal_bias="0.9"
                 app:layout_constraintStart_toEndOf="@+id/background"
                 app:layout_constraintTop_toBottomOf="@+id/day_of_the_week"
                 tools:ignore="MissingConstraints" />
@@ -56,13 +56,13 @@
                 android:id="@+id/background"
                 android:layout_width="200dp"
                 android:layout_height="230dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/green_recipe_background"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/get_another_recommendation"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/day_heading"
-                app:layout_constraintVertical_bias="0.0">
+                app:layout_constraintVertical_bias="1.0">
 
                 <TextView
                     android:id="@+id/recipeNameWL"
@@ -135,6 +135,7 @@
                 android:id="@+id/day_heading"
                 android:layout_width="233dp"
                 android:layout_height="40dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/nav_bar_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -159,24 +160,31 @@
                 android:layout_height="34dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="20dp"
+                android:layout_marginTop="55dp"
                 android:text="Get another recommendation"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toTopOf="@+id/textView6"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/day_heading"
+                app:layout_constraintVertical_bias="1.0"
                 tools:ignore="MissingConstraints" />
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="112dp"
                 android:layout_height="33dp"
-                android:layout_marginLeft="70dp"
-                android:layout_marginBottom="88dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="80dp"
                 android:text="Choose from favorites"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toRightOf="@+id/background"
+                app:layout_constraintStart_toEndOf="@+id/choose_from_favorites"
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
+                app:layout_constraintVertical_bias="0.844"
                 tools:ignore="MissingConstraints" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

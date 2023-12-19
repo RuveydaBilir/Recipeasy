@@ -44,7 +44,7 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:queryHint="Search for recipes ..." />
+        app:queryHint="Search for ingredients..." />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_bar_fridge_ingredient"

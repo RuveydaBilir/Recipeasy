@@ -13,6 +13,7 @@
         android:id="@+id/settings_text_background"
         android:layout_width="300dp"
         android:layout_height="60dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/settings_background"
 
         app:layout_constraintEnd_toEndOf="parent"

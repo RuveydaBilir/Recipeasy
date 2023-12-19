@@ -14,6 +14,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -47,15 +48,18 @@ public class Controller {
     }
 
     public void setCategories(){
-        categories.add("Vegetables");
-        categories.add("Fruits");
-        categories.add("Fish & Marine Products");
-        categories.add("Dairy Products");
-        categories.add("Legumes");
-        categories.add("Canned Products");
-        categories.add("Nuts");
-        categories.add("Meat Products");
-        categories.add("Oils");
+        categories.add("Vegetable");
+        categories.add("Fruit");
+        categories.add("Seafood");
+        categories.add("Dairy");
+        categories.add("Liquid");
+        categories.add("Spice");
+        categories.add("Herb");
+        categories.add("Meat");
+        categories.add("Oil");
+        categories.add("Condiment");
+        categories.add("Grain");
+        categories.add("Leavening Agent");
     }
 
     public Controller(User user, Fridge fridge, Favorites favorites, Planner planner, ShoppingList shoppingList, Recommendation recommendation) {
@@ -238,7 +242,7 @@ public class Controller {
     }
 
     public static void createMealPlanner(){
-        int[] intOfRecipeIndex = new int[7];
+        int[] intOfRecipeIndex = new int[5];
         Random random = new Random();
         for (int i = 0; i < 5; i++) {
             int randomIndex;
@@ -267,15 +271,17 @@ public class Controller {
     }
 
     private static void setAllRecipes() {
-        FirebaseDatabase.getInstance().getReference("Recipes").addValueEventListener(new ValueEventListener() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Recipes");
+        Query query = reference.orderByKey();
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                allRecipes.clear();
-                for (DataSnapshot snap : snapshot.getChildren()) {
+                for(DataSnapshot snap : snapshot.getChildren()) {
                     Recipe recipe = snap.getValue(Recipe.class);
                     allRecipes.add(recipe);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
