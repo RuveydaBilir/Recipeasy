@@ -1,6 +1,7 @@
 
 package com.example.recipeasy.BackEnd;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.io.Serializable;
@@ -70,5 +71,11 @@ public class Ingredient implements Serializable {
             }
         }
         return false;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return amount + " " + measureType + " " +  name;
     }
 }
