@@ -26,7 +26,7 @@ public class FridgeActivity extends AppCompatActivity implements RecyclerViewInt
     ArrayList<String> category;
 
     RecyclerView recyclerViewIngredientInCategory;
-    FridgeIngredientInCategoryAdapter fridgeIngredientInCategoryAdapter;
+   // FridgeIngredientInCategoryAdapter fridgeIngredientInCategoryAdapter;
 
     Button addButton;
 
@@ -86,6 +86,7 @@ public class FridgeActivity extends AppCompatActivity implements RecyclerViewInt
 
     @Override
     public void onItemClick(int position) {
+
 
 
     }

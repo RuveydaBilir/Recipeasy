@@ -1,7 +1,6 @@
 package com.example.recipeasy;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,12 +61,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.My
             holder.name.setTextColor(ContextCompat.getColor(context,R.color.yesil_malzeme));
             holder.button.setVisibility(View.GONE);
         }
-        holder.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Controller.getShoppingList().addIngredient(ingredients.get(position));
-            }
-        });
+        //holder.button.setOnClickListener();
 
     }
 

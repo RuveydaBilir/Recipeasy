@@ -38,6 +38,28 @@
             android:layout_width="match_parent"
             android:layout_height="500dp"
             android:layout_marginTop="36dp" />
+
+        <!--<androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="match_parent"
+            android:layout_height="700dp"
+            android:layout_marginTop="12dp"
+            app:cardBackgroundColor="@color/white"
+
+            app:cardCornerRadius="50dp"
+            app:layout_constraintTop_toTopOf="@id/cardView"
+            tools:layout_editor_absoluteX="78dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fridge_ingredient_in_categories"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:layout_marginTop="36dp" />
+
+
+        </androidx.cardview.widget.CardView>-->
+
+
     </androidx.cardview.widget.CardView>
 
     <Button

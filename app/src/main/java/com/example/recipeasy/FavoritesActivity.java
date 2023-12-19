@@ -71,13 +71,13 @@ public class FavoritesActivity extends AppCompatActivity implements RecyclerView
         Intent intent = new Intent(FavoritesActivity.this, SingleRecipeActivity.class);
 
         intent.putExtra("callerActivity", "Favorites");
-        intent.putExtra("NAME", Controller.getRecommendation().getRecipes().get(position).getName());
-        intent.putExtra("SERVE", Controller.getRecommendation().getRecipes().get(position).getServings());
-        intent.putExtra("TIME", Controller.getRecommendation().getRecipes().get(position).getCookingTime());
-        intent.putExtra("DIRECTIONS", Controller.getRecommendation().getRecipes().get(position).getDirections());
-        intent.putExtra("IMAGE_URL", Controller.getRecommendation().getRecipes().get(position).getImageURL());
-        intent.putExtra("INGREDIENTS", Controller.getRecommendation().getRecipes().get(position).getIngredients());
-        intent.putExtra("MISSING", Controller.findMissingIngredients(Controller.getRecommendation().getRecipes().get(position)));
+        intent.putExtra("NAME", favorites.get(position).getName());
+        intent.putExtra("SERVE", favorites.get(position).getServings());
+        intent.putExtra("TIME", favorites.get(position).getCookingTime());
+        intent.putExtra("DIRECTIONS", favorites.get(position).getDirections());
+        intent.putExtra("IMAGE_URL", favorites.get(position).getImageURL());
+        intent.putExtra("INGREDIENTS", favorites.get(position).getIngredients());
+        intent.putExtra("MISSING", Controller.findMissingIngredients(favorites.get(position)));
 
         startActivity(intent);
     }

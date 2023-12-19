@@ -10,18 +10,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.recipeasy.BackEnd.Ingredient;
+
 import java.util.ArrayList;
 
 public class FridgeIngredientInCategoryAdapter extends RecyclerView.Adapter<com.example.recipeasy.FridgeIngredientInCategoryAdapter.MyViewHolder> {
 
-    ArrayList<String> category;
+    ArrayList<Ingredient> ingredients ;
     Context context;
 
 
 
-    public FridgeIngredientInCategoryAdapter(Context context, ArrayList<String> category) {
+    public FridgeIngredientInCategoryAdapter(Context context, ArrayList<Ingredient> ingredients) {
         this.context = context;
-        this.category = category;
+        this.ingredients = ingredients;
 
     }
 
@@ -30,32 +32,33 @@ public class FridgeIngredientInCategoryAdapter extends RecyclerView.Adapter<com.
     public FridgeIngredientInCategoryAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.fridge_recycler_view_layout, parent, false);
+        View view = layoutInflater.inflate(R.layout.fridge_ingredient_in_category_card_view, parent, false);
         return new FridgeIngredientInCategoryAdapter.MyViewHolder(view);
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull FridgeIngredientInCategoryAdapter.MyViewHolder holder, int position) {
-        holder.categoryName.setText(category.get(position));
-        holder.categoryNum.setText(String.valueOf(Controller.getFridge().getSpecifiedTypeOfIngredient(category.get(position)).size()));
+        holder.name.setText(ingredients.get(position).getName());
+        holder.amount.setText(Double.toString(ingredients.get(position).getAmount()));
+        holder.type.setText(ingredients.get(position).getMeasureType());
     }
 
     @Override
     public int getItemCount() {
-        return category.size();
+        return ingredients.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        private ImageView icon;
-        private TextView categoryName;
-        private TextView categoryNum;
+        private TextView name;
+        private TextView amount;
+        private TextView type;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            icon = itemView.findViewById(R.id.imageView);
-            categoryName = itemView.findViewById(R.id.textView3);
-            categoryNum = itemView.findViewById(R.id.ingredient_group_count);
+            name = itemView.findViewById(R.id.ingredient_name);
+            amount = itemView.findViewById(R.id.ingredient_amount);
+            type = itemView.findViewById(R.id.ingredient_amount_type);
 
 
         }
