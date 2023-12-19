@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fridge_recycler_view_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="340dp"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="8dp"
@@ -43,7 +43,7 @@
                 app:layout_constraintVertical_bias="0.523" />
 
             <TextView
-                android:id="@+id/ingredient_group_count"
+                android:id="@+id/ingredient_count"
                 android:layout_width="30dp"
                 android:layout_height="20dp"
                 android:layout_marginRight="50dp"

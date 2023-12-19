@@ -1,21 +1,35 @@
 package com.example.recipeasy;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.recipeasy.BackEnd.Ingredient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+
 public class ShoppingListActivity extends AppCompatActivity {
+    RecyclerView recyclerView;
+    ShoppingListAdapter shoppingListAdapter;
+    ArrayList<Ingredient> shoppingList;
 
     Button addButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list);
+
+        shoppingList = Controller.getShoppingList().getShoppingList();
+        recyclerView = findViewById(R.id.shopping_list_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ShoppingListAdapter shoppingListAdapter = new ShoppingListAdapter(this, shoppingList);
+        recyclerView.setAdapter(shoppingListAdapter);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
         bottomNavigationView.setSelectedItemId(R.id.shopping_cart);
@@ -52,5 +66,6 @@ public class ShoppingListActivity extends AppCompatActivity {
                 //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
+
     }
 }
