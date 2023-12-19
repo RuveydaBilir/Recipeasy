@@ -65,7 +65,6 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
                 if(favorites.get(position).inFavorites()){
                     Controller.getFavorites().removeRecipe(favorites.get(position));
                     newHeartDrawable = R.drawable.favorite_icibos;
-                    notifyItemChanged(position, null);
                 }
                 else{
                     Controller.getFavorites().addRecipe(favorites.get(position));

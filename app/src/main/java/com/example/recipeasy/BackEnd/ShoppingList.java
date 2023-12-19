@@ -37,9 +37,6 @@ public class ShoppingList {
     }
 
     public void addIngredient(Ingredient ingredient){
-        if(ingredient.getAmount() <= 0) {
-            return;
-        }
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Controller.getUser().getUserID()).child("Shopping List").child("shoppingList");
         Query query = reference.orderByKey();

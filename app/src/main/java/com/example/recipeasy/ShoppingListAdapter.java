@@ -46,6 +46,7 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapte
                     //TODO:
                     //just adds it to the fridge
                     Controller.getFridge().addIngredient(shoppingList.get(position));
+                    removeIngredient(shoppingList.get(position));
                 }
                 else{
                     holder.itemView.setVisibility(View.GONE);
@@ -80,5 +81,12 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListAdapte
             amount = itemView.findViewById(R.id.ingredient_count);
 
         }
+    }
+
+    private void removeIngredient(Ingredient ingredient) {
+        Ingredient cancelIngredient = new Ingredient();
+        cancelIngredient.setName(ingredient.getName());
+        cancelIngredient.setAmount((-1)*ingredient.getAmount());
+        Controller.getShoppingList().addIngredient(cancelIngredient);
     }
 }

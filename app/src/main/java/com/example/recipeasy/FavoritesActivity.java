@@ -33,7 +33,6 @@ public class FavoritesActivity extends AppCompatActivity implements RecyclerView
         favoritesAdapter = new FavoritesAdapter(this, favorites, this);
         recyclerView.setAdapter(favoritesAdapter);
 
-
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
         bottomNavigationView.setSelectedItemId(R.id.favorites);
 
