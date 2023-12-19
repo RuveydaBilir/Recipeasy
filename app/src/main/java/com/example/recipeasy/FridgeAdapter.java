@@ -20,8 +20,11 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class FridgeAdapter extends RecyclerView.Adapter<com.example.recipeasy.FridgeAdapter.MyViewHolder> {
+    private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
     ArrayList<String> category;
     Context context;
+
+    private RecyclerView rvSubItem;
 
     private final RecyclerViewInterface recyclerViewInterface;
 
@@ -43,9 +46,23 @@ public class FridgeAdapter extends RecyclerView.Adapter<com.example.recipeasy.Fr
 
     @Override
     public void onBindViewHolder(@NonNull FridgeAdapter.MyViewHolder holder, int position) {
-        holder.categoryName.setText(category.get(position));
+        String item = category.get(position);
+        holder.categoryName.setText(item);
         holder.categoryNum.setText(String.valueOf(Controller.getFridge().getSpecifiedTypeOfIngredient(category.get(position)).size()));
-        holder.bind(category.get(position));
+        //holder.bind(item);
+
+        // Create layout manager with initial prefetch item count
+        LinearLayoutManager layoutManager = new LinearLayoutManager(
+                holder.innerView.getContext(),
+                LinearLayoutManager.VERTICAL,
+                false
+        );
+        layoutManager.setInitialPrefetchItemCount(category.size());
+        FridgeIngredientInCategoryAdapter subItemAdapter = new FridgeIngredientInCategoryAdapter(context, Controller.getFridge().getSpecifiedTypeOfIngredient(item));
+
+        holder.innerView.setLayoutManager(layoutManager);
+        holder.innerView.setAdapter(subItemAdapter);
+        holder.innerView.setRecycledViewPool(viewPool);
     }
 
     @Override
@@ -89,11 +106,11 @@ public class FridgeAdapter extends RecyclerView.Adapter<com.example.recipeasy.Fr
                 }
             });
         }
-            public void bind(String category) {
+            /*public void bind(String category) {
                 FridgeIngredientInCategoryAdapter innerAdapter = new FridgeIngredientInCategoryAdapter(innerView.getContext(), Controller.getFridge().getSpecifiedTypeOfIngredient(category));
                 innerView.setLayoutManager(new LinearLayoutManager(itemView.getContext(), RecyclerView.HORIZONTAL, false));
                 innerView.setAdapter(innerAdapter);
-            }
+            }*/
         }
 
     }
