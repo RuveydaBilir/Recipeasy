@@ -75,13 +75,6 @@ public class FridgeAdapter extends RecyclerView.Adapter<com.example.recipeasy.Fr
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    /*if (recyclerViewInterface != null) {
-                        int pos = getAdapterPosition();
-
-                        if (pos != RecyclerView.NO_POSITION) {
-                            recyclerViewInterface.onItemClick(pos);
-                        }
-                    } */
                     if(!visible){
                         innerView.setVisibility(View.VISIBLE);
                         background.setCardBackgroundColor(Color.rgb(255,226,226));

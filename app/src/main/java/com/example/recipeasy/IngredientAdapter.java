@@ -61,7 +61,12 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.My
             holder.name.setTextColor(ContextCompat.getColor(context,R.color.yesil_malzeme));
             holder.button.setVisibility(View.GONE);
         }
-        //holder.button.setOnClickListener();
+        holder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Controller.getShoppingList().addIngredient(ingredients.get(position));
+            }
+        });
 
     }
 
